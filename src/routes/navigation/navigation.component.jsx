@@ -7,7 +7,7 @@ const Navigation = () => {
             <div>
                 <Link to='/'>HOME</Link>
                 <br />
-                <Link to='/sign-in'>SIGN IN</Link>
+                <Link to='/auth'>SIGN IN</Link>
             </div>
             <Outlet />
         </Fragment>

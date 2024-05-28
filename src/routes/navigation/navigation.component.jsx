@@ -20,6 +20,8 @@ const Navigation = () => {
                         <Link to='/auth'>SIGN IN</Link>
                     )
                 }
+                <br />
+                <Link to='/recipes'>Recipes</Link>
             </div>
             <Outlet />
         </Fragment>

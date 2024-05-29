@@ -10,9 +10,10 @@ const RecipeCard = ({ category, recipe }) => {
             </Link>
             <div>
                 <h2>{title}</h2>
-                <span>{noOfPeople}</span>
-                <span>{time}</span>
-                <p>{difficulty}</p>
+                <span>Serves: {noOfPeople}</span>
+                <br />
+                <span>Time: {time}</span>
+                <p>Difficulty: {difficulty}</p>
             </div>
         </div>
     )

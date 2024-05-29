@@ -16,7 +16,9 @@ import {
     collection,
     writeBatch,
     query,
-    getDocs
+    getDocs,
+    deleteDoc,
+    onSnapshot
 } from 'firebase/firestore';
 
 const firebaseConfig = {
@@ -67,6 +69,44 @@ export const getCategoriesAndDocuments = async () => {
 
     return categoryMap;
 }
+
+export const onCategoriesSnapshot = (callback) => {
+    const collectionRef = collection(db, 'categories');
+    const q = query(collectionRef);
+
+    return onSnapshot(q, callback);
+};
+
+export const createCategoryDocument = async (categoryName) => {
+    const categoryDocRef = doc(db, 'categories', categoryName.toLowerCase());
+    const categorySnapshot = await getDoc(categoryDocRef);
+
+    if (!categorySnapshot.exists()) {
+        await setDoc(categoryDocRef, {
+            categoryName,
+            recipes: [],
+        });
+    }
+};
+
+export const updateCategoryDocument = async (oldCategoryName, newCategoryName) => {
+    const oldCategoryDocRef = doc(db, 'categories', oldCategoryName.toLowerCase());
+    const oldCategorySnapshot = await getDoc(oldCategoryDocRef);
+
+    if (oldCategorySnapshot.exists()) {
+        const { recipes } = oldCategorySnapshot.data();
+        await setDoc(doc(db, 'categories', newCategoryName.toLowerCase()), {
+            categoryName: newCategoryName,
+            recipes: recipes,
+        });
+        await deleteDoc(oldCategoryDocRef);
+    }
+};
+
+export const deleteCategoryDocument = async (categoryName) => {
+    const categoryDocRef = doc(db, 'categories', categoryName.toLowerCase());
+    await deleteDoc(categoryDocRef);
+};
 
 export const createUserDocumentFromAuth = async (userAuth, additionalInformation = {}) => {
     if(!userAuth) return;

@@ -1,3 +1,5 @@
+// src/routes/category/category.component.js
+
 import { useContext, useState, useEffect, Fragment } from 'react';
 import { useParams } from 'react-router-dom';
 import RecipeCard from '../../components/recipe-card/recipe-card.component';
@@ -9,7 +11,7 @@ const Category = () => {
     const [recipes, setRecipes] = useState([]);
 
     useEffect(() => {
-        setRecipes(categoriesMap[category]);
+        setRecipes(categoriesMap[category] || []);
     }, [category, categoriesMap]);
 
     return (
@@ -22,7 +24,7 @@ const Category = () => {
                     ))
             }
         </Fragment>
-    )
+    );
 };
 
 export default Category;

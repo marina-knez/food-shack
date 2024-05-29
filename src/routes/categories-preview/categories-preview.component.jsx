@@ -1,4 +1,5 @@
 import { useContext, Fragment } from 'react';
+import { Link } from 'react-router-dom';
 import CategoryPreview from '../../components/category-preview/category-preview.component';
 import { CategoriesContext } from '../../contexts/categories.context';
 
@@ -7,6 +8,7 @@ const Category = () => {
 
     return (
         <Fragment>
+            <Link to='/add-category'>Add Category</Link>
             {
                 Object.keys(categoriesMap).map(categoryName => {
                     const recipes = categoriesMap[categoryName];

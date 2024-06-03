@@ -108,6 +108,64 @@ export const deleteCategoryDocument = async (categoryName) => {
     await deleteDoc(categoryDocRef);
 };
 
+export const createRecipeDocument = async (categoryName, recipeData) => {
+    try {
+        const categoryDocRef = doc(db, 'categories', categoryName.toLowerCase());
+        const categorySnapshot = await getDoc(categoryDocRef);
+
+        if (categorySnapshot.exists()) {
+            const categoryData = categorySnapshot.data();
+            const highestId = categoryData.recipes.reduce((maxId, recipe) => Math.max(maxId, recipe.id), 0);
+            const newRecipeId = highestId + 1;
+            const updatedRecipes = [...categoryData.recipes, { ...recipeData, id: newRecipeId }];
+            await setDoc(categoryDocRef, { ...categoryData, recipes: updatedRecipes });
+        } else {
+            throw new Error(`Category ${categoryName} does not exist`);
+        }
+    } catch (error) {
+        console.error('Error adding recipe:', error.message);
+        throw error;
+    }
+};
+
+export const updateRecipeDocument = async (categoryName, updatedRecipe) => {
+    try {
+        const categoryDocRef = doc(db, 'categories', categoryName.toLowerCase());
+        const categorySnapshot = await getDoc(categoryDocRef);
+
+        if (categorySnapshot.exists()) {
+            const categoryData = categorySnapshot.data();
+            const updatedRecipes = categoryData.recipes.map(recipe =>
+                recipe.id === updatedRecipe.id ? updatedRecipe : recipe
+            );
+            await setDoc(categoryDocRef, { ...categoryData, recipes: updatedRecipes });
+        } else {
+            throw new Error(`Category ${categoryName} does not exist`);
+        }
+    } catch (error) {
+        console.error('Error updating recipe:', error.message);
+        throw error;
+    }
+};
+
+export const deleteRecipeDocument = async (categoryName, recipeId) => {
+    try {
+        const categoryDocRef = doc(db, 'categories', categoryName.toLowerCase());
+        const categorySnapshot = await getDoc(categoryDocRef);
+
+        if (categorySnapshot.exists()) {
+            const categoryData = categorySnapshot.data();
+            const updatedRecipes = categoryData.recipes.filter(recipe => recipe.id !== recipeId);
+            await setDoc(categoryDocRef, { ...categoryData, recipes: updatedRecipes });
+        } else {
+            throw new Error(`Category ${categoryName} does not exist`);
+        }
+    } catch (error) {
+        console.error('Error deleting recipe:', error.message);
+        throw error;
+    }
+};
+
 export const createUserDocumentFromAuth = async (userAuth, additionalInformation = {}) => {
     if(!userAuth) return;
 

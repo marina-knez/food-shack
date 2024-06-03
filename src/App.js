@@ -1,5 +1,4 @@
 import { Routes, Route } from 'react-router-dom';
-
 import Navigation from './routes/navigation/navigation.component';
 import Home from './routes/home/home.component';
 import Authentication from './routes/authentication/authentication.component';
@@ -15,9 +14,9 @@ function App() {
         <Route index element={<Home />} />
         <Route path='auth' element={<Authentication />} />
         <Route path='/recipes/*' element={<Recipes />} />
-        <Route path="/add-category" element={<AddCategory />} />
-        <Route path="/update-category/:oldCategoryName" element={<UpdateCategory />} />
-        <Route path="/delete-category/:categoryName" element={<DeleteCategory />} />
+        <Route path="/recipes/add-category" element={<AddCategory />} />
+        <Route path="/recipes/update-category/:oldCategoryName" element={<UpdateCategory />} />
+        <Route path="/recipes/delete-category/:categoryName" element={<DeleteCategory />} />
       </Route>
     </Routes>
   );

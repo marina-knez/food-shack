@@ -5,21 +5,25 @@ const CategoryPreview = ({ categoryName, recipes }) => {
     return (
         <div>
             <h2>
-                <span>{categoryName.toUpperCase()}</span>
+                <Link to={`/recipes/${categoryName}`}>{categoryName.toUpperCase()}</Link>
             </h2>
-            <Link to={`/update-category/${categoryName}`}>Update Category</Link>
+            <Link to={`/recipes/update-category/${categoryName}`}>Update Category</Link>
             <br />
-            <Link to={`/delete-category/${categoryName}`}>Delete Category</Link>
+            <Link to={`/recipes/delete-category/${categoryName}`}>Delete Category</Link>
             <br />
             {
                 recipes
                     .filter((_, idx) => idx < 4)
                     .map(recipe => 
-                        <RecipeCard key={recipe.id} recipe={recipe} category={categoryName} />
+                        <div key={recipe.id}>
+                            <RecipeCard recipe={recipe} category={categoryName} />
+                            <Link to={`/recipes/${categoryName}/update-recipe/${recipe.id}`}>Update</Link>
+                            <Link to={`/recipes/${categoryName}/delete-recipe/${recipe.id}`}>Delete</Link>
+                        </div>
                     )
             }
         </div>
-    )
+    );
 };
 
 export default CategoryPreview;

@@ -12,7 +12,7 @@ const DeleteCategory = () => {
         const deleteCategory = async () => {
             if (categoryName) {
                 await deleteCategoryDocument(categoryName);
-                navigate('/recipes'); // Navigate back to the home page or categories list after deletion
+                navigate('/recipes');
             }
         };
 

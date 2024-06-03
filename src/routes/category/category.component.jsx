@@ -1,27 +1,26 @@
-// src/routes/category/category.component.js
-
-import { useContext, useState, useEffect, Fragment } from 'react';
-import { useParams } from 'react-router-dom';
-import RecipeCard from '../../components/recipe-card/recipe-card.component';
+import { useContext, Fragment } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import { CategoriesContext } from '../../contexts/categories.context';
+import RecipeCard from '../../components/recipe-card/recipe-card.component';
 
 const Category = () => {
     const { category } = useParams();
     const { categoriesMap } = useContext(CategoriesContext);
-    const [recipes, setRecipes] = useState([]);
-
-    useEffect(() => {
-        setRecipes(categoriesMap[category] || []);
-    }, [category, categoriesMap]);
+    const recipes = categoriesMap[category.toLowerCase()] || [];
 
     return (
         <Fragment>
             <h2>{category.toUpperCase()}</h2>
+            <Link to={`/recipes/${category}/add-recipe`}>Add Recipe</Link>
             {
-                recipes && 
-                    recipes.map(recipe => (
-                        <RecipeCard key={recipe.id} recipe={recipe} category={category} />
-                    ))
+                recipes.map(recipe => (
+                    <div key={recipe.id}>
+                        <RecipeCard recipe={recipe} category={category} />
+                        <Link to={`/recipes/${category}/update-recipe/${recipe.id}`}>Update</Link>
+                        <br />
+                        <Link to={`/recipes/${category}/delete-recipe/${recipe.id}`}>Delete</Link>
+                    </div>
+                ))
             }
         </Fragment>
     );

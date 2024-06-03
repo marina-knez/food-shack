@@ -1,5 +1,3 @@
-// src/components/update-category/update-category.component.js
-
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { updateCategoryDocument } from "../../utils/firebase/firebase.utils";
@@ -13,7 +11,7 @@ const UpdateCategory = () => {
         e.preventDefault();
         if (newCategoryName && newCategoryName !== oldCategoryName) {
             await updateCategoryDocument(oldCategoryName, newCategoryName);
-            navigate('/recipes'); // Navigate back to categories page or any other page
+            navigate('/recipes'); 
         }
     };
 

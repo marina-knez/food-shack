@@ -1,21 +1,25 @@
 import { Link } from "react-router-dom";
+import { RecipeCardContainer, RecipeCardInfo, RecipeCardLinks, RecipeCardLink, RecipeCardTitle } from './recipe-card.styles';
 
 const RecipeCard = ({ category, recipe }) => {
     const { id, title, img, noOfPeople, time, difficulty } = recipe;
 
     return (
-        <div>
-            <Link to={`/recipes/${category}/` + id}>{title}
+        <RecipeCardContainer>
+            <Link to={`/recipes/${category}/` + id}>
                 <img src={img} alt={title} title={title} />
+                <RecipeCardTitle>{title}</RecipeCardTitle>
             </Link>
-            <div>
-                <h2>{title}</h2>
+            <RecipeCardInfo>
                 <span>Serves: {noOfPeople}</span>
-                <br />
                 <span>Time: {time}</span>
-                <p>Difficulty: {difficulty}</p>
-            </div>
-        </div>
+                <span>Difficulty: {difficulty}</span>
+            </RecipeCardInfo>
+            <RecipeCardLinks>
+                <RecipeCardLink to={`/recipes/${category}/update-recipe/${recipe.id}`}>Update</RecipeCardLink>
+                <RecipeCardLink to={`/recipes/${category}/delete-recipe/${recipe.id}`}>Delete</RecipeCardLink>
+            </RecipeCardLinks>
+        </RecipeCardContainer>
     )
 };
 

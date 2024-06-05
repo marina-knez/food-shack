@@ -20,6 +20,8 @@ export const CategoryPreviewName = styled.div`
 
 export const CategoryPreviewTitle = styled(Link)`
     font-size: 2.5rem;
+    font-weight: 600;
+    color: rgba(133,44,133,1);
     margin-left: 50px;
     cursor: pointer;
 `;

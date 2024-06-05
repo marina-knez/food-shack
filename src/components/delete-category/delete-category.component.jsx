@@ -1,28 +1,28 @@
-// src/components/delete-category/delete-category.component.js
-
 import { useParams, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
 import { deleteCategoryDocument } from "../../utils/firebase/firebase.utils";
+import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
+
+import { DeleteCategoryPageContainer, DeleteCategoryTitle, DeleteCategoryButtonContainer } from "./delete-category.styles";
 
 const DeleteCategory = () => {
     const { categoryName } = useParams();
     const navigate = useNavigate();
 
-    useEffect(() => {
-        const deleteCategory = async () => {
-            if (categoryName) {
-                await deleteCategoryDocument(categoryName);
-                navigate('/recipes');
-            }
-        };
-
-        deleteCategory();
-    }, [categoryName, navigate]);
+    const handleDelete = async () => {
+        if(categoryName){
+            await deleteCategoryDocument(categoryName);
+            navigate('/recipes');
+        }
+    }
 
     return (
-        <div>
-            <h2>Deleting category {categoryName}...</h2>
-        </div>
+        <DeleteCategoryPageContainer>
+            <DeleteCategoryTitle>Are you sure you want to delete this category?</DeleteCategoryTitle>
+            <DeleteCategoryButtonContainer>
+                <Button buttonType={BUTTON_TYPE_CLASSES.base} onClick={handleDelete}>Delete</Button>
+                <Button buttonType={BUTTON_TYPE_CLASSES.inverted} onClick={() => navigate(-1)}>Cancel</Button>
+            </DeleteCategoryButtonContainer>
+        </DeleteCategoryPageContainer>
     );
 };
 

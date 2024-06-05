@@ -17,7 +17,7 @@ const CategoriesPreview = () => {
     return (
         <Fragment>
             <AddCategoryContainer>
-                <AddCategoryLink to='/add-category'>Add Category</AddCategoryLink>
+                <AddCategoryLink to='/recipes/add-category'>Add Category</AddCategoryLink>
             </AddCategoryContainer>
             {
                 Object.keys(categoriesMap).map(categoryName => {

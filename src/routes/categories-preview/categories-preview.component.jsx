@@ -1,8 +1,9 @@
 import { useContext, Fragment, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import CategoryPreview from '../../components/category-preview/category-preview.component';
 import { CategoriesContext } from '../../contexts/categories.context';
 import { RecipesContext } from '../../contexts/recipes.context';
+import { AddCategoryContainer, AddCategoryLink } from './categories-preview.styles';
 
 const CategoriesPreview = () => {
     const { category } = useParams();
@@ -15,7 +16,9 @@ const CategoriesPreview = () => {
 
     return (
         <Fragment>
-            <Link to='/recipes/add-category'>Add Category</Link>
+            <AddCategoryContainer>
+                <AddCategoryLink to='/add-category'>Add Category</AddCategoryLink>
+            </AddCategoryContainer>
             {
                 Object.keys(categoriesMap).map(categoryName => {
                     const recipes = categoriesMap[categoryName];

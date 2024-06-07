@@ -1,10 +1,12 @@
 import { createContext, useContext, useState } from 'react';
-import { createRecipeDocument } from '../utils/firebase/firebase.utils';
+import { createRecipeDocument, updateRecipeDocument, getRecipeDocumentById } from '../utils/firebase/firebase.utils';
 import { CategoriesContext } from './categories.context';
 
 export const RecipesContext = createContext({
     setCurrentCategory: () => null,
     addRecipe: () => null,
+    updateRecipe: () => null,
+    getRecipeById: () => null,
 });
 
 export const RecipesProvider = ({ children }) => {
@@ -19,7 +21,24 @@ export const RecipesProvider = ({ children }) => {
         }
     };
 
-    const value = { setCurrentCategory, addRecipe };
+    const updateRecipe = async (categoryName, recipeData) => {
+        if (currentCategory) {
+            await updateRecipeDocument(categoryName, recipeData);
+        } else {
+            console.error('Current category is not set');
+        }
+    };
+
+    const getRecipeById = async (categoryName, recipeId) => {
+        if (currentCategory) {
+            return await getRecipeDocumentById(categoryName, recipeId);
+        } else {
+            console.error('Current category is not set');
+            return null;
+        }
+    };
+
+    const value = { setCurrentCategory, addRecipe, updateRecipe, getRecipeById };
 
     return (
         <RecipesContext.Provider value={value}>

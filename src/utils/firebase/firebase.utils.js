@@ -108,6 +108,25 @@ export const deleteCategoryDocument = async (categoryName) => {
     await deleteDoc(categoryDocRef);
 };
 
+export const getRecipeDocumentById = async (categoryName, recipeId) => {
+    try {
+        const categoryDocRef = doc(db, 'categories', categoryName.toLowerCase());
+        const categorySnapshot = await getDoc(categoryDocRef);
+
+        if (categorySnapshot.exists()) {
+            const categoryData = categorySnapshot.data();
+            const recipe = categoryData.recipes.find(recipe => recipe.id === recipeId);
+            return recipe || null;
+        } else {
+            throw new Error(`Category ${categoryName} does not exist.`);
+        }
+    } catch (error) {
+        console.error("Error fetching recipe: ", error.message);
+        return null;
+    }
+};
+
+
 export const createRecipeDocument = async (categoryName, recipeData) => {
     try {
         const categoryDocRef = doc(db, 'categories', categoryName.toLowerCase());

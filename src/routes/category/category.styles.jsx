@@ -6,6 +6,8 @@ export const CategoryContainer = styled.div`
     grid-template-columns: repeat(4, 1fr);
     column-gap: 30px;
     row-gap: 50px;
+    align-items: center;
+    justify-items: center;
     margin: 20px 50px;
 
     @media screen and (max-width: 1024px) {
@@ -34,7 +36,6 @@ export const AddRecipeLinkContainer = styled.div`
     height: 200px;
     border: 4px solid rgba(240, 201, 240, 1);
     border-radius: 1rem;
-    margin: 50px 0 0 50px;
 `
 
 export const AddRecipeLink = styled(Link)`

@@ -1,5 +1,5 @@
 import { useContext, Fragment } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { CategoriesContext } from '../../contexts/categories.context';
 import RecipeCard from '../../components/recipe-card/recipe-card.component';
 import { CategoryContainer, CategoryTitle, AddRecipeLinkContainer, AddRecipeLink } from './category.styles';
@@ -12,9 +12,6 @@ const Category = () => {
     return (
         <Fragment>
             <CategoryTitle>{category.toUpperCase()}</CategoryTitle>
-            <AddRecipeLinkContainer>
-                <AddRecipeLink to={`/recipes/${category}/add-recipe`}>Add Recipe</AddRecipeLink>
-            </AddRecipeLinkContainer>
             <CategoryContainer>
                 {
                     recipes.map(recipe => (
@@ -23,6 +20,9 @@ const Category = () => {
                         </div>
                     ))
                 }
+                <AddRecipeLinkContainer>
+                    <AddRecipeLink to={`/recipes/${category}/add-recipe`}>Add Recipe</AddRecipeLink>
+                </AddRecipeLinkContainer>
             </CategoryContainer>
         </Fragment>
     );

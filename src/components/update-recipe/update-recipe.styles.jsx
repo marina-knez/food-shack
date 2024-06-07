@@ -1,31 +1,7 @@
-import styled from "styled-components";
+import styled, {css} from "styled-components";
+import { sharedContainerStyles, sharedTitleStyles, sharedButtonContainerStyles } from '../add-category/add-category.styles';
 
-export const UpdateRecipePageContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    width: 80%;
-    justify-content: center;
-    align-items: center;
-    margin: 50px auto;
-`
-
-export const UpdateRecipeTitle = styled.h2`
-    font-size: 2rem;
-    color: rgba(133,44,133,1);
-    text-align: center;
-`
-
-export const UpdateRecipeForm = styled.form`
-    width: 50%;
-`
-
-export const UpdateRecipeFormSubtitle = styled.h3`
-    font-size: 1.5rem;
-    color: rgba(133,44,133,1);
-    margin: 50px auto 20px auto;
-`
-
-export const Textarea = styled.textarea`
+export const sharedTextareaStyles = css`
     border: 1px solid lightgrey;
     width: 100%;
     border: 1px solid lightgrey;
@@ -47,6 +23,28 @@ export const Textarea = styled.textarea`
     }
 `
 
+export const UpdateRecipePageContainer = styled.div`
+    ${sharedContainerStyles}
+`
+
+export const UpdateRecipeTitle = styled.h2`
+    ${sharedTitleStyles}
+`
+
+export const UpdateRecipeForm = styled.form`
+    width: 50%;
+`
+
+export const UpdateRecipeFormSubtitle = styled.h3`
+    font-size: 1.5rem;
+    color: rgba(133,44,133,1);
+    margin: 50px auto 20px auto;
+`
+
+export const Textarea = styled.textarea`
+    ${sharedTextareaStyles}
+`
+
 export const UpdateRecipeButtonContainer = styled.div`
     display: flex;
     flex-direction: row;
@@ -58,10 +56,7 @@ export const UpdateRecipeButtonContainer = styled.div`
 `
 
 export const UpdateRecipeSubmitButtonContainer = styled.div`
-    margin-top: 20px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+    ${sharedButtonContainerStyles}
 
     & button {
         margin: 50px 20px 0 20px;

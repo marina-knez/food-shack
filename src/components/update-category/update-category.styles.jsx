@@ -1,29 +1,20 @@
 import styled from "styled-components";
+import { sharedContainerStyles, sharedTitleStyles, sharedButtonContainerStyles, sharedFormStyles } from '../add-category/add-category.styles';
 
 export const UpdateCategoryPageContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    width: 80%;
-    justify-content: center;
-    align-items: center;
-    margin: 50px auto;
+    ${sharedContainerStyles}
 `
 
 export const UpdateCategoryTitle = styled.h2`
-    font-size: 2rem;
-    color: rgba(133,44,133,1);
-    text-align: center;
+    ${sharedTitleStyles}
 `
 
 export const UpdateCategoryForm = styled.form`
-    width: 40%;
+    ${sharedFormStyles}
 `
 
 export const UpdateCategoryButtonContainer = styled.div`
-    margin-top: 20px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+    ${sharedButtonContainerStyles}
 
     & button {
         margin: 0 50px;

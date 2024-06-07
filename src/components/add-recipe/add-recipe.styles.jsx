@@ -1,18 +1,13 @@
 import styled from "styled-components";
+import { sharedContainerStyles, sharedTitleStyles, sharedButtonContainerStyles } from '../add-category/add-category.styles';
+import { sharedTextareaStyles } from "../update-recipe/update-recipe.styles";
 
 export const AddRecipePageContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    width: 80%;
-    justify-content: center;
-    align-items: center;
-    margin: 50px auto;
+    ${sharedContainerStyles}
 `
 
 export const AddRecipeTitle = styled.h2`
-    font-size: 2rem;
-    color: rgba(133,44,133,1);
-    text-align: center;
+    ${sharedTitleStyles}
 `
 
 export const AddRecipeForm = styled.form`
@@ -26,25 +21,7 @@ export const AddRecipeFormSubtitle = styled.h3`
 `
 
 export const Textarea = styled.textarea`
-    border: 1px solid lightgrey;
-    width: 100%;
-    border: 1px solid lightgrey;
-    border-radius: 0.5rem;
-    outline: none;
-    padding: 10px 20px;
-    resize: none;
-    font-size: 1rem;
-    min-height: 100px;
-    font-family: Arial, Helvetica, sans-serif;
-    margin-bottom: 10px;
-
-    &:focus {
-        border: 2px solid rgba(133,44,133,1);
-    }
-
-    &::placeholder {
-        font-family: Arial, Helvetica, sans-serif;
-    }
+    ${sharedTextareaStyles}
 `
 
 export const AddRecipeButtonContainer = styled.div`
@@ -58,10 +35,7 @@ export const AddRecipeButtonContainer = styled.div`
 `
 
 export const AddRecipeSubmitButtonContainer = styled.div`
-    margin-top: 20px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+    ${sharedButtonContainerStyles}
 
     & button {
         margin: 50px 20px 0 20px;

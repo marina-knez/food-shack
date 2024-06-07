@@ -1,28 +1,20 @@
 import styled from "styled-components";
+import { sharedContainerStyles, sharedTitleStyles, sharedButtonContainerStyles, sharedFormStyles } from '../add-category/add-category.styles';
 
 export const DeleteRecipePageContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    width: 80%;
-    justify-content: center;
-    margin: 50px auto;
+    ${sharedContainerStyles}
 `
 
 export const DeleteRecipeTitle = styled.h2`
-    font-size: 2rem;
-    color: rgba(133,44,133,1);
-    text-align: center;
+    ${sharedTitleStyles}
 `
 
 export const DeleteRecipeForm = styled.form`
-    width: 40%;
+    ${sharedFormStyles}
 `
 
 export const DeleteRecipeButtonContainer = styled.div`
-    margin-top: 20px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+    ${sharedButtonContainerStyles}
 
     & button {
         margin: 0 50px;

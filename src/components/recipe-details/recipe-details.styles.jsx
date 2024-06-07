@@ -73,8 +73,9 @@ export const RecipeItemDetailsContainer = styled.div`
     grid-template-rows: repeat(1, 100%);
     grid-template-columns: repeat(1, 1fr 2fr);
     grid-gap: 50px;
+    padding: 0 50px;
     width: 100%;
-    margin: 50px;
+    margin: 50px auto;
     font-size: 1.1rem;
 
     @media screen and (max-width: 1024px) {
@@ -83,11 +84,11 @@ export const RecipeItemDetailsContainer = styled.div`
 `
 
 export const RecipeItemIngredientsContainer = styled.div`
-    padding: 0 30px;
+    padding-left: 50px;
 `
 
 export const RecipeItemInstructionsContainer = styled.div`
-    padding: 0 20px;
+    padding-right: 50px;
 `
 
 export const RecipeItemIngredientsTitle = styled.h2`
@@ -98,4 +99,18 @@ export const RecipeItemIngredientsTitle = styled.h2`
 export const RecipeItemInstructionsTitle = styled.h2`
     font-size: 2rem;
     color: rgba(133,44,133,1);
+`
+
+export const NotFoundPageContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    justify-content: center;
+    margin: 50px auto;
+`
+
+export const NotFoundText = styled.h2`
+    font-size: 2rem;
+    color: rgba(133,44,133,1);
+    text-align: center;
 `

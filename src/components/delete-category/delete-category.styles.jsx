@@ -14,10 +14,6 @@ export const DeleteCategoryTitle = styled.h2`
     text-align: center;
 `
 
-export const DeleteCategoryForm = styled.form`
-    width: 40%;
-`
-
 export const DeleteCategoryButtonContainer = styled.div`
     margin-top: 20px;
     display: flex;

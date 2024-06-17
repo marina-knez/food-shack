@@ -18,7 +18,8 @@ import {
     query,
     getDocs,
     deleteDoc,
-    onSnapshot
+    onSnapshot,
+    where
 } from 'firebase/firestore';
 
 const firebaseConfig = {
@@ -184,6 +185,24 @@ export const deleteRecipeDocument = async (categoryName, recipeId) => {
         throw error;
     }
 };
+
+export const searchRecipes = async (queryStr) => {
+    const recipesRef = collection(db, 'categories');
+    const q = query(recipesRef);
+    const querySnapshot = await getDocs(q);
+
+    const searchResults = [];
+    querySnapshot.forEach((doc) => {
+        const { recipes } = doc.data();
+        const filteredRecipes = recipes.filter((recipe) =>
+            recipe.title.toLowerCase().includes(queryStr.toLowerCase())
+        );
+        searchResults.push(...filteredRecipes);
+    });
+
+    return searchResults;
+};
+
 
 export const createUserDocumentFromAuth = async (userAuth, additionalInformation = {}) => {
     if(!userAuth) return;

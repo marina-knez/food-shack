@@ -1,17 +1,24 @@
-import { createContext, useContext, useState } from 'react';
-import { createRecipeDocument, updateRecipeDocument, getRecipeDocumentById } from '../utils/firebase/firebase.utils';
+import { createContext, useContext, useEffect, useState } from 'react';
+import { createRecipeDocument, updateRecipeDocument, getRecipeDocumentById, addCollectionAndDocuments, searchRecipes } from '../utils/firebase/firebase.utils';
 import { CategoriesContext } from './categories.context';
+import RECIPE_DATA from '../recipe-data';
 
 export const RecipesContext = createContext({
     setCurrentCategory: () => null,
     addRecipe: () => null,
     updateRecipe: () => null,
     getRecipeById: () => null,
+    searchRecipes: () => null,
+    searchCategories: () => null,
 });
 
 export const RecipesProvider = ({ children }) => {
     const { categoriesMap } = useContext(CategoriesContext);
     const [currentCategory, setCurrentCategory] = useState(null);
+
+    /*useEffect(() => {
+        addCollectionAndDocuments('categories', RECIPE_DATA);
+    },[]);*/
 
     const addRecipe = async (recipeData) => {
         if (currentCategory) {
@@ -38,7 +45,11 @@ export const RecipesProvider = ({ children }) => {
         }
     };
 
-    const value = { setCurrentCategory, addRecipe, updateRecipe, getRecipeById };
+    const searchForRecipes = async (queryStr) => {
+        return await searchRecipes(queryStr);
+    };
+
+    const value = { setCurrentCategory, addRecipe, updateRecipe, getRecipeById, searchForRecipes };
 
     return (
         <RecipesContext.Provider value={value}>

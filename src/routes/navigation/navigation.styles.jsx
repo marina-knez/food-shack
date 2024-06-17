@@ -9,8 +9,8 @@ export const NavigationContainer = styled.div`
     justify-content: space-between;
     align-items: center;
 
-    @media screen and (max-width:768px) {
-        //width: 70%;
+    @media screen and (max-width: 1024px) {
+        justify-content: center;
     }
 `
 
@@ -20,26 +20,18 @@ export const NavigationWrapper = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
     position: relative;
 
-    @media screen and (max-width: 768px) {
-        padding: 25px 50px;
-        z-index: 1;
-        position: absolute;
-        justify-content: space-between;
+    @media screen and (max-width: 1024px) {
+        position: fixed;
         bottom: 0;
+        z-index: 1;
+        padding: 25px 50px;
+        justify-content: center;
         width: 100%;
         height: 50px;
-        background-color: salmon;
-
-        &.active {
-            right: 0;
-        }
-
-        &.navbar {
-            right: -100%;
-        }
+        background-color: rgba(240,201,240,1);
     }
 
 `
@@ -60,15 +52,38 @@ export const NavLinks = styled.div`
     display: flex;
     justify-content: center;
     width: 80%;
+
+    @media screen and (max-width: 1024px) {
+        width: 100%;
+        justify-content: space-between;
+    }
 `
 
 export const NavLink = styled(Link)`
     padding: 25px 50px 10px 50px;
     cursor: pointer;
+
+    & .icon {
+        display: none;
+    }
+    
+    @media screen and (max-width: 1024px) {
+        padding: 10px 50px;
+
+        & .icon {
+            display: block;
+            padding: 10px 0;
+            color: rgba(133,44,133,1);
+        }
+    }
+`
+
+export const NavItem = styled.span`
     font-size: 1.4rem;
     color: black;
     transition: all .5s;
     position: relative;
+    display: block;
 
     &:hover {
         color: rgba(133,44,133,1);
@@ -76,12 +91,12 @@ export const NavLink = styled(Link)`
 
         &::after {
             content: "";
-            width: 30%;
+            width: 50%;
             height: 2px;
             background: rgba(133,44,133,1);
             position: absolute;
-            bottom: 10px;
-            left: 25px;
+            bottom: 5px;
+            left: 0;
 
             @media screen and (max-width: 1024px) {
                 width: 50%;
@@ -90,11 +105,9 @@ export const NavLink = styled(Link)`
         }
     }
 
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 1024px) {
         padding: 5px;
         font-size: 1rem;
+        display: none;
     }
-`
-
-export const AuthLinks = styled.div`
 `

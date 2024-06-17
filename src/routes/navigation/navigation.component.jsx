@@ -1,7 +1,9 @@
 import { Fragment, useContext } from "react";
-import { Outlet, Link } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { UserContext } from "../../contexts/user.context";
 import { signOutUser } from "../../utils/firebase/firebase.utils";
+import { NavigationContainer, LogoContainer, NavigationWrapper, NavLinks, NavLink, AuthLinks } from '../navigation/navigation.styles';
+import { ReactComponent as RecipesLogo } from '../../assets/recipes-logo.svg';
 
 const Navigation = () => {
     const { currentUser } = useContext(UserContext);
@@ -10,19 +12,26 @@ const Navigation = () => {
 
     return (
         <Fragment>
-            <div>
-                <Link to='/'>HOME</Link>
-                <br />
-                {
-                    currentUser ? (
-                        <span onClick={signOutUser}>SIGN OUT</span>
-                    ) : (
-                        <Link to='/auth'>SIGN IN</Link>
-                    )
-                }
-                <br />
-                <Link to='/recipes'>Recipes</Link>
-            </div>
+            <NavigationContainer>
+                <LogoContainer to='/'>
+                    <RecipesLogo className="logo" />
+                </LogoContainer>
+                <NavigationWrapper>
+                    <NavLinks>
+                        <NavLink to='/'>Home</NavLink>
+                        <NavLink to='/recipes'>Recipes</NavLink>
+                    </NavLinks>
+                    <AuthLinks>
+                        {
+                            currentUser ? (
+                                <NavLink to='/auth' onClick={signOutUser}>SIGN OUT</NavLink>
+                            ) : (
+                                <NavLink to='/auth'>SIGN IN</NavLink>
+                            )
+                        }
+                    </AuthLinks>
+                </NavigationWrapper>
+            </NavigationContainer>
             <Outlet />
         </Fragment>
     )

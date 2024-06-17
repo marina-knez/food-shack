@@ -4,6 +4,8 @@ import { updateCategoryDocument } from "../../utils/firebase/firebase.utils";
 import FormInput from "../form-input/form-input.component";
 import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
 import { UpdateCategoryPageContainer, UpdateCategoryTitle, UpdateCategoryForm, UpdateCategoryButtonContainer } from "./update-category.styles";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheck, faX } from '@fortawesome/free-solid-svg-icons';
 
 const UpdateCategory = () => {
     const { oldCategoryName } = useParams();
@@ -36,8 +38,14 @@ const UpdateCategory = () => {
                 value={newCategoryName}
                 />
                 <UpdateCategoryButtonContainer>
-                    <Button type="submit" buttonType={BUTTON_TYPE_CLASSES.inverted}>Update Category</Button>
-                    <Button buttonType={BUTTON_TYPE_CLASSES.base} onClick={() => navigate(-1)}>Cancel</Button>
+                    <Button type="submit" buttonType={BUTTON_TYPE_CLASSES.inverted}>
+                        <FontAwesomeIcon icon={faCheck} className="confirm" />
+                        Update
+                    </Button>
+                    <Button buttonType={BUTTON_TYPE_CLASSES.base} onClick={() => navigate(-1)}>
+                        <FontAwesomeIcon icon={faX} className="cancel" />
+                        Cancel
+                    </Button>
                 </UpdateCategoryButtonContainer>
             </UpdateCategoryForm>
         </UpdateCategoryPageContainer>

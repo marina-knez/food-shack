@@ -33,12 +33,20 @@ export const UpdateRecipeTitle = styled.h2`
 
 export const UpdateRecipeForm = styled.form`
     width: 50%;
+
+    @media screen and (max-width: 1024px) {
+        width: 100%;
+    }
 `
 
 export const UpdateRecipeFormSubtitle = styled.h3`
     font-size: 1.5rem;
     color: rgba(133,44,133,1);
     margin: 50px auto 20px auto;
+`
+
+export const TextareaWrapper = styled.div`
+    margin-bottom: 50px;
 `
 
 export const Textarea = styled.textarea`
@@ -52,6 +60,16 @@ export const UpdateRecipeButtonContainer = styled.div`
 
     & button {
         margin: 20px 20px 50px 20px;
+
+        & .add, .delete {
+            padding: 10px 10px 10px 0;
+        }
+
+        @media screen and (max-width: 768px) {
+            margin: 20px 10px 0 10px;
+            padding: 0 20px;
+            font-size: .8rem;
+        }
     }
 `
 
@@ -60,5 +78,9 @@ export const UpdateRecipeSubmitButtonContainer = styled.div`
 
     & button {
         margin: 50px 20px 0 20px;
+
+        & .confirm, .cancel {
+            padding: 10px 10px 10px 0;
+        }
     }
 `

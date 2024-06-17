@@ -9,6 +9,10 @@ export const InputFieldContainer = styled.div`
         font-size: 1.2rem;
         color: rgba(133,44,133,1);
         padding-bottom: 10px;
+
+        @media screen and (max-width: 768px) {
+            font-size: 1rem;
+        }
     }
 
     & input {
@@ -25,6 +29,10 @@ export const InputFieldContainer = styled.div`
 
         &::placeholder {
             font-size: .9rem;
+
+            @media screen and (max-width: 768px) {
+                font-size: .7rem;
+            }
         }
     }
 `

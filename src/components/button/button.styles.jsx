@@ -50,3 +50,15 @@ export const InvertedButton = styled(BaseButton)`
       border: 1px solid rgba(168,96,168,1);
     }
 `
+
+export const BaseButtonScroll = styled.button`
+    position: fixed;
+    right: 35px;
+    bottom: 35px;
+    margin-top: -5rem;
+    padding: 1rem;
+    border: none;
+    border-radius: 100%;
+    background-color: rgba(168,96,168,1);
+    cursor: pointer;
+`

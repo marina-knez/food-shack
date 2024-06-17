@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { RecipeCardContainer, RecipeCardInfo, RecipeCardLinks, RecipeCardLink, RecipeCardTitle } from './recipe-card.styles';
 import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPenToSquare, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 
 const RecipeCard = ({ category, recipe }) => {
     const { id, title, img, noOfPeople, time, difficulty } = recipe;
@@ -12,16 +14,22 @@ const RecipeCard = ({ category, recipe }) => {
                 <RecipeCardTitle>{title}</RecipeCardTitle>
             </Link>
             <RecipeCardInfo>
-                <span>Serves: {noOfPeople}</span>
-                <span>Time: {time}</span>
-                <span>Difficulty: {difficulty}</span>
+                <span><b>Serves:</b> {noOfPeople}</span>
+                <span><b>Time:</b> {time} minutes</span>
+                <span><b>Difficulty:</b> {difficulty}</span>
             </RecipeCardInfo>
             <RecipeCardLinks>
                 <RecipeCardLink to={`/recipes/${category}/update-recipe/${recipe.id}`}>
-                    <Button buttonType={BUTTON_TYPE_CLASSES.inverted}>Update</Button>
+                    <Button buttonType={BUTTON_TYPE_CLASSES.inverted}>
+                        <FontAwesomeIcon icon={faPenToSquare} className="edit" />
+                        Update
+                    </Button>
                 </RecipeCardLink>
                 <RecipeCardLink to={`/recipes/${category}/delete-recipe/${recipe.id}`}>
-                    <Button buttonType={BUTTON_TYPE_CLASSES.base}>Delete</Button>
+                    <Button buttonType={BUTTON_TYPE_CLASSES.base}>
+                        <FontAwesomeIcon icon={faTrashCan} className="delete" />
+                        Delete
+                    </Button>
                 </RecipeCardLink>
             </RecipeCardLinks>
         </RecipeCardContainer>

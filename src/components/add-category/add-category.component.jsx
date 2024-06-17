@@ -5,6 +5,8 @@ import FormInput from '../form-input/form-input.component';
 import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component';
 
 import { AddCategoryPageContainer, AddCategoryTitle, AddCategoryForm, AddCategoryButtonContainer } from './add-category.styles';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheck, faX } from '@fortawesome/free-solid-svg-icons';
 
 const AddCategory = () => {
     const [categoryName, setCategoryName] = useState('');
@@ -36,8 +38,14 @@ const AddCategory = () => {
                 value={categoryName}
                 />
                 <AddCategoryButtonContainer>
-                    <Button type="submit" buttonType={BUTTON_TYPE_CLASSES.inverted}>Add Category</Button>
-                    <Button buttonType={BUTTON_TYPE_CLASSES.base} onClick={() => navigate(-1)}>Cancel</Button>
+                    <Button type="submit" buttonType={BUTTON_TYPE_CLASSES.inverted}>
+                        <FontAwesomeIcon icon={faCheck} className="confirm" />
+                        Add
+                    </Button>
+                    <Button buttonType={BUTTON_TYPE_CLASSES.base} onClick={() => navigate(-1)}>
+                        <FontAwesomeIcon icon={faX} className="cancel" />
+                        Cancel
+                    </Button>
                 </AddCategoryButtonContainer>
             </AddCategoryForm>
         </AddCategoryPageContainer>

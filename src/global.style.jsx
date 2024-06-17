@@ -21,5 +21,6 @@ export const GlobalStyle = createGlobalStyle`
     .arrow-up {
         font-size: 1.5rem;
         padding: 5px 10px;
+        color: white;
     }
 `

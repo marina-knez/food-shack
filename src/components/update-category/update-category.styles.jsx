@@ -18,5 +18,15 @@ export const UpdateCategoryButtonContainer = styled.div`
 
     & button {
         margin: 0 50px;
+
+        & .confirm, .cancel {
+            padding: 10px 10px 10px 0;
+        }
+
+        @media screen and (max-width: 768px) {
+            margin: 20px 10px 0 10px;
+            padding: 0 20px;
+            font-size: .8rem;
+        }
     }
 `

@@ -5,6 +5,8 @@ import FormInput from '../form-input/form-input.component';
 import Button, { BUTTON_TYPE_CLASSES} from '../button/button.component';
 
 import { AddRecipePageContainer, AddRecipeTitle, AddRecipeForm, AddRecipeFormSubtitle, Textarea, AddRecipeButtonContainer, AddRecipeSubmitButtonContainer } from './add-recipe.styles';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheck, faTrashCan, faPlus, faX } from '@fortawesome/free-solid-svg-icons';
 
 const defaultFormFields = {
     title: '',
@@ -150,8 +152,14 @@ const AddRecipe = () => {
                                 onChange={(e) => handleIngredientChange(index, 'unit', e.target.value)}
                             />
                             <AddRecipeButtonContainer>
-                                <Button type="button" buttonType={BUTTON_TYPE_CLASSES.inverted} onClick={handleAddIngredient}>Add Ingredient</Button>
-                                <Button type="button" buttonType={BUTTON_TYPE_CLASSES.base} onClick={() => handleRemoveIngredient(index)}>Remove Ingredient</Button>
+                                <Button type="button" buttonType={BUTTON_TYPE_CLASSES.inverted} onClick={handleAddIngredient}>
+                                    <FontAwesomeIcon icon={faPlus} className="add" />
+                                    Add
+                                </Button>
+                                <Button type="button" buttonType={BUTTON_TYPE_CLASSES.base} onClick={() => handleRemoveIngredient(index)}>
+                                    <FontAwesomeIcon icon={faTrashCan} className="delete" />
+                                    Remove
+                                </Button>
                             </AddRecipeButtonContainer>
                         </div>
                     ))}
@@ -167,15 +175,27 @@ const AddRecipe = () => {
                                 onChange={(e) => handleInstructionChange(index, e.target.value)}
                             />
                             <AddRecipeButtonContainer>
-                                <Button type="button" buttonType={BUTTON_TYPE_CLASSES.inverted} onClick={handleAddInstruction}>Add Instruction</Button>
-                                <Button type="button" buttonType={BUTTON_TYPE_CLASSES.base} onClick={() => handleRemoveInstruction(index)}>Remove Instruction</Button>
+                                <Button type="button" buttonType={BUTTON_TYPE_CLASSES.inverted} onClick={handleAddInstruction}>
+                                    <FontAwesomeIcon icon={faPlus} className="add" />
+                                    Add
+                                </Button>
+                                <Button type="button" buttonType={BUTTON_TYPE_CLASSES.base} onClick={() => handleRemoveInstruction(index)}>
+                                    <FontAwesomeIcon icon={faTrashCan} className="delete" />
+                                    Remove
+                                </Button>
                             </AddRecipeButtonContainer>
                         </div>
                     ))}
                 </div>
                 <AddRecipeSubmitButtonContainer>
-                    <Button type="submit" buttonType={BUTTON_TYPE_CLASSES.inverted}>Add Recipe</Button>
-                    <Button buttonType={BUTTON_TYPE_CLASSES.base} onClick={() => navigate(-1)}>Cancel</Button>
+                    <Button type="submit" buttonType={BUTTON_TYPE_CLASSES.inverted}>
+                        <FontAwesomeIcon icon={faCheck} className="confirm" />
+                        Add Recipe
+                    </Button>
+                    <Button buttonType={BUTTON_TYPE_CLASSES.base} onClick={() => navigate(-1)}>
+                        <FontAwesomeIcon icon={faX} className="cancel" />
+                        Cancel
+                    </Button>
                 </AddRecipeSubmitButtonContainer>
             </AddRecipeForm>
         </AddRecipePageContainer>

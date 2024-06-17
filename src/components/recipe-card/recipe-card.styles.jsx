@@ -9,6 +9,12 @@ export const RecipeCardContainer = styled.div`
     position: relative;
     border: 4px solid rgba(240,201,240,1);
     border-radius: .5rem;
+    scale: 1;
+    transition: scale .5s;
+
+    &:hover {
+        scale: 1.1;
+    }
 
     img {
       width: 100%;
@@ -17,6 +23,10 @@ export const RecipeCardContainer = styled.div`
       margin-bottom: 5px;
       border-top-left-radius: .4rem;
       border-top-right-radius: .4rem;
+    }
+
+    @media screen and (max-width: 1024px) {
+        width: 100%;
     }
 `
 
@@ -35,12 +45,18 @@ export const RecipeCardLink = styled(Link)`
     height: 35px;
     letter-spacing: 0.5px;
     line-height: 35px;
-    padding: 0 35px;
+    padding: 0 15px;
     font-size: 1rem;
     text-transform: uppercase;
     font-family: 'Kalam';
     font-weight: bolder;
     transition: all .3s linear;
+
+    & button {
+        & .edit, .delete {
+            padding: 10px 10px;
+        }
+    }
 `
 
 export const RecipeCardInfo = styled.div`

@@ -14,5 +14,9 @@ export const DeleteCategoryButtonContainer = styled.div`
     
     & button {
         margin: 0 50px;
+
+        & .delete, .cancel {
+            padding: 10px 10px 10px 0;
+        }
     }
 `

@@ -12,6 +12,10 @@ export const AddRecipeTitle = styled.h2`
 
 export const AddRecipeForm = styled.form`
     width: 50%;
+
+    @media screen and (max-width: 1024px) {
+        width: 100%;
+    }
 `
 
 export const AddRecipeFormSubtitle = styled.h3`
@@ -31,6 +35,15 @@ export const AddRecipeButtonContainer = styled.div`
 
     & button {
         margin: 20px 20px 50px 20px;
+
+        & .add, .delete {
+            padding: 10px 10px 10px 0;
+        }
+
+        @media screen and (max-width: 768px) {
+            margin: 20px 10px 0 10px;
+            font-size: .8rem;
+        }
     }
 `
 
@@ -39,5 +52,13 @@ export const AddRecipeSubmitButtonContainer = styled.div`
 
     & button {
         margin: 50px 20px 0 20px;
+
+        & .cancel, .confirm {
+            padding: 10px 10px 10px 0;
+        }
+
+        @media screen and (max-width: 768px) {
+            margin: 50px 10px 0 10px;
+        }
     }
 `

@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { CategoriesContext } from '../../contexts/categories.context';
-import { RecipeItemContainer, RecipeItemBasicsContainer, RecipeItemDetailsContainer, RecipeItemBasics, RecipeItemTitle, RecipeItemInfo, RecipeItemIngredientsContainer, RecipeItemInstructionsContainer, RecipeItemIngredientsTitle, RecipeItemInstructionsTitle, NotFoundPageContainer, NotFoundText } from './recipe-details.styles';
+import { RecipeItemContainer, RecipeItemBasicsContainer, RecipeItemDetailsContainer, RecipeItemBasics, RecipeImgWrapper, RecipeItemTitle, RecipeItemInfo, RecipeItemIngredientsContainer, RecipeItemInstructionsContainer, RecipeItemIngredientsTitle, RecipeIngredientsList, RecipeIngredientsListItem, RecipeInstructions, RecipeItemInstructionsTitle, RecipeInstructionsList, RecipeInstructionsStep, RecipeInstructionsListItem, NotFoundPageContainer, NotFoundText } from './recipe-details.styles';
 
 const RecipeDetails = () => {
     const { category, id } = useParams();
@@ -22,10 +22,11 @@ const RecipeDetails = () => {
         <RecipeItemContainer>
             <RecipeItemTitle>{recipe.title}</RecipeItemTitle>
             <RecipeItemBasicsContainer>
-                <div>
+                <RecipeImgWrapper>
                     <img src={recipe.img} alt={recipe.title} />
-                </div>
+                </RecipeImgWrapper>
                 <RecipeItemBasics>
+                    <p>{recipe.description}</p>
                     <RecipeItemInfo><b>Serves:</b> {recipe.noOfPeople}</RecipeItemInfo>
                     <RecipeItemInfo><b>Time:</b> {recipe.time} minutes</RecipeItemInfo>
                     <RecipeItemInfo><b>Difficulty:</b> {recipe.difficulty}</RecipeItemInfo>
@@ -34,21 +35,24 @@ const RecipeDetails = () => {
             <RecipeItemDetailsContainer>
                 <RecipeItemIngredientsContainer>
                     <RecipeItemIngredientsTitle>Ingredients</RecipeItemIngredientsTitle>
-                    <ul>
+                    <RecipeIngredientsList>
                         {recipe.ingredients.map((ingredient, index) => (
-                            <li key={index}>
+                            <RecipeIngredientsListItem key={index}>
                                 {ingredient.quantity} {ingredient.unit} {ingredient.item}
-                            </li>
+                            </RecipeIngredientsListItem>
                         ))}
-                    </ul>
+                    </RecipeIngredientsList>
                 </RecipeItemIngredientsContainer>
                 <RecipeItemInstructionsContainer>
                     <RecipeItemInstructionsTitle>Instructions</RecipeItemInstructionsTitle>
-                    <ol>
+                    <RecipeInstructionsList>
                         {recipe.instructions.map((instruction, index) => (
-                            <li key={index}>{instruction}</li>
+                            <RecipeInstructions key={index}>
+                                <RecipeInstructionsStep>Step {index + 1}</RecipeInstructionsStep>
+                                <RecipeInstructionsListItem>{instruction}</RecipeInstructionsListItem>
+                            </RecipeInstructions>
                         ))}
-                    </ol>
+                    </RecipeInstructionsList>
                 </RecipeItemInstructionsContainer>
             </RecipeItemDetailsContainer>
         </RecipeItemContainer>

@@ -31,6 +31,21 @@ export const AddCategoryLink = styled(Link)`
 export const SearchResultsContainer = styled.div`
     width: 60%;
     margin: 0 auto;
+    position: absolute;
+    z-index: 1;
+    background-color: rgba(240,201,240,1);
+    left: 20vw;
+    padding-bottom: 30px;
+
+    @media screen and (max-width: 1024px) {
+        width: 70%;
+        left: 15vw;
+    }
+
+    @media screen and (max-width: 768px) {
+        width: 80%;
+        left: 10vw;
+    }
 `
 
 export const SearchResultsTitle = styled.h3`
@@ -44,19 +59,45 @@ export const SearchResultsItem = styled(Link)`
     padding: 10px 20px;
     display: flex;
     flex-direction: row;
-    border-bottom: 2px solid lightgrey;
-    margin: 0 20px;
+    border-bottom: 2px solid grey;
+    margin: 0 auto;
 
     & img {
         height: 100px;
         width: auto;
     }
+
+    @media screen and (max-width: 1024px) {
+        width: 100%;
+    }
 `
 
 export const SearchResultsItemDetails = styled.div`
-    padding: 0 30px;
+    padding: 0 0 0 30px;
+    width: 100%;
 
-    & span {
-        padding: 0 30px;
+    & h3 {
+        @media screen and (max-width: 768px) {
+            margin: 0;
+        }
+    }
+
+    & div {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+
+        @media screen and (max-width: 768px) {
+            flex-direction: column;
+        }
+
+        & span {
+            
+
+            @media screen and (max-width: 1024px) {
+                padding: 0 10px;
+            }
+        }
     }
 `

@@ -1,3 +1,5 @@
+import { useContext } from 'react';
+import { RecipesContext } from '../../contexts/recipes.context';
 import { Link } from "react-router-dom";
 import { RecipeCardContainer, RecipeCardInfo, RecipeCardLinks, RecipeCardLink, RecipeCardTitle } from './recipe-card.styles';
 import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component';
@@ -6,9 +8,14 @@ import { faPenToSquare, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 
 const RecipeCard = ({ category, recipe }) => {
     const { id, title, img, noOfPeople, time, difficulty } = recipe;
+    const { addRecentlyViewed } = useContext(RecipesContext);
+
+    const handleViewRecipe = () => {
+        addRecentlyViewed(recipe);
+      };
 
     return (
-        <RecipeCardContainer>
+        <RecipeCardContainer onClick={handleViewRecipe}>
             <Link to={`/recipes/${category}/` + id}>
                 <img src={img} alt={title} title={title} />
                 <RecipeCardTitle>{title}</RecipeCardTitle>

@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const RecipeItemContainer = styled.div`
     width: 100%;
+    margin-bottom: 100px;
 `
 
 export const RecipeItemTitle = styled.h2`
@@ -19,7 +20,7 @@ export const RecipeItemBasicsContainer = styled.div`
 
     @media screen and (max-width: 1024px) {
         grid-template-columns: repeat(1, 100%);
-        grid-template-rows: 1fr 100px;
+        grid-template-rows: 1fr;
         justify-items: center;
         margin: 20px auto;
     }
@@ -47,37 +48,92 @@ export const RecipeItemBasics = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    width: 60%;
+    width: 100%;
 
     @media screen and (max-width: 1024px) {
         width: 90%;
-        margin: 0 20px;
-        flex-direction: row;
-        height: 100px;
+        margin: 0 30px;
+    }
+`
+
+export const RecipeItemInfoContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+    @media screen and (max-width: 1440px) {
+        flex-direction: column;
+        justify-content: center;
     }
 
-    @media screen and (max-width: 768px) {
-        height: 65px;
+    @media screen and (max-width: 1024px) {
+        flex-direction: row;
+        justify-content: space-around;
+    }
+`
+
+export const RecipeItemDescription = styled.p`
+    font-size: 1.2rem;
+    padding-left: 20px;
+
+    @media screen and (max-width: 1024px) {
+        margin-left: 20px;
+        padding-left: 0;
     }
 `
 
 export const RecipeItemInfo = styled.p`
     font-size: 1.2rem;
-    padding: 45px;
-    text-align: center;
     border-radius: 1rem;
     -webkit-box-shadow: 5px 5px 20px 5px rgba(133,44,133,1);
     -moz-box-shadow: 5px 5px 20px 5px rgba(133,44,133,1);
     box-shadow: 5px 5px 20px 5px rgba(133,44,133,1);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+
+    & p {
+        padding: 0 10px 0 0;
+    }
+
+    & :nth-child(2) {
+        display: block;
+
+        @media screen and (max-width: 1024px){
+            display: none;
+        }
+    }
+
+    & :nth-child(3) {
+        @media screen and (max-width: 1024px){
+            display: block;
+        }
+    }
+
+    & .icon {
+        padding: 0 10px 3px 10px;
+        color: rgba(133, 44, 133, 1);
+
+        @media screen and (max-width: 1024px){
+            display: block;
+        }
+    }
+
+    @media screen and (max-width: 1440px) {
+        justify-content: center;
+        padding: 0;
+        font-size: 1.2rem;
+    }
 
     @media screen and (max-width: 1024px) {
-        padding: 15px 20px;
+        padding: 0 20px;
         font-size: 1.2rem;
     }
 
     @media screen and (max-width: 768px) {
         font-size: .8rem;
-        padding: 10px 20px;
+        padding: 0 10px;
     }
 `
 
@@ -105,19 +161,25 @@ export const RecipeItemIngredientsContainer = styled.div`
     padding-left: 50px;
 
     @media screen and (max-width: 1024px) {
-        padding-left: 20px;
+        padding-left: 0;
         font-size: 1.2rem;
     }
 `
 
 export const RecipeIngredientsList = styled.ul`
     width: 100%;
-
+    list-style: none;
 `
 
 export const RecipeIngredientsListItem = styled.li`
     border-bottom: 1px solid lightgrey;
     padding: 10px 0;
+
+    & .cart-icon {
+        margin-right: 10px;
+        cursor: pointer;
+        color: rgba(133,44,133,1);
+    }
 `
 
 export const RecipeItemIngredientsTitle = styled.h2`
@@ -126,6 +188,7 @@ export const RecipeItemIngredientsTitle = styled.h2`
 
     @media screen and (max-width: 1024px) {
         font-size: 1.5rem;
+        padding-left: 10px;
     }
 `
 
@@ -134,7 +197,6 @@ export const RecipeItemInstructionsContainer = styled.div`
     padding-left: 0;
 
     @media screen and (max-width: 1024px) {
-        padding-left: 20px;
         padding-right: 20px;
         font-size: 1.2rem;
     }
@@ -146,13 +208,28 @@ export const RecipeInstructions = styled.div`
     padding-left: 20px;
 `
 
-export const RecipeInstructionsList = styled.ol`
+export const RecipeInstructionsList = styled.ul`
     width: 100%;
-    list-style-type: none;
+    list-style: none;
 `
 
 export const RecipeInstructionsListItem = styled.li`
     margin-bottom: 10px;
+
+    & .list-icon {
+        margin-right: 10px;
+        cursor: pointer;
+        color: rgba(133,44,133,1);
+    }
+
+    &.done {
+        text-decoration: line-through;
+        color: grey;
+    }
+
+    &.undone {
+        text-decoration: none;
+    }
 `
 
 export const RecipeInstructionsStep = styled.p`
@@ -169,6 +246,7 @@ export const RecipeItemInstructionsTitle = styled.h2`
 
     @media screen and (max-width: 1024px) {
         font-size: 1.5rem;
+        padding-left: 10px;
     }
 `
 

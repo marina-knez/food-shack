@@ -53,8 +53,8 @@ export const InvertedButton = styled(BaseButton)`
 
 export const BaseButtonScroll = styled.button`
     position: fixed;
-    right: 35px;
-    bottom: 35px;
+    right: 20px;
+    bottom: 55px;
     margin-top: -5rem;
     padding: 1rem;
     border: none;

@@ -6,7 +6,7 @@ export const sharedContainerStyles = css`
     width: 80%;
     justify-content: center;
     align-items: center;
-    margin: 50px auto;
+    margin: 50px auto 100px auto;
 `
 
 export const sharedTitleStyles = css`

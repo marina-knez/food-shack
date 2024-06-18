@@ -31,7 +31,7 @@ export const HomePageWrapper = styled.div`
     margin-top: 50px;
 
     @media screen and (max-width: 768px) {
-        margin-top: 20px;
+        margin-top: 20px auto 100px auto;
     }
 `
 
@@ -121,6 +121,13 @@ export const RandomRecipeWrapper = styled.dialog`
         }
     }
 
+    @media screen and (max-width: 1024px) {
+        width: 60%;
+    }
+
+    @media screen and (max-width: 768px) {
+        width: 95%;
+    }
 `
 
 export const RandomRecipeButtonContainer = styled.div`

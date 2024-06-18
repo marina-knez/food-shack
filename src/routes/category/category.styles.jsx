@@ -84,7 +84,7 @@ export const CategoryWrapper = styled.div`
     margin: 20px 50px;
 
     @media screen and (max-width: 1024px) {
-        margin: 20px auto;
+        margin: 20px auto 100px auto;
     }
 `
 

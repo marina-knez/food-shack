@@ -4,12 +4,11 @@ import { UserContext } from "../../contexts/user.context";
 import { signOutUser } from "../../utils/firebase/firebase.utils";
 import { NavigationContainer, LogoContainer, NavigationWrapper, NavLinks, NavLink, NavItem } from '../navigation/navigation.styles';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHouse, faBook, faArrowRightToBracket, faPowerOff } from '@fortawesome/free-solid-svg-icons';
+import { faHouse, faBook, faArrowRightToBracket, faPowerOff, faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { ReactComponent as RecipesLogo } from '../../assets/recipes-logo.svg';
 
 const Navigation = () => {
     const { currentUser } = useContext(UserContext);
-    console.log(currentUser);
 
 
     return (
@@ -20,13 +19,17 @@ const Navigation = () => {
                 </LogoContainer>
                 <NavigationWrapper>
                     <NavLinks>
-                        <NavLink to='/'>
+                        <NavLink to='/' className="nav-link active">
                             <FontAwesomeIcon icon={faHouse} className="icon home" />
                             <NavItem>Home</NavItem>
                         </NavLink>
-                        <NavLink to='/recipes'>
+                        <NavLink to='/recipes' className="nav-link">
                             <FontAwesomeIcon icon={faBook} className="icon book" />
                             <NavItem>Recipes</NavItem>
+                        </NavLink>
+                        <NavLink to='/shopping-list' className="nav-link">
+                            <FontAwesomeIcon icon={faCartShopping} className="icon my-list" />
+                            <NavItem>Shopping</NavItem>
                         </NavLink>
                         {
                             currentUser ? (

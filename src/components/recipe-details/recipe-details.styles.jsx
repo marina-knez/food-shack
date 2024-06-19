@@ -82,7 +82,7 @@ export const RecipeItemDescription = styled.p`
     }
 `
 
-export const RecipeItemInfo = styled.p`
+export const RecipeItemInfo = styled.div`
     font-size: 1.2rem;
     border-radius: 1rem;
     -webkit-box-shadow: 5px 5px 20px 5px rgba(133,44,133,1);

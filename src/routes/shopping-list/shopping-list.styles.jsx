@@ -47,3 +47,11 @@ export const ShoppingListItem = styled.li`
         text-decoration: none;
     }
 `
+
+export const EmptyShoppingList = styled.div`
+    margin-left: 50px;
+
+    & p {
+        font-size: 1.1rem;
+    }
+`

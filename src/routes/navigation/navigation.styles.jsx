@@ -74,6 +74,31 @@ export const NavLink = styled(Link)`
             display: block;
             padding: 10px 0;
             color: rgba(133,44,133,1);
+            transition: color .5s;
+        }
+    }
+
+    &:hover,
+    &:focus {
+        & span {
+            color: rgba(133,44,133,1);
+            font-size: 1.5rem;
+        }
+
+        & .icon {
+            color: white;
+        }
+    }
+
+    &:active {
+
+        & span {
+            color: rgba(133,44,133,1);
+            font-size: 1.5rem;
+        }
+
+        & .icon {
+            color: white;
         }
     }
 `

@@ -1,6 +1,29 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
-import { sharedRecipeLinkStyles } from "../category/category.styles";
+import { sharedButtonContainerStyles } from "../../components/add-category/add-category.styles";
+
+export const sharedWrapperStyles = css`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+`
+
+export const sharedRecipeLinkStyles = css`
+    font-weight: 600;
+    font-size: 1.3rem;
+    color: rgba(168,96,168,1);
+    padding: 1rem;
+
+    & .add {
+        padding: 0 10px;
+    }
+
+    @media screen and (max-width: 768px) {
+        padding: .5rem;
+        font-size: 1rem;
+    }
+`
 
 export const AddCategoryContainer = styled.div`
     display: flex;
@@ -26,6 +49,15 @@ export const AddCategoryContainer = styled.div`
 
 export const AddCategoryLink = styled(Link)`
     ${sharedRecipeLinkStyles}
+`
+
+export const Wrapper = styled.div`
+    ${sharedWrapperStyles}
+`
+
+export const BackButtonContainer = styled.div`
+    ${sharedButtonContainerStyles}
+    margin-top: 0;
 `
 
 export const SearchResultsContainer = styled.div`

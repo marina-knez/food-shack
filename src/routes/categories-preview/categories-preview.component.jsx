@@ -1,12 +1,13 @@
 import { useContext, Fragment, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import CategoryPreview from '../../components/category-preview/category-preview.component';
 import { CategoriesContext } from '../../contexts/categories.context';
 import SearchBar from '../../components/search-bar/search-bar.component';
+import Button, { BUTTON_TYPE_CLASSES } from '../../components/button/button.component';
 
-import { AddCategoryContainer, AddCategoryLink, SearchResultsContainer, SearchResultsTitle, SearchResultsItem, SearchResultsItemDetails } from './categories-preview.styles';
+import { Wrapper, BackButtonContainer, AddCategoryContainer, AddCategoryLink, SearchResultsContainer, SearchResultsTitle, SearchResultsItem, SearchResultsItemDetails } from './categories-preview.styles';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { RecipesContext } from '../../contexts/recipes.context';
 
 const CategoriesPreview = () => {
@@ -15,6 +16,11 @@ const CategoriesPreview = () => {
     const { setCurrentCategory } = useContext(RecipesContext);
     const [recipes, setRecipes] = useState([]);
     const [query, setQuery] = useState('');
+    const navigate = useNavigate();
+
+    const goBack = () => {
+        navigate('/');
+    };
 
     const searchRecipesLocally = (queryStr) => {
         const allRecipes = Object.entries(categoriesMap).flatMap(([category, recipes]) =>
@@ -46,32 +52,39 @@ const CategoriesPreview = () => {
 
     return (
         <Fragment>
-            <SearchBar onSearch={handleSearch} />
-            {query && (
-                <SearchResultsContainer>
-                    <SearchResultsTitle>Search Results</SearchResultsTitle>
-                    {recipes.length > 0 ? (
-                        recipes.map((recipe) => {
-                            console.log(`Rendering Recipe: ${recipe.title} in Category: ${recipe.category}`);
-                            return (
-                                <SearchResultsItem to={`/recipes/${recipe.category}/${recipe.id}`} key={recipe.id}>
-                                    <img src={recipe.img} alt={recipe.title} title={recipe.title} />
-                                    <SearchResultsItemDetails>
-                                        <h3>{recipe.title}</h3>
-                                        <div>
-                                            <span><b>Serves:</b> {recipe.noOfPeople}</span>
-                                            <span><b>Time:</b> {recipe.time} minutes</span>
-                                            <span><b>Difficulty:</b> {recipe.difficulty}</span>
-                                        </div>
-                                    </SearchResultsItemDetails>
-                                </SearchResultsItem>
-                            );
-                        })
-                    ) : (
-                        <p>No recipes found for your search.</p>
-                    )}
-                </SearchResultsContainer>
-            )}
+            <Wrapper>
+                <BackButtonContainer>
+                    <Button buttonType={BUTTON_TYPE_CLASSES.back} onClick={goBack}>
+                        <FontAwesomeIcon icon={faArrowLeft} className='icon-back'/>
+                    </Button>
+                </BackButtonContainer>
+                <SearchBar onSearch={handleSearch} />
+                {query && (
+                    <SearchResultsContainer>
+                        <SearchResultsTitle>Search Results</SearchResultsTitle>
+                        {recipes.length > 0 ? (
+                            recipes.map((recipe) => {
+                                console.log(`Rendering Recipe: ${recipe.title} in Category: ${recipe.category}`);
+                                return (
+                                    <SearchResultsItem to={`/recipes/${recipe.category}/${recipe.id}`} key={recipe.id}>
+                                        <img src={recipe.img} alt={recipe.title} title={recipe.title} />
+                                        <SearchResultsItemDetails>
+                                            <h3>{recipe.title}</h3>
+                                            <div>
+                                                <span><b>Serves:</b> {recipe.noOfPeople}</span>
+                                                <span><b>Time:</b> {recipe.time} minutes</span>
+                                                <span><b>Difficulty:</b> {recipe.difficulty}</span>
+                                            </div>
+                                        </SearchResultsItemDetails>
+                                    </SearchResultsItem>
+                                );
+                            })
+                        ) : (
+                            <p>No recipes found for your search.</p>
+                        )}
+                    </SearchResultsContainer>
+                )}
+            </Wrapper>
             <AddCategoryContainer>
                 <AddCategoryLink to='/recipes/add-category'>
                     <FontAwesomeIcon icon={faPlus} className='add' />

@@ -9,6 +9,8 @@ export const RecipeItemTitle = styled.h2`
     font-size: 3rem;
     color: rgba(133,44,133,1);
     text-align: center;
+    width: 80%;
+    margin-left: -100px;
 `
 
 export const RecipeItemBasicsContainer = styled.div`
@@ -248,18 +250,4 @@ export const RecipeItemInstructionsTitle = styled.h2`
         font-size: 1.5rem;
         padding-left: 10px;
     }
-`
-
-export const NotFoundPageContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    width: 80%;
-    justify-content: center;
-    margin: 50px auto;
-`
-
-export const NotFoundText = styled.h2`
-    font-size: 2rem;
-    color: rgba(133,44,133,1);
-    text-align: center;
 `

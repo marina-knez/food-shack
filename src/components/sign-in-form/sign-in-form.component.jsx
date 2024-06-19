@@ -2,7 +2,9 @@ import { useState } from "react";
 import { signInWithGooglePopup, signInAuthUserWithEmailAndPassword } from '../../utils/firebase/firebase.utils';
 
 import FormInput from "../form-input/form-input.component";
-import Button from "../button/button.component";
+import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component';
+
+import { SignInFormTitle, SignInFormFieldContainer, SignInFormButtonsContainer } from "./sign-in-form.styles";
 
 const defaultFormFields = {
     email: '',
@@ -50,15 +52,18 @@ const SignInForm = () => {
 
     return (
         <div>
-            <h2>Already have an account?</h2>
-            <span>Sign in with your email and password</span>
-            <form onSubmit={handleSubmit}>
+            <SignInFormTitle>
+                <h2>Already have an account?</h2>
+                <span>Sign in with your email and password</span>
+            </SignInFormTitle>
+            <SignInFormFieldContainer onSubmit={handleSubmit}>
                 <FormInput 
                     label="Email" 
                     type="email" 
                     required 
                     onChange={handleChange} 
                     name="email" 
+                    placeholder="Enter your Email"
                     value={email} 
                 />
 
@@ -68,13 +73,14 @@ const SignInForm = () => {
                     required 
                     onChange={handleChange} 
                     name="password" 
+                    placeholder="Enter your password"
                     value={password} 
                 />
-                <div>
-                    <Button type="submit">Sign In</Button>
-                    <Button type="button" onClick={signInWithGoogle}>Google sign in</Button>
-                </div>
-            </form>
+                <SignInFormButtonsContainer>
+                    <Button type="submit" buttonType={BUTTON_TYPE_CLASSES.base}>Sign In</Button>
+                    <Button type='button' buttonType={BUTTON_TYPE_CLASSES.google} onClick={signInWithGoogle}>Google sign in</Button>
+                </SignInFormButtonsContainer>
+            </SignInFormFieldContainer>
         </div>
     )
 };

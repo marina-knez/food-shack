@@ -1,9 +1,11 @@
+import { InputFieldContainer } from './form-input.styles';
+
 const FormInput = ({ label, ...otherProps }) => {
     return (
-        <div>
+        <InputFieldContainer>
             <label>{label}</label>
             <input {...otherProps} />
-        </div>
+        </InputFieldContainer>
     )
 };
 

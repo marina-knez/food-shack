@@ -1,25 +1,45 @@
-import { createContext, useState, useEffect } from "react";
-import { getCategoriesAndDocuments } from "../utils/firebase/firebase.utils";
+import { createContext, useState, useEffect } from 'react';
+import {
+    onCategoriesSnapshot,
+    updateRecipeDocument,
+    deleteRecipeDocument
+} from '../utils/firebase/firebase.utils';
 
 export const CategoriesContext = createContext({
-    categoriesMap: [],
+    categoriesMap: {},
+    updateRecipe: () => {},
+    deleteRecipe: () => {}
 });
 
-export const CategoriesProvider = ({children}) => {
+export const CategoriesProvider = ({ children }) => {
     const [categoriesMap, setCategoriesMap] = useState({});
 
     useEffect(() => {
-        const getCategoriesMap = async () => {
-            const categoryMap = await getCategoriesAndDocuments();
-            setCategoriesMap(categoryMap);
-            console.log(categoryMap);
-        };
+        const unsubscribe = onCategoriesSnapshot((snapshot) => {
+            const updatedCategories = snapshot.docs.reduce((acc, doc) => {
+                const { categoryName, recipes } = doc.data();
+                acc[categoryName.toLowerCase()] = recipes;
+                return acc;
+            }, {});
+            setCategoriesMap(updatedCategories);
+        });
 
-        getCategoriesMap();
+        return () => unsubscribe();
     }, []);
 
-    const value = {categoriesMap};
+    const updateRecipe = async (category, updatedRecipe) => {
+        await updateRecipeDocument(category, updatedRecipe);
+    };
+
+    const deleteRecipe = async (category, recipeId) => {
+        await deleteRecipeDocument(category, recipeId);
+    };
+
+    const value = { categoriesMap, updateRecipe, deleteRecipe };
+
     return (
-        <CategoriesContext.Provider value={value}> {children} </CategoriesContext.Provider>
+        <CategoriesContext.Provider value={value}>
+            {children}
+        </CategoriesContext.Provider>
     );
 };

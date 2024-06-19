@@ -2,7 +2,9 @@ import { useState } from "react";
 import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth } from '../../utils/firebase/firebase.utils';
 
 import FormInput from "../form-input/form-input.component";
-import Button from "../button/button.component";
+import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
+
+import { SignUpFormTitle, SignUpFormFieldContainer, SignUpFormButtonsContainer } from "./sign-up-form.styles";
 
 const defaultFormFields = {
     displayName: '',
@@ -50,15 +52,18 @@ const SignUpForm = () => {
 
     return (
         <div>
-            <h2>Don't have an account?</h2>
-            <span>Sign up with your email and password</span>
-            <form onSubmit={handleSubmit}>
+            <SignUpFormTitle>
+                <h2>Don't have an account?</h2>
+                <span>Sign up with your email and password</span>
+            </SignUpFormTitle>
+            <SignUpFormFieldContainer onSubmit={handleSubmit}>
                 <FormInput 
                     label="Display Name" 
                     type="text" 
                     required 
                     onChange={handleChange} 
                     name="displayName" 
+                    placeholder="Chose your Display Name"
                     value={displayName} 
                 />
 
@@ -68,6 +73,7 @@ const SignUpForm = () => {
                     required 
                     onChange={handleChange} 
                     name="email" 
+                    placeholder="Enter your Email"
                     value={email} 
                 />
 
@@ -77,6 +83,7 @@ const SignUpForm = () => {
                     required 
                     onChange={handleChange} 
                     name="password" 
+                    placeholder="Chose your password"
                     value={password} 
                 />
 
@@ -86,11 +93,13 @@ const SignUpForm = () => {
                     required 
                     onChange={handleChange} 
                     name="confirmPassword" 
+                    placeholder="Confirm your password"
                     value={confirmPassword} 
                 />
-
-                <Button type="submit">Sign Up</Button>
-            </form>
+                <SignUpFormButtonsContainer>
+                    <Button type="submit" buttonType={BUTTON_TYPE_CLASSES.inverted}>Sign Up</Button>
+                </SignUpFormButtonsContainer>
+            </SignUpFormFieldContainer>
         </div>
     )
 };

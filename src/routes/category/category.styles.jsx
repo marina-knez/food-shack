@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import styled, { css } from "styled-components";
 import { sharedButtonContainerStyles } from '../../components/add-category/add-category.styles';
+import { sharedWrapperStyles, sharedRecipeLinkStyles } from "../categories-preview/categories-preview.styles"; 
 
 export const sharedContainerStyles = css`
     display: grid;
@@ -62,20 +63,8 @@ export const sharedRecipeLinkContainerStyles = css`
     }
 `
 
-export const sharedRecipeLinkStyles = css`
-    font-weight: 600;
-    font-size: 1.3rem;
-    color: rgba(168,96,168,1);
-    padding: 1rem;
-
-    & .add {
-        padding: 0 10px;
-    }
-
-    @media screen and (max-width: 768px) {
-        padding: .5rem;
-        font-size: 1rem;
-    }
+export const BaseWrapper = styled.div`
+    ${sharedWrapperStyles}
 `
 
 export const CategoryWrapper = styled.div`
@@ -89,12 +78,12 @@ export const CategoryWrapper = styled.div`
 `
 
 export const CategoryContainer = styled.div`
-${sharedContainerStyles}
+    ${sharedContainerStyles}
 
-@media screen and (max-width: 768px) {
-    width: 90%;
-    margin: 20px auto;
-}
+    @media screen and (max-width: 768px) {
+        width: 90%;
+        margin: 20px auto;
+    }
 `
 
 export const CategoryTitle = styled.h2`
@@ -102,6 +91,8 @@ export const CategoryTitle = styled.h2`
     text-align: center;
     font-weight: 600;
     color: rgba(133,44,133,1);
+    width: 80%;
+    margin-left: -100px;
 `
 
 export const RecipeCardContainer = styled.div`

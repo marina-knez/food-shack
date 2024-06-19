@@ -5,7 +5,7 @@ export const SearchBarContainer = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin: 30px auto 0 auto;
+    margin: 30px 0;
 
     & div {
         flex-direction: row-reverse;

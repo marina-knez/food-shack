@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { sharedContainerStyles, sharedCardContainerStyles, sharedRecipeLinkContainerStyles, sharedRecipeLinkStyles } from "../../routes/category/category.styles";
+import { sharedContainerStyles, sharedCardContainerStyles, sharedRecipeLinkContainerStyles } from "../../routes/category/category.styles";
+import { sharedRecipeLinkStyles } from "../../routes/categories-preview/categories-preview.styles";
 
 export const CategoryPreviewContainer = styled.div`
     width: 100%;

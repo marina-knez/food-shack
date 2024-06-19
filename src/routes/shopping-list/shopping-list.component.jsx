@@ -1,7 +1,7 @@
-import { useContext, useState, useEffect } from 'react';
+import { useContext, useState } from 'react';
 import { ShoppingListContext } from '../../contexts/shoppingList.context';
 
-import { ShoppingListPageWrapper, ShoppingPageTitle, ShoppingListWrapper, ShoppingListContainer, ShoppingListItem } from './shopping-list.styles';
+import { ShoppingListPageWrapper, ShoppingPageTitle, ShoppingListWrapper, ShoppingListContainer, ShoppingListItem, EmptyShoppingList } from './shopping-list.styles';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSquare, faSquareCheck } from '@fortawesome/free-regular-svg-icons';
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
@@ -39,37 +39,37 @@ const ShoppingList = () => {
   const organizedShoppingList = organizeShoppingList();
 
   return (
-      <ShoppingListPageWrapper>
+        <ShoppingListPageWrapper>
           <ShoppingPageTitle>My Shopping List</ShoppingPageTitle>
-          {Object.keys(organizedShoppingList).map((recipeTitle) => (
-            <ShoppingListWrapper key={recipeTitle}>
-              <ShoppingListContainer>
-                <h3>{recipeTitle}</h3>
-                {organizedShoppingList[recipeTitle].map((ingredient, index) => (
-                  <ShoppingListItem key={index} className={checkedItems[index] ? "done" : "undone"}>
-                    <div>
-                    {checkedItems[index] ? (
-                        <FontAwesomeIcon icon={faSquareCheck} className='list-icon checked' onClick={() => toggleIsItemChecked(index)} />
-                    ) : (
-                        <FontAwesomeIcon icon={faSquare} className='list-icon square' onClick={() => toggleIsItemChecked(index)} />
-                    )}
-                      {ingredient.quantity} {ingredient.unit} {ingredient.item}
+          {Object.keys(organizedShoppingList).length ? (
+            Object.keys(organizedShoppingList).map((recipeTitle) => (
+              <ShoppingListWrapper key={recipeTitle}>
+                <ShoppingListContainer>
+                  <h3>{recipeTitle}</h3>
+                  {organizedShoppingList[recipeTitle].map((ingredient, index) => (
+                    <ShoppingListItem key={index} className={checkedItems[index] ? "done" : "undone"}>
+                      <div>
+                        {checkedItems[index] ? (
+                          <FontAwesomeIcon icon={faSquareCheck} className='list-icon checked' onClick={() => toggleIsItemChecked(index)} />
+                        ) : (
+                          <FontAwesomeIcon icon={faSquare} className='list-icon square' onClick={() => toggleIsItemChecked(index)} />
+                        )}
+                        {ingredient.quantity} {ingredient.unit} {ingredient.item}
                       </div>
-                    <div>
-                      <FontAwesomeIcon icon={faTrashCan} className='list-icon trash' onClick={() => handleClearItemFromList(recipeTitle, ingredient)}/>
-                    </div>
-                  </ShoppingListItem>
-                ))}
-              </ShoppingListContainer>
-            </ShoppingListWrapper>
-          ))}
+                      <div>
+                        <FontAwesomeIcon icon={faTrashCan} className='list-icon trash' onClick={() => handleClearItemFromList(recipeTitle, ingredient)} />
+                      </div>
+                    </ShoppingListItem>
+                  ))}
+                </ShoppingListContainer>
+              </ShoppingListWrapper>
+            ))
+          ) : (
+            <EmptyShoppingList>
+              <p>Your shopping list is empty.</p>
+            </EmptyShoppingList>
+          )}
       </ShoppingListPageWrapper>
-                        /*<ShoppingListItem className={checkedItems[index] ? "done" : "undone"}>
-                                    {checkedItems[index] ? (
-                                        <FontAwesomeIcon icon={faSquareCheck} className='list-icon checked' onClick={() => toggleIsItemChecked(index)} />
-                                    ) : (
-                                        <FontAwesomeIcon icon={faSquare} className='list-icon square' onClick={() => toggleIsItemChecked(index)} />
-                                    )}>Lorem ipsum dolor sit amet</ShoppingListItem>*/
     )
 }
 

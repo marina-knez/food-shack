@@ -52,13 +52,26 @@ export const InvertedButton = styled(BaseButton)`
 `
 
 export const BaseButtonScroll = styled.button`
-    position: fixed;
-    right: 20px;
-    bottom: 55px;
-    margin-top: -5rem;
-    padding: 1rem;
-    border: none;
-    border-radius: 100%;
-    background-color: rgba(168,96,168,1);
+  position: fixed;
+  right: 20px;
+  bottom: 55px;
+  margin-top: -5rem;
+  padding: 1rem;
+  border: none;
+  border-radius: 100%;
+  background-color: rgba(168,96,168,1);
+  cursor: pointer;
+`
+
+export const InvertedButtonBack = styled(InvertedButton)`
+  min-width: 50px;
+  width: auto;
+  padding: 0 10px;
+  display: block;
+  height: 35px;
+
+  & .icon-back {
+    padding: 8px 10px;
     cursor: pointer;
+  }
 `

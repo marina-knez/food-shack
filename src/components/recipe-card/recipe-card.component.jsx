@@ -11,7 +11,7 @@ const RecipeCard = ({ category, recipe }) => {
     const { addRecentlyViewed } = useContext(RecipesContext);
 
     const handleViewRecipe = () => {
-        addRecentlyViewed(recipe);
+        addRecentlyViewed(recipe.id);
       };
 
     return (

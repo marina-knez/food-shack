@@ -27,7 +27,7 @@ const SignInForm = () => {
         const { user } = await signInWithGooglePopup();
         const userDoc = await getUserDocument(user);
         setCurrentUser(userDoc);
-        navigate('/recipes');
+        navigate('/');
     };
 
     const handleSubmit = async (e) => {
@@ -38,7 +38,7 @@ const SignInForm = () => {
             const userDoc = await getUserDocument(user);
             setCurrentUser(userDoc);
             resetFormFields();
-            navigate('/recipes');
+            navigate('/');
 
         } catch (error) {
             switch(error.code) {

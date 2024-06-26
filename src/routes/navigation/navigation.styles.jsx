@@ -56,6 +56,7 @@ export const NavLinks = styled.div`
     @media screen and (max-width: 1024px) {
         width: 100%;
         justify-content: space-between;
+        align-items: center;
     }
 `
 
@@ -65,6 +66,13 @@ export const NavLink = styled(Link)`
 
     & .icon {
         display: none;
+        padding: 10px 0;
+        color: rgba(133,44,133,1);
+        transition: color .5s;
+    }
+
+    & .sign-out {
+        display: block;
     }
     
     @media screen and (max-width: 1024px) {
@@ -72,10 +80,11 @@ export const NavLink = styled(Link)`
 
         & .icon {
             display: block;
-            padding: 10px 0;
-            color: rgba(133,44,133,1);
-            transition: color .5s;
         }
+    }
+
+    @media screen and (max-width: 768px) {
+        padding: 10px 40px;
     }
 
     &:hover,
@@ -87,6 +96,10 @@ export const NavLink = styled(Link)`
 
         & .icon {
             color: white;
+        }
+
+        & .sign-out {
+            color: black;
         }
     }
 
@@ -134,5 +147,37 @@ export const NavItem = styled.span`
         padding: 5px;
         font-size: 1rem;
         display: none;
+    }
+`
+
+export const CurrentUserWrapper = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-left: 50px;
+
+    & a {
+        padding-left: 25px;
+    }
+
+    & h3 {
+        padding-top: 10px;
+        color: rgba(133,44,133,1);
+
+        &.user-active {
+            display: block;
+        }
+
+        &.user-inactive {
+            display: none;
+        }
+
+        @media screen and (max-width: 1024px) {
+            padding-top: 0;
+        }
+    }
+
+    @media screen and (max-width: 1024px) {
+        align-items: center;
     }
 `

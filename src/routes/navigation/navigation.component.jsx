@@ -2,7 +2,7 @@ import { Fragment, useContext } from "react";
 import { Outlet } from "react-router-dom";
 import { UserContext } from "../../contexts/user.context";
 import { signOutUser } from "../../utils/firebase/firebase.utils";
-import { NavigationContainer, LogoContainer, NavigationWrapper, NavLinks, NavLink, NavItem } from '../navigation/navigation.styles';
+import { NavigationContainer, LogoContainer, NavigationWrapper, NavLinks, NavLink, NavItem, CurrentUserWrapper } from '../navigation/navigation.styles';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHouse, faBook, faArrowRightToBracket, faPowerOff, faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { ReactComponent as RecipesLogo } from '../../assets/recipes-logo.svg';
@@ -33,10 +33,12 @@ const Navigation = () => {
                         </NavLink>
                         {
                             currentUser ? (
-                                <NavLink to='/auth' onClick={signOutUser}>
-                                    <FontAwesomeIcon icon={faPowerOff} className="icon sign-out" />
-                                    <NavItem>SIGN OUT</NavItem>
-                                </NavLink>
+                                <CurrentUserWrapper>
+                                    <h3 className={currentUser ? 'user-active' : 'user-inactive'}>{currentUser.displayName}</h3>
+                                    <NavLink to='/auth' onClick={signOutUser}>
+                                        <FontAwesomeIcon icon={faPowerOff} className="icon sign-out" />
+                                    </NavLink>
+                                </CurrentUserWrapper>
                             ) : (
                                 <NavLink to='/auth'>
                                     <FontAwesomeIcon icon={faArrowRightToBracket} className="icon sign-in" />

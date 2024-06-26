@@ -53,6 +53,7 @@ export const AddCategoryLink = styled(Link)`
 
 export const Wrapper = styled.div`
     ${sharedWrapperStyles}
+    position: relative;
 `
 
 export const BackButtonContainer = styled.div`
@@ -66,17 +67,18 @@ export const SearchResultsContainer = styled.div`
     position: absolute;
     z-index: 1;
     background-color: rgba(240,201,240,1);
-    left: 20vw;
+    left: 25vw;
+    top: 9vh;
     padding-bottom: 30px;
 
     @media screen and (max-width: 1024px) {
         width: 70%;
-        left: 15vw;
+        left: 20vw;
     }
 
     @media screen and (max-width: 768px) {
         width: 80%;
-        left: 10vw;
+        left: 18vw;
     }
 `
 

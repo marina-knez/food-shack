@@ -39,7 +39,7 @@ const SignUpForm = () => {
             await createUserDocumentFromAuth(user, { displayName });
             setCurrentUser({ ...user, displayName });
             resetFormFields();
-            navigate('/recipes');
+            navigate('/');
 
         } catch (error) {
             if(error.code === 'auth/email-already-in-use') {

@@ -20,7 +20,7 @@ export const NavigationWrapper = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: center;
     position: relative;
 
     @media screen and (max-width: 1024px) {
@@ -84,7 +84,7 @@ export const NavLink = styled(Link)`
     }
 
     @media screen and (max-width: 768px) {
-        padding: 10px 40px;
+        padding: 0;
     }
 
     &:hover,
@@ -158,6 +158,10 @@ export const CurrentUserWrapper = styled.div`
 
     & a {
         padding-left: 25px;
+
+        @media screen and (max-width: 768px) {
+        padding-left: 10px;
+    }
     }
 
     & h3 {
@@ -179,5 +183,10 @@ export const CurrentUserWrapper = styled.div`
 
     @media screen and (max-width: 1024px) {
         align-items: center;
+        padding-left: 40px;
+    }
+
+    @media screen and (max-width: 768px) {
+        padding: 0;
     }
 `

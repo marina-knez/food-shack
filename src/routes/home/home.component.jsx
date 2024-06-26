@@ -10,7 +10,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShuffle, faX } from '@fortawesome/free-solid-svg-icons';
 
 const Home = () => {
-  const { categoriesMap } = useContext(CategoriesContext)
+  const { categoriesMap } = useContext(CategoriesContext);
   const { recentlyViewed, recentlyAdded } = useContext(RecipesContext);
   const [randomRecipe, setRandomRecipe] = useState(null);
   const [randomRecipeCategory, setRandomRecipeCategory] = useState(null);
@@ -20,20 +20,21 @@ const Home = () => {
     const allRecipes = Object.values(categoriesMap).flat();
     const randomIndex = Math.floor(Math.random() * allRecipes.length);
     const randomRecipe = allRecipes[randomIndex];
-
+  
     let category = null;
     for (const [key, recipes] of Object.entries(categoriesMap)) {
-      if (recipes.find(recipe => recipe.id === randomRecipe.id)) {
+      if (recipes.some(recipe => recipe.title === randomRecipe.title)) {
         category = key;
         break;
       }
     }
-
+  
     return { recipe: randomRecipe, category };
   };
 
   const handleRandomRecipe = () => {
     const { recipe, category } = getRandomRecipe();
+    console.log("Selected random recipe:", recipe, "Category:", category);
     setRandomRecipe(recipe);
     setRandomRecipeCategory(category);
     setIsDialogOpen(true);
@@ -42,7 +43,7 @@ const Home = () => {
   const handleCloseDialog = () => {
     setIsDialogOpen(false);
     setRandomRecipe(null);
-    setRandomRecipeCategory(null); // Reset category when closing dialog
+    setRandomRecipeCategory(null);
   };
 
   return (
@@ -57,7 +58,7 @@ const Home = () => {
         <RandomRecipeWrapper open={isDialogOpen}>
           <FontAwesomeIcon icon={faX} className='close' onClick={handleCloseDialog}/>
           <RecipeCardContainer key={randomRecipe.id}>
-            <RecipeCard category={randomRecipeCategory} recipe={randomRecipe} />
+            <RecipeCard category={randomRecipeCategory} recipe={randomRecipe} onClick={handleCloseDialog} />
           </RecipeCardContainer>
         </RandomRecipeWrapper>
       }

@@ -43,29 +43,15 @@ function App() {
     <GlobalStyle />
       <Routes>
         <Route path='/' element={<Navigation />}>
-          <Route index element={<Home />} />
           <Route path='auth' element={<Authentication />} />
-          <Route path='/recipes/*' element={
-            <PrivateRoute>
-              <Recipes />
-            </PrivateRoute>
-          } />
-          <Route path="/recipes/add-category" element={
-            <PrivateRoute>
-              <AddCategory />
-            </PrivateRoute>
-          } />
-          <Route path="/recipes/update-category/:oldCategoryName" element={
-            <PrivateRoute>
-              <UpdateCategory />
-            </PrivateRoute>
-          } />
-          <Route path="/recipes/delete-category/:categoryName" element={
-            <PrivateRoute>
-              <DeleteCategory />
-            </PrivateRoute>
-          } />
-          <Route path='/shopping-list' element={<ShoppingList />} />
+          <Route element={<PrivateRoute />}>
+            <Route index element={<Home />} />
+            <Route path='/recipes/*' element={<Recipes />} />
+            <Route path="/recipes/add-category" element={<AddCategory />} />
+            <Route path="/recipes/update-category/:oldCategoryName" element={<UpdateCategory />} />
+            <Route path="/recipes/delete-category/:categoryName" element={<DeleteCategory />} />
+            <Route path='/shopping-list' element={<ShoppingList />} />
+          </Route>
         </Route>
       </Routes>
       {showScrollToTop && 

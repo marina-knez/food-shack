@@ -64,7 +64,6 @@ const CategoriesPreview = () => {
                         <SearchResultsTitle>Search Results</SearchResultsTitle>
                         {recipes.length > 0 ? (
                             recipes.map((recipe) => {
-                                console.log(`Rendering Recipe: ${recipe.title} in Category: ${recipe.category}`);
                                 return (
                                     <SearchResultsItem to={`/recipes/${recipe.category}/${recipe.id}`} key={recipe.id}>
                                         <img src={recipe.img} alt={recipe.title} title={recipe.title} />

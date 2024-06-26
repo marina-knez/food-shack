@@ -241,6 +241,20 @@ export const createUserDocumentFromAuth = async (userAuth, additionalInformation
     return await signInWithEmailAndPassword(auth, email, password);
  };
 
+ export const getUserDocument = async (userAuth) => {
+    if (!userAuth) return null;
+
+    const userDocRef = doc(db, 'users', userAuth.uid);
+    const userSnapshot = await getDoc(userDocRef);
+
+    if (userSnapshot.exists()) {
+        return userSnapshot.data();
+    } else {
+        console.error('User document not found');
+        return null;
+    }
+};
+
  export const signOutUser = async () => await signOut(auth);
 
  export const onAuthStateChangedListener = (callback) => onAuthStateChanged(auth, callback);

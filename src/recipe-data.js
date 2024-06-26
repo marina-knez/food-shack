@@ -10,12 +10,12 @@ const RECIPE_DATA = [
                 time: 90,
                 img: '',
                 ingredients: [
-                    { item: 'brašna za dizano tijesto', quantity: '1', unit: 'kg' },
-                    { item: 'mlijeka', quantity: '3.5', unit: 'dcl' },
-                    { item: 'svježi kvasac', quantity: '1', unit: '' },
-                    { item: 'ulja', quantity: '1', unit: 'dcl' },
-                    { item: 'šećera', quantity: '1', unit: 'žlica' },
-                    { item: 'soli', quantity: '1-2', unit: 'žlice' },
+                    { item: 'brašna za dizano tijesto', quantity: 1, unit: 'kg' },
+                    { item: 'mlijeka', quantity: 3.5, unit: 'dcl' },
+                    { item: 'svježi kvasac', quantity: 1, unit: '' },
+                    { item: 'ulja', quantity: 1, unit: 'dcl' },
+                    { item: 'šećera', quantity: 1, unit: 'žlica' },
+                    { item: 'soli', quantity: 1-2, unit: 'žlice' },
                 ],
                 instructions: [
                     'Pomiješati sve sastojke i zamijesiti tijesto.',
@@ -32,12 +32,12 @@ const RECIPE_DATA = [
                 time: 45,
                 img: '',
                 ingredients: [
-                    { item: 'brašna', quantity: '500', unit: 'g' },
-                    { item: 'jaja', quantity: '4', unit: '' },
-                    { item: 'šećer', quantity: '100', unit: 'g' },
-                    { item: 'vrhnje', quantity: '100', unit: 'ml' },
-                    { item: 'rakija', quantity: '1', unit: 'žlica' },
-                    { item: 'korica limuna', quantity: '1', unit: '' }
+                    { item: 'brašna', quantity: 500, unit: 'g' },
+                    { item: 'jaja', quantity: 4, unit: '' },
+                    { item: 'šećer', quantity: 100, unit: 'g' },
+                    { item: 'vrhnje', quantity: 100, unit: 'ml' },
+                    { item: 'rakija', quantity: 1, unit: 'žlica' },
+                    { item: 'korica limuna', quantity: 1, unit: '' }
                 ],
                 instructions: [
                     'Pomiješajte sve sastojke u glatko tijesto.',
@@ -55,12 +55,12 @@ const RECIPE_DATA = [
                 time: 180,
                 img: '',
                 ingredients: [
-                    { item: 'brašno', quantity: '500', unit: 'g' },
-                    { item: 'mlijeko', quantity: '3', unit: 'dcl' },
-                    { item: 'maslac', quantity: '250', unit: 'g' },
-                    { item: 'kvasac', quantity: '1', unit: 'paketić' },
-                    { item: 'šećer', quantity: '50', unit: 'g' },
-                    { item: 'sol', quantity: '1', unit: 'žličica' }
+                    { item: 'brašno', quantity: 500, unit: 'g' },
+                    { item: 'mlijeko', quantity: 3, unit: 'dcl' },
+                    { item: 'maslac', quantity: 250, unit: 'g' },
+                    { item: 'kvasac', quantity: 1, unit: 'paketić' },
+                    { item: 'šećer', quantity: 50, unit: 'g' },
+                    { item: 'sol', quantity: 1, unit: 'žličica' }
                 ],
                 instructions: [
                     'Pomiješajte kvasac, mlijeko i šećer te ostavite da se kvasac aktivira.',
@@ -80,13 +80,13 @@ const RECIPE_DATA = [
                 time: 120,
                 img: '',
                 ingredients: [
-                    { item: 'brašno', quantity: '500', unit: 'g' },
-                    { item: 'mlijeko', quantity: '2', unit: 'dcl' },
-                    { item: 'maslac', quantity: '200', unit: 'g' },
-                    { item: 'šećer', quantity: '100', unit: 'g' },
-                    { item: 'jaja', quantity: '3', unit: '' },
-                    { item: 'kvasac', quantity: '1', unit: 'paketić' },
-                    { item: 'sol', quantity: '1', unit: 'žličica' }
+                    { item: 'brašno', quantity: 500, unit: 'g' },
+                    { item: 'mlijeko', quantity: 2, unit: 'dcl' },
+                    { item: 'maslac', quantity: 200, unit: 'g' },
+                    { item: 'šećer', quantity: 100, unit: 'g' },
+                    { item: 'jaja', quantity: 3, unit: '' },
+                    { item: 'kvasac', quantity: 1, unit: 'paketić' },
+                    { item: 'sol', quantity: 1, unit: 'žličica' }
                 ],
                 instructions: [
                     'Pomiješajte kvasac, mlijeko i šećer te ostavite da se kvasac aktivira.',
@@ -105,13 +105,13 @@ const RECIPE_DATA = [
                 time: 180,
                 img: '',
                 ingredients: [
-                    { item: 'brašno', quantity: '500', unit: 'g' },
-                    { item: 'mlijeko', quantity: '3', unit: 'dcl' },
-                    { item: 'maslac', quantity: '250', unit: 'g' },
-                    { item: 'kvasac', quantity: '1', unit: 'paketić' },
-                    { item: 'šećer', quantity: '50', unit: 'g' },
-                    { item: 'sol', quantity: '1', unit: 'žličica' },
-                    { item: 'čokolada', quantity: '200', unit: 'g' }
+                    { item: 'brašno', quantity: 500, unit: 'g' },
+                    { item: 'mlijeko', quantity: 3, unit: 'dcl' },
+                    { item: 'maslac', quantity: 250, unit: 'g' },
+                    { item: 'kvasac', quantity: 1, unit: 'paketić' },
+                    { item: 'šećer', quantity: 50, unit: 'g' },
+                    { item: 'sol', quantity: 1, unit: 'žličica' },
+                    { item: 'čokolada', quantity: 200, unit: 'g' }
                 ],
                 instructions: [
                     'Pomiješajte kvasac, mlijeko i šećer te ostavite da se kvasac aktivira.',
@@ -132,13 +132,13 @@ const RECIPE_DATA = [
                 time: 90,
                 img: '',
                 ingredients: [
-                    { item: 'brašno', quantity: '300', unit: 'g' },
-                    { item: 'jaja', quantity: '1', unit: '' },
-                    { item: 'ulje', quantity: '2', unit: 'žlice' },
-                    { item: 'sol', quantity: '1', unit: 'prstohvat' },
-                    { item: 'jabuke', quantity: '1', unit: 'kg' },
-                    { item: 'šećer', quantity: '100', unit: 'g' },
-                    { item: 'cimet', quantity: '1', unit: 'žličica' }
+                    { item: 'brašno', quantity: 300, unit: 'g' },
+                    { item: 'jaja', quantity: 1, unit: '' },
+                    { item: 'ulje', quantity: 2, unit: 'žlice' },
+                    { item: 'sol', quantity: 1, unit: 'prstohvat' },
+                    { item: 'jabuke', quantity: 1, unit: 'kg' },
+                    { item: 'šećer', quantity: 100, unit: 'g' },
+                    { item: 'cimet', quantity: 1, unit: 'žličica' }
                 ],
                 instructions: [
                     'Umijesite brašno, jaje, ulje i sol u glatko tijesto.',
@@ -157,13 +157,13 @@ const RECIPE_DATA = [
                 time: 150,
                 img: '',
                 ingredients: [
-                    { item: 'lisnato tijesto', quantity: '500', unit: 'g' },
-                    { item: 'mlijeko', quantity: '500', unit: 'ml' },
-                    { item: 'šećer', quantity: '100', unit: 'g' },
-                    { item: 'jaja', quantity: '2', unit: '' },
-                    { item: 'brašno', quantity: '50', unit: 'g' },
-                    { item: 'vanilin šećer', quantity: '1', unit: 'paketić' },
-                    { item: 'šećer u prahu', quantity: '100', unit: 'g' }
+                    { item: 'lisnato tijesto', quantity: 500, unit: 'g' },
+                    { item: 'mlijeko', quantity: 500, unit: 'ml' },
+                    { item: 'šećer', quantity: 100, unit: 'g' },
+                    { item: 'jaja', quantity: 2, unit: '' },
+                    { item: 'brašno', quantity: 50, unit: 'g' },
+                    { item: 'vanilin šećer', quantity: 1, unit: 'paketić' },
+                    { item: 'šećer u prahu', quantity: 100, unit: 'g' }
                 ],
                 instructions: [
                     'Ispecite lisnato tijesto do zlatno smeđe boje.',
@@ -181,12 +181,12 @@ const RECIPE_DATA = [
                 time: 120,
                 img: '',
                 ingredients: [
-                    { item: 'filo tijesto', quantity: '500', unit: 'g' },
-                    { item: 'orah', quantity: '300', unit: 'g' },
-                    { item: 'šećer', quantity: '200', unit: 'g' },
-                    { item: 'maslac', quantity: '200', unit: 'g' },
-                    { item: 'med', quantity: '200', unit: 'ml' },
-                    { item: 'voda', quantity: '200', unit: 'ml' }
+                    { item: 'filo tijesto', quantity: 500, unit: 'g' },
+                    { item: 'orah', quantity: 300, unit: 'g' },
+                    { item: 'šećer', quantity: 200, unit: 'g' },
+                    { item: 'maslac', quantity: 200, unit: 'g' },
+                    { item: 'med', quantity: 200, unit: 'ml' },
+                    { item: 'voda', quantity: 200, unit: 'ml' }
                 ],
                 instructions: [
                     'Složite slojeve filo tijesta s maslacem i mljevenim orasima.',
@@ -203,13 +203,13 @@ const RECIPE_DATA = [
                 time: 120,
                 img: '',
                 ingredients: [
-                    { item: 'brašno', quantity: '500', unit: 'g' },
-                    { item: 'mlijeko', quantity: '2', unit: 'dcl' },
-                    { item: 'maslac', quantity: '200', unit: 'g' },
-                    { item: 'šećer', quantity: '100', unit: 'g' },
-                    { item: 'jaja', quantity: '2', unit: '' },
-                    { item: 'kvasac', quantity: '1', unit: 'paketić' },
-                    { item: 'sol', quantity: '1', unit: 'žličica' }
+                    { item: 'brašno', quantity: 500, unit: 'g' },
+                    { item: 'mlijeko', quantity: 2, unit: 'dcl' },
+                    { item: 'maslac', quantity: 200, unit: 'g' },
+                    { item: 'šećer', quantity: 100, unit: 'g' },
+                    { item: 'jaja', quantity: 2, unit: '' },
+                    { item: 'kvasac', quantity: 1, unit: 'paketić' },
+                    { item: 'sol', quantity: 1, unit: 'žličica' }
                 ],
                 instructions: [
                     'Pomiješajte kvasac, mlijeko i šećer te ostavite da se kvasac aktivira.',
@@ -228,16 +228,16 @@ const RECIPE_DATA = [
                 time: 120,
                 img: '',
                 ingredients: [
-                    { item: 'brašno', quantity: '500', unit: 'g' },
-                    { item: 'mlijeko', quantity: '2', unit: 'dcl' },
-                    { item: 'maslac', quantity: '200', unit: 'g' },
-                    { item: 'šećer', quantity: '100', unit: 'g' },
-                    { item: 'jaja', quantity: '2', unit: '' },
-                    { item: 'kvasac', quantity: '1', unit: 'paketić' },
-                    { item: 'sol', quantity: '1', unit: 'žličica' },
-                    { item: 'cimet', quantity: '2', unit: 'žlice' },
-                    { item: 'šećer u prahu', quantity: '100', unit: 'g' },
-                    { item: 'sirni namaz', quantity: '100', unit: 'g' }
+                    { item: 'brašno', quantity: 500, unit: 'g' },
+                    { item: 'mlijeko', quantity: 2, unit: 'dcl' },
+                    { item: 'maslac', quantity: 200, unit: 'g' },
+                    { item: 'šećer', quantity: 100, unit: 'g' },
+                    { item: 'jaja', quantity: 2, unit: '' },
+                    { item: 'kvasac', quantity: 1, unit: 'paketić' },
+                    { item: 'sol', quantity: 1, unit: 'žličica' },
+                    { item: 'cimet', quantity: 2, unit: 'žlice' },
+                    { item: 'šećer u prahu', quantity: 100, unit: 'g' },
+                    { item: 'sirni namaz', quantity: 100, unit: 'g' }
                 ],
                 instructions: [
                     'Pomiješajte kvasac, mlijeko i šećer te ostavite da se kvasac aktivira.',
@@ -262,13 +262,13 @@ const RECIPE_DATA = [
                 time: 90,
                 img: '',
                 ingredients: [
-                    { item: 'mrkve', quantity: '300', unit: 'g' },
-                    { item: 'brašno', quantity: '250', unit: 'g' },
-                    { item: 'šećer', quantity: '200', unit: 'g' },
-                    { item: 'ulje', quantity: '200', unit: 'ml' },
-                    { item: 'jaja', quantity: '4', unit: '' },
-                    { item: 'praška za pecivo', quantity: '1', unit: 'paketić' },
-                    { item: 'cimet', quantity: '1', unit: 'žličica' }
+                    { item: 'mrkve', quantity: 300, unit: 'g' },
+                    { item: 'brašno', quantity: 250, unit: 'g' },
+                    { item: 'šećer', quantity: 200, unit: 'g' },
+                    { item: 'ulje', quantity: 200, unit: 'ml' },
+                    { item: 'jaja', quantity: 4, unit: '' },
+                    { item: 'praška za pecivo', quantity: 1, unit: 'paketić' },
+                    { item: 'cimet', quantity: 1, unit: 'žličica' }
                 ],
                 instructions: [
                     'Naribajte mrkvu i pomiješajte s jajima, šećerom i uljem.',
@@ -286,13 +286,13 @@ const RECIPE_DATA = [
                 time: 120,
                 img: '',
                 ingredients: [
-                    { item: 'brašno', quantity: '200', unit: 'g' },
-                    { item: 'šećer', quantity: '200', unit: 'g' },
-                    { item: 'maslac', quantity: '200', unit: 'g' },
-                    { item: 'jaja', quantity: '4', unit: '' },
-                    { item: 'čokolada', quantity: '200', unit: 'g' },
-                    { item: 'kakao', quantity: '50', unit: 'g' },
-                    { item: 'praška za pecivo', quantity: '1', unit: 'paketić' }
+                    { item: 'brašno', quantity: 200, unit: 'g' },
+                    { item: 'šećer', quantity: 200, unit: 'g' },
+                    { item: 'maslac', quantity: 200, unit: 'g' },
+                    { item: 'jaja', quantity: 4, unit: '' },
+                    { item: 'čokolada', quantity: 200, unit: 'g' },
+                    { item: 'kakao', quantity: 50, unit: 'g' },
+                    { item: 'praška za pecivo', quantity: 1, unit: 'paketić' }
                 ],
                 instructions: [
                     'Otopite čokoladu i maslac.',
@@ -311,13 +311,13 @@ const RECIPE_DATA = [
                 time: 180,
                 img: '',
                 ingredients: [
-                    { item: 'keksi', quantity: '200', unit: 'g' },
-                    { item: 'maslac', quantity: '100', unit: 'g' },
-                    { item: 'krem sir', quantity: '500', unit: 'g' },
-                    { item: 'šećer', quantity: '200', unit: 'g' },
-                    { item: 'jaja', quantity: '3', unit: '' },
-                    { item: 'vrhnje', quantity: '200', unit: 'ml' },
-                    { item: 'vanilin šećer', quantity: '1', unit: 'paketić' }
+                    { item: 'keksi', quantity: 200, unit: 'g' },
+                    { item: 'maslac', quantity: 100, unit: 'g' },
+                    { item: 'krem sir', quantity: 500, unit: 'g' },
+                    { item: 'šećer', quantity: 200, unit: 'g' },
+                    { item: 'jaja', quantity: 3, unit: '' },
+                    { item: 'vrhnje', quantity: 200, unit: 'ml' },
+                    { item: 'vanilin šećer', quantity: 1, unit: 'paketić' }
                 ],
                 instructions: [
                     'Pomiješajte mljevene kekse i rastopljeni maslac te utisnite u kalup za pečenje.',
@@ -336,14 +336,14 @@ const RECIPE_DATA = [
                 time: 120,
                 img: '',
                 ingredients: [
-                    { item: 'brašno', quantity: '300', unit: 'g' },
-                    { item: 'šećer', quantity: '300', unit: 'g' },
-                    { item: 'maslac', quantity: '200', unit: 'g' },
-                    { item: 'jaja', quantity: '3', unit: '' },
-                    { item: 'kefir', quantity: '200', unit: 'ml' },
-                    { item: 'kakao', quantity: '30', unit: 'g' },
-                    { item: 'crvena boja za hranu', quantity: '1', unit: 'žličica' },
-                    { item: 'praška za pecivo', quantity: '1', unit: 'paketić' }
+                    { item: 'brašno', quantity: 300, unit: 'g' },
+                    { item: 'šećer', quantity: 300, unit: 'g' },
+                    { item: 'maslac', quantity: 200, unit: 'g' },
+                    { item: 'jaja', quantity: 3, unit: '' },
+                    { item: 'kefir', quantity: 200, unit: 'ml' },
+                    { item: 'kakao', quantity: 30, unit: 'g' },
+                    { item: 'crvena boja za hranu', quantity: 1, unit: 'žličica' },
+                    { item: 'praška za pecivo', quantity: 1, unit: 'paketić' }
                 ],
                 instructions: [
                     'Pomiješajte brašno, kakao, prašak za pecivo i sol.',
@@ -362,12 +362,12 @@ const RECIPE_DATA = [
                 time: 30,
                 img: '',
                 ingredients: [
-                    { item: 'piškote', quantity: '300', unit: 'g' },
-                    { item: 'kava', quantity: '2', unit: 'dcl' },
-                    { item: 'mascarpone', quantity: '500', unit: 'g' },
-                    { item: 'jaja', quantity: '4', unit: '' },
-                    { item: 'šećer', quantity: '100', unit: 'g' },
-                    { item: 'kakao', quantity: '30', unit: 'g' }
+                    { item: 'piškote', quantity: 300, unit: 'g' },
+                    { item: 'kava', quantity: 2, unit: 'dcl' },
+                    { item: 'mascarpone', quantity: 500, unit: 'g' },
+                    { item: 'jaja', quantity: 4, unit: '' },
+                    { item: 'šećer', quantity: 100, unit: 'g' },
+                    { item: 'kakao', quantity: 30, unit: 'g' }
                 ],
                 instructions: [
                     'Umiješajte žumanjke i šećer dok ne postanu pjenasti.',
@@ -386,14 +386,14 @@ const RECIPE_DATA = [
                 time: 90,
                 img: '',
                 ingredients: [
-                    { item: 'brašno', quantity: '400', unit: 'g' },
-                    { item: 'šećer', quantity: '200', unit: 'g' },
-                    { item: 'med', quantity: '100', unit: 'g' },
-                    { item: 'jaja', quantity: '2', unit: '' },
-                    { item: 'maslac', quantity: '100', unit: 'g' },
-                    { item: 'soda bikarbona', quantity: '1', unit: 'žličica' },
-                    { item: 'mlijeko', quantity: '500', unit: 'ml' },
-                    { item: 'puding od vanilije', quantity: '2', unit: 'paketića' }
+                    { item: 'brašno', quantity: 400, unit: 'g' },
+                    { item: 'šećer', quantity: 200, unit: 'g' },
+                    { item: 'med', quantity: 100, unit: 'g' },
+                    { item: 'jaja', quantity: 2, unit: '' },
+                    { item: 'maslac', quantity: 100, unit: 'g' },
+                    { item: 'soda bikarbona', quantity: 1, unit: 'žličica' },
+                    { item: 'mlijeko', quantity: 500, unit: 'ml' },
+                    { item: 'puding od vanilije', quantity: 2, unit: 'paketića' }
                 ],
                 instructions: [
                     'Pomiješajte brašno, šećer, med, jaja, maslac i sodu bikarbonu i zamijesite tijesto.',
@@ -413,13 +413,13 @@ const RECIPE_DATA = [
                 time: 60,
                 img: '',
                 ingredients: [
-                    { item: 'brašno', quantity: '200', unit: 'g' },
-                    { item: 'šećer', quantity: '150', unit: 'g' },
-                    { item: 'jaja', quantity: '4', unit: '' },
-                    { item: 'mlijeko', quantity: '100', unit: 'ml' },
-                    { item: 'maslac', quantity: '100', unit: 'g' },
-                    { item: 'prašk za pecivo', quantity: '1', unit: 'žličica' },
-                    { item: 'miješano voće', quantity: '300', unit: 'g' }
+                    { item: 'brašno', quantity: 200, unit: 'g' },
+                    { item: 'šećer', quantity: 150, unit: 'g' },
+                    { item: 'jaja', quantity: 4, unit: '' },
+                    { item: 'mlijeko', quantity: 100, unit: 'ml' },
+                    { item: 'maslac', quantity: 100, unit: 'g' },
+                    { item: 'prašk za pecivo', quantity: 1, unit: 'žličica' },
+                    { item: 'miješano voće', quantity: 300, unit: 'g' }
                 ],
                 instructions: [
                     'Izmiješajte jaja i šećer dok ne postane pjenasto.',
@@ -438,12 +438,12 @@ const RECIPE_DATA = [
                 time: 80,
                 img: '',
                 ingredients: [
-                    { item: 'lješnjaci', quantity: '200', unit: 'g' },
-                    { item: 'šećer', quantity: '200', unit: 'g' },
-                    { item: 'jaja', quantity: '4', unit: '' },
-                    { item: 'brašno', quantity: '100', unit: 'g' },
-                    { item: 'maslac', quantity: '100', unit: 'g' },
-                    { item: 'čokolada', quantity: '150', unit: 'g' }
+                    { item: 'lješnjaci', quantity: 200, unit: 'g' },
+                    { item: 'šećer', quantity: 200, unit: 'g' },
+                    { item: 'jaja', quantity: 4, unit: '' },
+                    { item: 'brašno', quantity: 100, unit: 'g' },
+                    { item: 'maslac', quantity: 100, unit: 'g' },
+                    { item: 'čokolada', quantity: 150, unit: 'g' }
                 ],
                 instructions: [
                     'Sameljite lješnjake.',
@@ -462,15 +462,15 @@ const RECIPE_DATA = [
                 time: 120,
                 img: '',
                 ingredients: [
-                    { item: 'brašno', quantity: '250', unit: 'g' },
-                    { item: 'šećer', quantity: '50', unit: 'g' },
-                    { item: 'kvasac', quantity: '7', unit: 'g' },
-                    { item: 'mlijeko', quantity: '200', unit: 'ml' },
-                    { item: 'jaja', quantity: '2', unit: '' },
-                    { item: 'maslac', quantity: '50', unit: 'g' },
-                    { item: 'sol', quantity: '1', unit: 'prstohvat' },
-                    { item: 'ulje za prženje', quantity: 'za potrebu', unit: '' },
-                    { item: 'džem ili čokolada', quantity: 'za punjenje', unit: '' }
+                    { item: 'brašno', quantity: 250, unit: 'g' },
+                    { item: 'šećer', quantity: 50, unit: 'g' },
+                    { item: 'kvasac', quantity: 7, unit: 'g' },
+                    { item: 'mlijeko', quantity: 200, unit: 'ml' },
+                    { item: 'jaja', quantity: 2, unit: '' },
+                    { item: 'maslac', quantity: 50, unit: 'g' },
+                    { item: 'sol', quantity: 1, unit: 'prstohvat' },
+                    { item: 'ulje za prženje', quantity: 0, unit: '' },
+                    { item: 'džem ili čokolada', quantity: 0, unit: '' }
                 ],
                 instructions: [
                     'Pomiješajte kvasac, šećer i mlako mlijeko te ostavite da kvasac aktivira.',
@@ -492,13 +492,13 @@ const RECIPE_DATA = [
                 time: 60,
                 img: '',
                 ingredients: [
-                    { item: 'jaja', quantity: '6', unit: '' },
-                    { item: 'šećer', quantity: '200', unit: 'g' },
-                    { item: 'brašno', quantity: '100', unit: 'g' },
-                    { item: 'kukuruzni škrob', quantity: '50', unit: 'g' },
-                    { item: 'prašak za pecivo', quantity: '1/2', unit: 'žličice' },
-                    { item: 'vanilin šećer', quantity: '1', unit: 'paketić' },
-                    { item: 'mlijeko', quantity: '100', unit: 'ml' }
+                    { item: 'jaja', quantity: 6, unit: '' },
+                    { item: 'šećer', quantity: 200, unit: 'g' },
+                    { item: 'brašno', quantity: 100, unit: 'g' },
+                    { item: 'kukuruzni škrob', quantity: 50, unit: 'g' },
+                    { item: 'prašak za pecivo', quantity: 1/2, unit: 'žličice' },
+                    { item: 'vanilin šećer', quantity: 1, unit: 'paketić' },
+                    { item: 'mlijeko', quantity: 100, unit: 'ml' }
                 ],
                 instructions: [
                     'Odvojite bjelanjke od žumanjaka.',
@@ -519,14 +519,14 @@ const RECIPE_DATA = [
                 time: 45,
                 img: '',
                 ingredients: [
-                    { item: 'brašno', quantity: '200', unit: 'g' },
-                    { item: 'šećer', quantity: '150', unit: 'g' },
-                    { item: 'jaja', quantity: '4', unit: '' },
-                    { item: 'mlijeko', quantity: '100', unit: 'ml' },
-                    { item: 'maslac', quantity: '100', unit: 'g' },
-                    { item: 'prašak za pecivo', quantity: '1', unit: 'žličica' },
-                    { item: 'jagode', quantity: '500', unit: 'g' },
-                    { item: 'šećer u prahu', quantity: 'za posipanje', unit: '' }
+                    { item: 'brašno', quantity: 200, unit: 'g' },
+                    { item: 'šećer', quantity: 150, unit: 'g' },
+                    { item: 'jaja', quantity: 4, unit: '' },
+                    { item: 'mlijeko', quantity: 100, unit: 'ml' },
+                    { item: 'maslac', quantity: 100, unit: 'g' },
+                    { item: 'prašak za pecivo', quantity: 1, unit: 'žličica' },
+                    { item: 'jagode', quantity: 500, unit: 'g' },
+                    { item: 'šećer u prahu', quantity: 0, unit: '' }
                 ],
                 instructions: [
                     'Izmiksajte jaja i šećer dok ne postane pjenasto.',
@@ -545,14 +545,14 @@ const RECIPE_DATA = [
                 time: 50,
                 img: '',
                 ingredients: [
-                    { item: 'brašno', quantity: '200', unit: 'g' },
-                    { item: 'šećer', quantity: '150', unit: 'g' },
-                    { item: 'jaja', quantity: '4', unit: '' },
-                    { item: 'mlijeko', quantity: '100', unit: 'ml' },
-                    { item: 'maslac', quantity: '100', unit: 'g' },
-                    { item: 'prašak za pecivo', quantity: '1', unit: 'žličica' },
-                    { item: 'limun', quantity: '1', unit: '' },
-                    { item: 'šećer u prahu', quantity: 'za posipanje', unit: '' }
+                    { item: 'brašno', quantity: 200, unit: 'g' },
+                    { item: 'šećer', quantity: 150, unit: 'g' },
+                    { item: 'jaja', quantity: 4, unit: '' },
+                    { item: 'mlijeko', quantity: 100, unit: 'ml' },
+                    { item: 'maslac', quantity: 100, unit: 'g' },
+                    { item: 'prašak za pecivo', quantity: 1, unit: 'žličica' },
+                    { item: 'limun', quantity: 1, unit: '' },
+                    { item: 'šećer u prahu', quantity: 0, unit: '' }
                 ],
                 instructions: [
                     'Izmiksajte jaja i šećer dok ne postane pjenasto.',
@@ -577,15 +577,15 @@ const RECIPE_DATA = [
                 time: 30,
                 img: '',
                 ingredients: [
-                    { item: 'brašno', quantity: '300', unit: 'g' },
-                    { item: 'maslac', quantity: '200', unit: 'g' },
-                    { item: 'šećer', quantity: '150', unit: 'g' },
-                    { item: 'smeđi šećer', quantity: '100', unit: 'g' },
-                    { item: 'jaja', quantity: '2', unit: '' },
-                    { item: 'čokoladni komadići', quantity: '200', unit: 'g' },
-                    { item: 'prašak za pecivo', quantity: '1', unit: 'žličica' },
-                    { item: 'vanilin šećer', quantity: '1', unit: 'žličica' },
-                    { item: 'sol', quantity: '1', unit: 'prstohvat' }
+                    { item: 'brašno', quantity: 300, unit: 'g' },
+                    { item: 'maslac', quantity: 200, unit: 'g' },
+                    { item: 'šećer', quantity: 150, unit: 'g' },
+                    { item: 'smeđi šećer', quantity: 100, unit: 'g' },
+                    { item: 'jaja', quantity: 2, unit: '' },
+                    { item: 'čokoladni komadići', quantity: 200, unit: 'g' },
+                    { item: 'prašak za pecivo', quantity: 1, unit: 'žličica' },
+                    { item: 'vanilin šećer', quantity: 1, unit: 'žličica' },
+                    { item: 'sol', quantity: 1, unit: 'prstohvat' }
                 ],
                 instructions: [
                     'Izmiješajte maslac i šećere dok ne postanu pjenasti.',
@@ -605,17 +605,17 @@ const RECIPE_DATA = [
                 time: 30,
                 img: '',
                 ingredients: [
-                    { item: 'brašno', quantity: '150', unit: 'g' },
-                    { item: 'zobene pahuljice', quantity: '200', unit: 'g' },
-                    { item: 'maslac', quantity: '200', unit: 'g' },
-                    { item: 'šećer', quantity: '150', unit: 'g' },
-                    { item: 'smeđi šećer', quantity: '100', unit: 'g' },
-                    { item: 'jaja', quantity: '2', unit: '' },
-                    { item: 'grožđice', quantity: '150', unit: 'g' },
-                    { item: 'prašak za pecivo', quantity: '1', unit: 'žličica' },
-                    { item: 'vanilin šećer', quantity: '1', unit: 'žličica' },
-                    { item: 'cimet', quantity: '1', unit: 'žličica' },
-                    { item: 'sol', quantity: '1', unit: 'prstohvat' }
+                    { item: 'brašno', quantity: 150, unit: 'g' },
+                    { item: 'zobene pahuljice', quantity: 200, unit: 'g' },
+                    { item: 'maslac', quantity: 200, unit: 'g' },
+                    { item: 'šećer', quantity: 150, unit: 'g' },
+                    { item: 'smeđi šećer', quantity: 100, unit: 'g' },
+                    { item: 'jaja', quantity: 2, unit: '' },
+                    { item: 'grožđice', quantity: 150, unit: 'g' },
+                    { item: 'prašak za pecivo', quantity: 1, unit: 'žličica' },
+                    { item: 'vanilin šećer', quantity: 1, unit: 'žličica' },
+                    { item: 'cimet', quantity: 1, unit: 'žličica' },
+                    { item: 'sol', quantity: 1, unit: 'prstohvat' }
                 ],
                 instructions: [
                     'Izmiješajte maslac i šećere dok ne postanu pjenasti.',
@@ -635,13 +635,13 @@ const RECIPE_DATA = [
                 time: 60,
                 img: '',
                 ingredients: [
-                    { item: 'brašno', quantity: '300', unit: 'g' },
-                    { item: 'maslac', quantity: '200', unit: 'g' },
-                    { item: 'šećer', quantity: '200', unit: 'g' },
-                    { item: 'jaja', quantity: '2', unit: '' },
-                    { item: 'prašak za pecivo', quantity: '1', unit: 'žličica' },
-                    { item: 'vanilin šećer', quantity: '1', unit: 'žličica' },
-                    { item: 'sol', quantity: '1', unit: 'prstohvat' }
+                    { item: 'brašno', quantity: 300, unit: 'g' },
+                    { item: 'maslac', quantity: 200, unit: 'g' },
+                    { item: 'šećer', quantity: 200, unit: 'g' },
+                    { item: 'jaja', quantity: 2, unit: '' },
+                    { item: 'prašak za pecivo', quantity: 1, unit: 'žličica' },
+                    { item: 'vanilin šećer', quantity: 1, unit: 'žličica' },
+                    { item: 'sol', quantity: 1, unit: 'prstohvat' }
                 ],
                 instructions: [
                     'Izmiješajte maslac i šećer dok ne postanu pjenasti.',
@@ -662,15 +662,15 @@ const RECIPE_DATA = [
                 time: 30,
                 img: '',
                 ingredients: [
-                    { item: 'brašno', quantity: '200', unit: 'g' },
-                    { item: 'maslac od kikirikija', quantity: '200', unit: 'g' },
-                    { item: 'maslac', quantity: '100', unit: 'g' },
-                    { item: 'šećer', quantity: '150', unit: 'g' },
-                    { item: 'smeđi šećer', quantity: '100', unit: 'g' },
-                    { item: 'jaja', quantity: '1', unit: '' },
-                    { item: 'prašak za pecivo', quantity: '1', unit: 'žličica' },
-                    { item: 'vanilin šećer', quantity: '1', unit: 'žličica' },
-                    { item: 'sol', quantity: '1', unit: 'prstohvat' }
+                    { item: 'brašno', quantity: 200, unit: 'g' },
+                    { item: 'maslac od kikirikija', quantity: 200, unit: 'g' },
+                    { item: 'maslac', quantity: 100, unit: 'g' },
+                    { item: 'šećer', quantity: 150, unit: 'g' },
+                    { item: 'smeđi šećer', quantity: 100, unit: 'g' },
+                    { item: 'jaja', quantity: 1, unit: '' },
+                    { item: 'prašak za pecivo', quantity: 1, unit: 'žličica' },
+                    { item: 'vanilin šećer', quantity: 1, unit: 'žličica' },
+                    { item: 'sol', quantity: 1, unit: 'prstohvat' }
                 ],
                 instructions: [
                     'Izmiješajte maslac, maslac od kikirikija i šećere dok ne postanu pjenasti.',
@@ -690,16 +690,16 @@ const RECIPE_DATA = [
                 time: 60,
                 img: '',
                 ingredients: [
-                    { item: 'brašno', quantity: '300', unit: 'g' },
-                    { item: 'maslac', quantity: '200', unit: 'g' },
-                    { item: 'šećer', quantity: '100', unit: 'g' },
-                    { item: 'med', quantity: '100', unit: 'ml' },
-                    { item: 'jaja', quantity: '1', unit: '' },
-                    { item: 'prašak za pecivo', quantity: '1', unit: 'žličica' },
-                    { item: 'cimet', quantity: '2', unit: 'žličice' },
-                    { item: 'đumbir u prahu', quantity: '1', unit: 'žličica' },
-                    { item: 'klinčić u prahu', quantity: '1', unit: 'žličica' },
-                    { item: 'sol', quantity: '1', unit: 'prstohvat' }
+                    { item: 'brašno', quantity: 300, unit: 'g' },
+                    { item: 'maslac', quantity: 200, unit: 'g' },
+                    { item: 'šećer', quantity: 100, unit: 'g' },
+                    { item: 'med', quantity: 100, unit: 'ml' },
+                    { item: 'jaja', quantity: 1, unit: '' },
+                    { item: 'prašak za pecivo', quantity: 1, unit: 'žličica' },
+                    { item: 'cimet', quantity: 2, unit: 'žličice' },
+                    { item: 'đumbir u prahu', quantity: 1, unit: 'žličica' },
+                    { item: 'klinčić u prahu', quantity: 1, unit: 'žličica' },
+                    { item: 'sol', quantity: 1, unit: 'prstohvat' }
                 ],
                 instructions: [
                     'Izmiješajte maslac, šećer i med dok ne postanu pjenasti.',
@@ -720,14 +720,14 @@ const RECIPE_DATA = [
                 time: 35,
                 img: '',
                 ingredients: [
-                { item: 'maslac', quantity: '1/2', unit: 'šalice' },
-                { item: 'šećer', quantity: '1/2', unit: 'šalice' },
-                { item: ' smeđi šećer', quantity: '1/2', unit: 'šalice' },
-                { item: 'jaje', quantity: '1', unit: '' },
-                { item: 'ekstrakt vanilije', quantity: '1', unit: 'žličica' },
-                { item: 'pšenično brašno', quantity: '1 1/4', unit: 'šalice' },
-                { item: 'soda bikarbona', quantity: '1/2', unit: 'žličice' },
-                { item: 'kokos', quantity: '1 1/2', unit: 'šalice' }
+                { item: 'maslac', quantity: 1/2, unit: 'šalice' },
+                { item: 'šećer', quantity: 1/2, unit: 'šalice' },
+                { item: ' smeđi šećer', quantity: 1/2, unit: 'šalice' },
+                { item: 'jaje', quantity: 1, unit: '' },
+                { item: 'ekstrakt vanilije', quantity: 1, unit: 'žličica' },
+                { item: 'pšenično brašno', quantity: 1, unit: 'šalice' },
+                { item: 'soda bikarbona', quantity: 1/2, unit: 'žličice' },
+                { item: 'kokos', quantity: 1, unit: 'šalice' }
                 ],
                 instructions: [
                 'Zagrijte pećnicu na 175°C (350°F) i obložite lim za pečenje papirom za pečenje.',
@@ -749,14 +749,14 @@ const RECIPE_DATA = [
                 time: 30,
                 img: '',
                 ingredients: [
-                { item: 'maslac', quantity: '1/2', unit: 'šalice' },
-                { item: 'šećer u prahu', quantity: '1/2', unit: 'šalice' },
-                { item: 'jaje', quantity: '1', unit: '' },
-                { item: 'ekstrakt vanilije', quantity: '1', unit: 'žličica' },
-                { item: 'pšenično brašno', quantity: '1 1/4', unit: 'šalice' },
-                { item: 'limunova kora', quantity: '1', unit: '' },
-                { item: 'limunov sok', quantity: '2', unit: 'žlice' },
-                { item: 'soda bikarbona', quantity: '1/2', unit: 'žličice' }
+                { item: 'maslac', quantity: 1/2, unit: 'šalice' },
+                { item: 'šećer u prahu', quantity: 1/2, unit: 'šalice' },
+                { item: 'jaje', quantity: 1, unit: '' },
+                { item: 'ekstrakt vanilije', quantity: 1, unit: 'žličica' },
+                { item: 'pšenično brašno', quantity: 1, unit: 'šalice' },
+                { item: 'limunova kora', quantity: 1, unit: '' },
+                { item: 'limunov sok', quantity: 2, unit: 'žlice' },
+                { item: 'soda bikarbona', quantity: 1/2, unit: 'žličice' }
                 ],
                 instructions: [
                 'Zagrijte pećnicu na 175°C (350°F) i obložite lim za pečenje papirom za pečenje.',
@@ -778,17 +778,17 @@ const RECIPE_DATA = [
                 time: 35,
                 img: '',
                 ingredients: [
-                { item: 'maslac', quantity: '1/2', unit: 'šalice' },
-                { item: ' smeđi šećer', quantity: '1/2', unit: 'šalice' },
-                { item: 'šećer', quantity: '1/4', unit: 'šalice' },
-                { item: 'jaje', quantity: '1', unit:'' },
-                { item: 'ekstrakt vanilije', quantity: '1', unit: 'žličica' },
-                { item: 'pšenično brašno', quantity: '1 1/4', unit: 'šalice' },
-                { item: 'kakao prah', quantity: '1/3', unit: 'šalice' },
-                { item: 'soda bikarbona', quantity: '1/2', unit: 'žličice' },
-                { item: 'sol', quantity: '1/4', unit: 'žličice' },
-                { item: 'bademi (nasjeckani)', quantity: '1/2', unit: 'šalice' },
-                { item: 'čokoladne kapi', quantity: '1/2', unit: 'šalice' }
+                { item: 'maslac', quantity: 1/2, unit: 'šalice' },
+                { item: ' smeđi šećer', quantity: 1/2, unit: 'šalice' },
+                { item: 'šećer', quantity: 1/4, unit: 'šalice' },
+                { item: 'jaje', quantity: 1, unit:'' },
+                { item: 'ekstrakt vanilije', quantity: 1, unit: 'žličica' },
+                { item: 'pšenično brašno', quantity: 1, unit: 'šalice' },
+                { item: 'kakao prah', quantity: 1/3, unit: 'šalice' },
+                { item: 'soda bikarbona', quantity: 1/2, unit: 'žličice' },
+                { item: 'sol', quantity: 1/4, unit: 'žličice' },
+                { item: 'bademi (nasjeckani)', quantity: 1/2, unit: 'šalice' },
+                { item: 'čokoladne kapi', quantity: 1/2, unit: 'šalice' }
                 ],
                 instructions: [
                 'Zagrijte pećnicu na 175°C (350°F) i obložite lim za pečenje papirom za pečenje.',

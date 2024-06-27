@@ -1,14 +1,8 @@
 import { createContext, useState, useEffect } from 'react';
-import {
-    onCategoriesSnapshot,
-    updateRecipeDocument,
-    deleteRecipeDocument
-} from '../utils/firebase/firebase.utils';
+import { onCategoriesSnapshot } from '../utils/firebase/firebase.utils';
 
 export const CategoriesContext = createContext({
     categoriesMap: {},
-    updateRecipe: () => {},
-    deleteRecipe: () => {}
 });
 
 export const CategoriesProvider = ({ children }) => {
@@ -27,15 +21,7 @@ export const CategoriesProvider = ({ children }) => {
         return () => unsubscribe();
     }, []);
 
-    const updateRecipe = async (category, updatedRecipe) => {
-        await updateRecipeDocument(category, updatedRecipe);
-    };
-
-    const deleteRecipe = async (category, recipeId) => {
-        await deleteRecipeDocument(category, recipeId);
-    };
-
-    const value = { categoriesMap, updateRecipe, deleteRecipe };
+    const value = { categoriesMap };
 
     return (
         <CategoriesContext.Provider value={value}>

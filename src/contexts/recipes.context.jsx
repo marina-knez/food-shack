@@ -1,11 +1,12 @@
 import { createContext, useEffect, useState, useContext } from 'react';
-import { createRecipeDocument, updateRecipeDocument, getRecipeDocumentById, searchRecipes, onCategoriesSnapshot } from '../utils/firebase/firebase.utils';
+import { createRecipeDocument, updateRecipeDocument, deleteRecipeDocument, getRecipeDocumentById, searchRecipes, onCategoriesSnapshot } from '../utils/firebase/firebase.utils';
 import { CategoriesContext } from './categories.context';
 
 export const RecipesContext = createContext({
   setCurrentCategory: () => null,
   addRecipe: () => null,
   updateRecipe: () => null,
+  deleteRecipe: () => null,
   getRecipeById: () => null,
   searchRecipes: () => null,
   searchCategories: () => null,
@@ -72,6 +73,10 @@ export const RecipesProvider = ({ children }) => {
     }
   };
 
+  const deleteRecipe = async (categoryName, recipeId) => {
+    await deleteRecipeDocument(categoryName, recipeId);
+};
+
   const getRecipeById = async (categoryName, recipeId) => {
     if (currentCategory) {
       return await getRecipeDocumentById(categoryName, recipeId);
@@ -89,6 +94,7 @@ export const RecipesProvider = ({ children }) => {
     setCurrentCategory, 
     addRecipe, 
     updateRecipe, 
+    deleteRecipe,
     getRecipeById, 
     searchForRecipes,
     addRecentlyViewed,

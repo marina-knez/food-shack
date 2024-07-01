@@ -1,7 +1,8 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { signInWithGooglePopup, signInAuthUserWithEmailAndPassword, getUserDocument } from '../../utils/firebase/firebase.utils';
-import { UserContext } from "../../contexts/user.context";
+import { setCurrentUser } from "../../store/user/user.action";
 
 import FormInput from "../form-input/form-input.component";
 import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component';
@@ -16,8 +17,8 @@ const defaultFormFields = {
 const SignInForm = () => {
     const [ formFields, setFormFields ] = useState(defaultFormFields);
     const { email, password } = formFields;
-    const { setCurrentUser } = useContext(UserContext);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const resetFormFields = () => {
         setFormFields(defaultFormFields);
@@ -26,7 +27,7 @@ const SignInForm = () => {
     const signInWithGoogle = async () => {
         const { user } = await signInWithGooglePopup();
         const userDoc = await getUserDocument(user);
-        setCurrentUser(userDoc);
+        dispatch(setCurrentUser(userDoc));
         navigate('/');
     };
 
@@ -36,7 +37,7 @@ const SignInForm = () => {
         try {
             const { user } = await signInAuthUserWithEmailAndPassword(email, password);
             const userDoc = await getUserDocument(user);
-            setCurrentUser(userDoc);
+            dispatch(setCurrentUser(userDoc));
             resetFormFields();
             navigate('/');
 

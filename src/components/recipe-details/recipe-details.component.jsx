@@ -1,6 +1,5 @@
-import React, { useContext, useState } from 'react';
+import { useContext, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { CategoriesContext } from '../../contexts/categories.context';
 import { ShoppingListContext } from '../../contexts/shoppingList.context';
 import Page404 from '../../routes/page-404/page-404.component';
 import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component';
@@ -11,10 +10,12 @@ import { faUserGroup, faClock, faHandFist, faCartPlus, faCheck, faArrowLeft } fr
 import { faSquare, faSquareCheck } from '@fortawesome/free-regular-svg-icons';
 import { BaseWrapper } from '../../routes/category/category.styles';
 import { BackButtonContainer } from '../../routes/categories-preview/categories-preview.styles';
+import { useSelector } from 'react-redux';
+import { selectCategoriesMap } from '../../store/categories/category.selector';
 
 const RecipeDetails = () => {
     const { category, id } = useParams();
-    const { categoriesMap } = useContext(CategoriesContext);
+    const categoriesMap = useSelector(selectCategoriesMap);
     const { shoppingList, addToShoppingList, removeFromShoppingList } = useContext(ShoppingListContext);
     const recipe = categoriesMap[category]?.find((recipe) => recipe.id === parseInt(id));
     const [checkedItems, setCheckedItems] = useState(Array(recipe?.instructions.length).fill(false));

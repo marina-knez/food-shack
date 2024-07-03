@@ -1,19 +1,19 @@
-import { useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { deleteRecipe } from '../../store/recipes/recipe.action';
 import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component';
 
 import { DeleteRecipePageContainer, DeleteRecipeTitle, DeleteRecipeButtonContainer } from "./delete-recipe.styles";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashCan, faX } from '@fortawesome/free-solid-svg-icons';
-import { RecipesContext } from '../../contexts/recipes.context';
 
 const DeleteRecipe = () => {
     const { category, recipeId } = useParams();
-    const { deleteRecipe } = useContext(RecipesContext);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const handleDelete = async () => {
-        await deleteRecipe(category, parseInt(recipeId));
+        await dispatch(deleteRecipe(category, parseInt(recipeId)));
         navigate(`/recipes/${category}`);
     };
 

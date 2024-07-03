@@ -1,16 +1,17 @@
-import { useContext, Fragment, useState } from 'react';
+import { Fragment, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { CategoriesContext } from '../../contexts/categories.context';
 import RecipeCard from '../../components/recipe-card/recipe-card.component';
 import Button, { BUTTON_TYPE_CLASSES } from '../../components/button/button.component';
 import { BaseWrapper, CategoryContainer, CategoryWrapper, RecipeCardContainer, CategoryTitle, AddRecipeLinkContainer, AddRecipeLink, LoadMoreButtonContainer } from './category.styles';
 import { BackButtonContainer } from '../categories-preview/categories-preview.styles';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { useSelector } from 'react-redux';
+import { selectCategoriesMap } from '../../store/categories/category.selector';
 
 const Category = () => {
     const { category } = useParams();
-    const { categoriesMap } = useContext(CategoriesContext);
+    const categoriesMap = useSelector(selectCategoriesMap);
     const recipes = categoriesMap[category.toLowerCase()] || [];
     const [displayedRecipes, setDisplayedRecipes] = useState(4);
     const navigate = useNavigate();

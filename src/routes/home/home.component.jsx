@@ -1,6 +1,4 @@
-import { useState, useContext } from 'react';
-import { CategoriesContext } from '../../contexts/categories.context';
-import { RecipesContext } from '../../contexts/recipes.context';
+import { useState } from 'react';
 import RecipeCard from '../../components/recipe-card/recipe-card.component';
 import Button, { BUTTON_TYPE_CLASSES } from '../../components/button/button.component';
 
@@ -8,13 +6,22 @@ import { HomePageWrapper, RecentlyViewedWrapper, RecentlyViewedContainer, Recent
 import { RecipeCardContainer } from '../category/category.styles';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShuffle, faX } from '@fortawesome/free-solid-svg-icons';
+import { useSelector } from 'react-redux';
+import { selectCategoriesMap } from '../../store/categories/category.selector';
+import { selectRecentlyAdded, selectRecentlyViewed } from '../../store/recipes/recipe.selector';
 
 const Home = () => {
-  const { categoriesMap } = useContext(CategoriesContext);
-  const { recentlyViewed, recentlyAdded } = useContext(RecipesContext);
+  const categoriesMap = useSelector(selectCategoriesMap);
+  const recentlyViewed = useSelector(selectRecentlyViewed);
+  const recentlyAdded = useSelector(selectRecentlyAdded);
   const [randomRecipe, setRandomRecipe] = useState(null);
   const [randomRecipeCategory, setRandomRecipeCategory] = useState(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+
+  if (!Array.isArray(recentlyViewed)) {
+    console.error('Expected recentlyViewed to be an array, but got:', recentlyViewed);
+    return <div>Error: recentlyViewed data is invalid</div>;
+}
 
   const getRandomRecipe = () => {
     const allRecipes = Object.values(categoriesMap).flat();
@@ -46,6 +53,15 @@ const Home = () => {
     setRandomRecipeCategory(null);
   };
 
+  const getCategoryForRecipe = (recipe) => {
+    for (const [key, recipes] of Object.entries(categoriesMap)) {
+      if (recipes.some(r => r.title === recipe.title)) {
+        return key.toLowerCase();
+      }
+    }
+    return null;
+  };
+
   return (
     <HomePageWrapper>
       <RandomRecipeButtonContainer>
@@ -70,7 +86,7 @@ const Home = () => {
             recentlyViewed.length > 0 ? (
               recentlyViewed.map(recipe => (
                 <RecipeCardContainer key={recipe.id}>
-                  <RecipeCard category={recipe.category} recipe={recipe} />
+                  <RecipeCard category={getCategoryForRecipe(recipe)} recipe={recipe} />
                 </RecipeCardContainer>
               ))
             ) : (
@@ -85,7 +101,7 @@ const Home = () => {
         <RecentlyAddedContainer>
           {recentlyAdded.map(recipe => (
             <RecipeCardContainer key={recipe.id}>
-              <RecipeCard key={recipe.id} category={recipe.category} recipe={recipe} />
+              <RecipeCard key={recipe.id} category={getCategoryForRecipe(recipe)} recipe={recipe} />
             </RecipeCardContainer>
           ))}
         </RecentlyAddedContainer>

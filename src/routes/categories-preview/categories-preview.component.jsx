@@ -1,22 +1,23 @@
-import { useContext, Fragment, useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { setCurrentCategory } from '../../store/recipes/recipe.action';
 import CategoryPreview from '../../components/category-preview/category-preview.component';
-import { CategoriesContext } from '../../contexts/categories.context';
 import SearchBar from '../../components/search-bar/search-bar.component';
 import Button, { BUTTON_TYPE_CLASSES } from '../../components/button/button.component';
 
 import { Wrapper, BackButtonContainer, AddCategoryContainer, AddCategoryLink, SearchResultsContainer, SearchResultsTitle, SearchResultsItem, SearchResultsItemDetails } from './categories-preview.styles';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
-import { RecipesContext } from '../../contexts/recipes.context';
+import { selectCategoriesMap } from '../../store/categories/category.selector';
 
 const CategoriesPreview = () => {
     const { category } = useParams();
-    const { categoriesMap } = useContext(CategoriesContext);
-    const { setCurrentCategory } = useContext(RecipesContext);
+    const categoriesMap = useSelector(selectCategoriesMap);
     const [recipes, setRecipes] = useState([]);
     const [query, setQuery] = useState('');
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const goBack = () => {
         navigate('/');
@@ -47,8 +48,10 @@ const CategoriesPreview = () => {
     };
 
     useEffect(() => {
-        setCurrentCategory(category);
-    }, [category, setCurrentCategory]);
+        if (category) {
+            dispatch(setCurrentCategory(category));
+        }
+    }, [category, dispatch]);
 
     return (
         <Fragment>

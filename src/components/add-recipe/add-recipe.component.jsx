@@ -1,27 +1,19 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { setCurrentCategory, addRecipe, fetchRecentlyAddedRecipes } from '../../store/recipes/recipe.action';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectFormFields } from '../../store/recipes/recipe.selector';
+import { setCurrentCategory, addRecipe, fetchRecentlyAddedRecipes, setFormFields } from '../../store/recipes/recipe.action';
 import FormInput from '../form-input/form-input.component';
+import { handleFormChange, handleIngredientChange, handleInstructionChange, addIngredient, removeIngredient, addInstruction, removeInstruction } from '../../utils/form/form.utils';
 import Button, { BUTTON_TYPE_CLASSES} from '../button/button.component';
 
 import { AddRecipePageContainer, AddRecipeTitle, AddRecipeForm, AddRecipeFormSubtitle, Textarea, AddRecipeButtonContainer, AddRecipeSubmitButtonContainer } from './add-recipe.styles';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faTrashCan, faPlus, faX } from '@fortawesome/free-solid-svg-icons';
 
-const defaultFormFields = {
-    title: '',
-    img: '',
-    noOfPeople: '',
-    time: '',
-    difficulty: '',
-    ingredients: [{ item: '', quantity: '', unit: ''}],
-    instructions: [''],
-};
-
 const AddRecipe = () => {
     const { category } = useParams();
-    const [formFields, setFormFields] = useState(defaultFormFields);
+    const formFields = useSelector(selectFormFields);
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -32,53 +24,53 @@ const AddRecipe = () => {
     }, [category, dispatch]);
 
     const handleChange = (event) => {
-        const { name, value } = event.target;
-        setFormFields({ ...formFields, [name]: value });
+        handleFormChange(event, formFields, (fields) => 
+            dispatch(setFormFields(fields)));
     };
 
-    const handleIngredientChange = (index, field, value) => {
-        const newIngredients = formFields.ingredients.map((ingredient, i) => (
-            i === index ? { ...ingredient, [field]: value } : ingredient
-        ));
-        setFormFields({ ...formFields, ingredients: newIngredients });
+    const handleIngredientChangeWrapper = (index, field, value) => {
+        handleIngredientChange(index, field, value, formFields, (fields) => 
+        dispatch(setFormFields(fields)));
     };
 
-    const handleInstructionChange = (index, value) => {
-        const newInstructions = formFields.instructions.map((instruction, i) => (
-            i === index ? value : instruction
-        ));
-        setFormFields({ ...formFields, instructions: newInstructions });
+    const handleInstructionChangeWrapper = (index, value) => {
+        handleInstructionChange(index, value, formFields, (fields) => 
+        dispatch(setFormFields(fields)));
     };
 
     const handleAddIngredient = () => {
-        setFormFields({
-            ...formFields,
-            ingredients: [...formFields.ingredients, { item: '', quantity: '', unit: '' }]
-        });
+        addIngredient(formFields, (fields) => 
+        dispatch(setFormFields(fields)));
     };
 
     const handleRemoveIngredient = (index) => {
-        const newIngredients = formFields.ingredients.filter((_, i) => i !== index);
-        setFormFields({ ...formFields, ingredients: newIngredients });
+        removeIngredient(index, formFields, (fields) =>
+        dispatch(setFormFields(fields)));
     };
 
     const handleAddInstruction = () => {
-        setFormFields({
-            ...formFields,
-            instructions: [...formFields.instructions, '']
-        });
+        addInstruction(formFields, (fields) => 
+        dispatch(setFormFields(fields)));
     };
 
     const handleRemoveInstruction = (index) => {
-        const newInstructions = formFields.instructions.filter((_, i) => i !== index);
-        setFormFields({ ...formFields, instructions: newInstructions });
+        removeInstruction(index, formFields, (fields) => 
+        dispatch(setFormFields(fields)));
     };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         await dispatch(addRecipe(category, formFields));
         dispatch(fetchRecentlyAddedRecipes());
-        setFormFields(defaultFormFields);
+        dispatch(setFormFields({
+            title: '',
+            img: '',
+            noOfPeople: 0,
+            time: 0,
+            difficulty: '',
+            ingredients: [{ item: '', quantity: 0, unit: '' }],
+            instructions: ['']
+        }));
         navigate(`/recipes/${category}`);
     };
 
@@ -140,20 +132,20 @@ const AddRecipe = () => {
                                 type="text"
                                 required
                                 value={ingredient.item}
-                                onChange={(e) => handleIngredientChange(index, 'item', e.target.value)}
+                                onChange={(e) => handleIngredientChangeWrapper(index, 'item', e.target.value)}
                             />
                             <FormInput
                                 label="Quantity"
                                 type="text"
                                 required
                                 value={ingredient.quantity}
-                                onChange={(e) => handleIngredientChange(index, 'quantity', e.target.value)}
+                                onChange={(e) => handleIngredientChangeWrapper(index, 'quantity', e.target.value)}
                             />
                             <FormInput
                                 label="Unit"
                                 type="text"
                                 value={ingredient.unit}
-                                onChange={(e) => handleIngredientChange(index, 'unit', e.target.value)}
+                                onChange={(e) => handleIngredientChangeWrapper(index, 'unit', e.target.value)}
                             />
                             <AddRecipeButtonContainer>
                                 <Button type="button" buttonType={BUTTON_TYPE_CLASSES.inverted} onClick={handleAddIngredient}>
@@ -176,7 +168,7 @@ const AddRecipe = () => {
                             <Textarea
                                 required
                                 value={instruction}
-                                onChange={(e) => handleInstructionChange(index, e.target.value)}
+                                onChange={(e) => handleInstructionChangeWrapper(index, e.target.value)}
                             />
                             <AddRecipeButtonContainer>
                                 <Button type="button" buttonType={BUTTON_TYPE_CLASSES.inverted} onClick={handleAddInstruction}>

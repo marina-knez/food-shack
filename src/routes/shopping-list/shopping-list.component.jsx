@@ -1,5 +1,7 @@
-import { useContext, useState } from 'react';
-import { ShoppingListContext } from '../../contexts/shoppingList.context';
+import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectShoppingList } from '../../store/shoppingList/shoppingList.selector';
+import { removeFromShoppingList } from '../../store/shoppingList/shoppingList.action';
 
 import { ShoppingListPageWrapper, ShoppingPageTitle, ShoppingListWrapper, ShoppingListContainer, ShoppingListItem, EmptyShoppingList } from './shopping-list.styles';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -7,8 +9,9 @@ import { faSquare, faSquareCheck } from '@fortawesome/free-regular-svg-icons';
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 
 const ShoppingList = () => {
-  const { shoppingList, removeFromShoppingList } = useContext(ShoppingListContext);
+  const shoppingList = useSelector(selectShoppingList);
   const [checkedItems, setCheckedItems] = useState(Array(shoppingList.length).fill(false));
+  const dispatch = useDispatch();
 
   const toggleIsItemChecked = (index) => {
     setCheckedItems(prevCheckedItems => {
@@ -19,7 +22,7 @@ const ShoppingList = () => {
 };
 
   const handleClearItemFromList = (recipeTitle, ingredient) => {
-    removeFromShoppingList(recipeTitle, ingredient);
+    dispatch(removeFromShoppingList(recipeTitle, ingredient));
   }
 
   const organizeShoppingList = () => {

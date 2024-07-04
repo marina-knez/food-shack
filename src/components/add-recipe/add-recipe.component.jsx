@@ -1,6 +1,7 @@
-import { useState, useContext, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { RecipesContext } from '../../contexts/recipes.context';
+import { useDispatch } from 'react-redux';
+import { setCurrentCategory, addRecipe, fetchRecentlyAddedRecipes } from '../../store/recipes/recipe.action';
 import FormInput from '../form-input/form-input.component';
 import Button, { BUTTON_TYPE_CLASSES} from '../button/button.component';
 
@@ -21,12 +22,14 @@ const defaultFormFields = {
 const AddRecipe = () => {
     const { category } = useParams();
     const [formFields, setFormFields] = useState(defaultFormFields);
-    const { setCurrentCategory, addRecipe } = useContext(RecipesContext);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        setCurrentCategory(category);
-    }, [category, setCurrentCategory]);
+        if (category) {
+            dispatch(setCurrentCategory(category));
+        }
+    }, [category, dispatch]);
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -73,7 +76,8 @@ const AddRecipe = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        await addRecipe(formFields);
+        await dispatch(addRecipe(category, formFields));
+        dispatch(fetchRecentlyAddedRecipes());
         setFormFields(defaultFormFields);
         navigate(`/recipes/${category}`);
     };

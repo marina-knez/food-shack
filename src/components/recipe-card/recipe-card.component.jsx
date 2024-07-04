@@ -1,5 +1,5 @@
-import { useContext } from 'react';
-import { RecipesContext } from '../../contexts/recipes.context';
+import { useDispatch } from 'react-redux';
+import { addRecentlyViewed } from '../../store/recipes/recipe.action';
 import { Link } from "react-router-dom";
 import { RecipeCardContainer, RecipeCardInfo, RecipeCardLinks, RecipeCardLink, RecipeCardTitle } from './recipe-card.styles';
 import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component';
@@ -8,10 +8,10 @@ import { faPenToSquare, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 
 const RecipeCard = ({ category, recipe }) => {
     const { id, title, img, noOfPeople, time, difficulty } = recipe;
-    const { addRecentlyViewed } = useContext(RecipesContext);
+    const dispatch = useDispatch();
 
     const handleViewRecipe = () => {
-        addRecentlyViewed(recipe.id);
+        dispatch(addRecentlyViewed(title));
       };
 
     return (

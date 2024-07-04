@@ -1,7 +1,8 @@
-import React, { useContext, useState } from 'react';
+import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { CategoriesContext } from '../../contexts/categories.context';
-import { ShoppingListContext } from '../../contexts/shoppingList.context';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectCategoriesMap } from '../../store/categories/category.selector';
+import { addToShoppingList, removeFromShoppingList } from '../../store/shoppingList/shoppingList.action';
 import Page404 from '../../routes/page-404/page-404.component';
 import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component';
 
@@ -14,12 +15,12 @@ import { BackButtonContainer } from '../../routes/categories-preview/categories-
 
 const RecipeDetails = () => {
     const { category, id } = useParams();
-    const { categoriesMap } = useContext(CategoriesContext);
-    const { shoppingList, addToShoppingList, removeFromShoppingList } = useContext(ShoppingListContext);
+    const categoriesMap = useSelector(selectCategoriesMap);
     const recipe = categoriesMap[category]?.find((recipe) => recipe.id === parseInt(id));
     const [checkedItems, setCheckedItems] = useState(Array(recipe?.instructions.length).fill(false));
     const [itemsInCart, setItemsInCart] = useState(Array(recipe?.ingredients.length).fill(false));
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const goBack = () => {
         navigate(`/recipes/${category}`);
@@ -38,14 +39,13 @@ const RecipeDetails = () => {
             const newItemsInCart = [...prevItemsInCart];
             newItemsInCart[index] = !newItemsInCart[index];
             if (newItemsInCart[index]) {
-                addToShoppingList(recipe.title, recipe.ingredients[index]);
+                dispatch(addToShoppingList(recipe.title, recipe.ingredients[index]));
             } else {
-                removeFromShoppingList(recipe.title, recipe.ingredients[index]);
+                dispatch(removeFromShoppingList(recipe.title, recipe.ingredients[index]));
             }
             return newItemsInCart;
         });
     };
-
 
     if (!recipe) {
         return (
@@ -57,10 +57,10 @@ const RecipeDetails = () => {
         <RecipeItemContainer>
             <BaseWrapper>
                 <BackButtonContainer>
-                        <Button buttonType={BUTTON_TYPE_CLASSES.back} onClick={goBack}>
-                            <FontAwesomeIcon icon={faArrowLeft} className='icon-back'/>
-                        </Button>
-                    </BackButtonContainer>
+                    <Button buttonType={BUTTON_TYPE_CLASSES.back} onClick={goBack}>
+                        <FontAwesomeIcon icon={faArrowLeft} className='icon-back'/>
+                    </Button>
+                </BackButtonContainer>
                 <RecipeItemTitle>{recipe.title}</RecipeItemTitle>
             </BaseWrapper>
             <RecipeItemBasicsContainer>

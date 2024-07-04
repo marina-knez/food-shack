@@ -1,9 +1,9 @@
-import { useContext } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
-import { UserContext } from '../../contexts/user.context';
+import { useSelector } from 'react-redux';
+import { selectCurrentUser } from '../../store/user/user.selector';
 
 const PrivateRoute = () => {
-  const { currentUser } = useContext(UserContext);
+  const  currentUser  = useSelector(selectCurrentUser);
 
   return currentUser ? <Outlet /> : <Navigate to="/auth" />;
 };

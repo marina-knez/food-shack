@@ -1,6 +1,7 @@
-import { Fragment, useContext } from "react";
+import { Fragment } from "react";
 import { Outlet } from "react-router-dom";
-import { UserContext } from "../../contexts/user.context";
+import { useSelector } from "react-redux";
+import { selectCurrentUser } from "../../store/user/user.selector";
 import { signOutUser } from "../../utils/firebase/firebase.utils";
 import { NavigationContainer, LogoContainer, NavigationWrapper, NavLinks, NavLink, NavItem, CurrentUserWrapper } from '../navigation/navigation.styles';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -8,8 +9,7 @@ import { faHouse, faBook, faArrowRightToBracket, faPowerOff, faCartShopping } fr
 import { ReactComponent as RecipesLogo } from '../../assets/recipes-logo.svg';
 
 const Navigation = () => {
-    const { currentUser } = useContext(UserContext);
-
+    const currentUser = useSelector(selectCurrentUser);
 
     return (
         <Fragment>

@@ -18,6 +18,9 @@ export const setRecentlyViewed = (recentlyViewed) =>
 export const setRecentlyAdded = (recentlyAdded) => 
   createAction(RECIPES_ACTION_TYPES.SET_RECENTLY_ADDED, recentlyAdded);
 
+export const setFormFields = (formFields) => 
+  createAction(RECIPES_ACTION_TYPES.SET_FORM_FIELDS, formFields);
+
 
 export const fetchRecentlyAddedRecipes = () => async (dispatch) => {
   try {

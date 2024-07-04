@@ -4,6 +4,15 @@ const RECIPES_INITIAL_STATE = {
     currentCategory: null,
     recentlyViewed: [],
     recentlyAdded: [],
+    formFields: {
+        title: '',
+        img: '',
+        noOfPeople: 0,
+        time: 0,
+        difficulty: '',
+        ingredients: [{ item: '', quantity: 0, unit: '' }],
+        instructions: ['']
+    }
 };
 
 export const recipesReducer = (state = RECIPES_INITIAL_STATE, action) => {
@@ -25,6 +34,11 @@ export const recipesReducer = (state = RECIPES_INITIAL_STATE, action) => {
                 ...state,
                 currentCategory: payload,
             };
+        case RECIPES_ACTION_TYPES.SET_FORM_FIELDS:
+            return {
+                ...state,
+                formFields: payload
+            }
         default:
             return state;
     }

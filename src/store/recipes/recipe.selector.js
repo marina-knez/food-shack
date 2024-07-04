@@ -16,3 +16,8 @@ export const selectRecentlyAdded = createSelector(
     [selectRecipe],
     (recipes) => recipes.recentlyAdded
 );
+
+export const selectFormFields = createSelector(
+    [selectRecipe],
+    (recipes) => recipes.formFields
+)

@@ -1,23 +1,23 @@
 import { createSelector } from "reselect";
 
-const selectRecipe = (state) => state.recipes;
+const selectRecipeReducer = (state) => state.recipes;
 
 export const selectCurrentCategory = createSelector(
-    [selectRecipe],
+    [selectRecipeReducer],
     (recipes) => recipes.currentCategory
 );
 
 export const selectRecentlyViewed = createSelector(
-    [selectRecipe],
+    [selectRecipeReducer],
     (recipes) => Array.isArray(recipes.recentlyViewed) ? recipes.recentlyViewed : []
 );
 
 export const selectRecentlyAdded = createSelector(
-    [selectRecipe],
+    [selectRecipeReducer],
     (recipes) => recipes.recentlyAdded
 );
 
 export const selectFormFields = createSelector(
-    [selectRecipe],
+    [selectRecipeReducer],
     (recipes) => recipes.formFields
 )

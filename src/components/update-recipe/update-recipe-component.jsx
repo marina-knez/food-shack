@@ -11,6 +11,7 @@ import { faCheck, faTrashCan, faPlus, faX } from '@fortawesome/free-solid-svg-ic
 
 const defaultFormFields = {
     title: '',
+    description: '',
     img: '',
     noOfPeople: '',
     time: '',
@@ -103,6 +104,15 @@ const UpdateRecipe = () => {
                     name="title"
                     placeholder="Recipe name"
                     value={formFields.title}
+                />
+                <FormInput 
+                    label="Recipe description"
+                    type="text"
+                    required
+                    onChange={handleChange}
+                    name="description"
+                    placeholder="Recipe description"
+                    value={formFields.description}
                 />
                 <FormInput 
                     label="Recipe image"

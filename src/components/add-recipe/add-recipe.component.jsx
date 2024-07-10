@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectFormFields } from '../../store/recipes/recipe.selector';
@@ -64,6 +64,7 @@ const AddRecipe = () => {
         dispatch(fetchRecentlyAddedRecipes());
         dispatch(setFormFields({
             title: '',
+            description: '',
             img: '',
             noOfPeople: 0,
             time: 0,
@@ -86,6 +87,15 @@ const AddRecipe = () => {
                     name="title"
                     placeholder="Chose new Recipe name"
                     value={formFields.title}
+                />
+                <FormInput 
+                    label="Add Recipe description"
+                    type="text"
+                    required
+                    onChange={handleChange}
+                    name="description"
+                    placeholder="Add Recipe Description"
+                    value={formFields.description}
                 />
                 <FormInput 
                     label="Add Recipe image"

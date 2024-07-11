@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { updateCategoryDocument } from "../../utils/firebase/firebase.utils";
 import FormInput from "../form-input/form-input.component";
@@ -8,11 +8,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faX } from '@fortawesome/free-solid-svg-icons';
 
 const UpdateCategory = () => {
-    const { oldCategoryName } = useParams();
-    const [newCategoryName, setNewCategoryName] = useState(oldCategoryName);
+    const { oldCategoryName } = useParams<{ oldCategoryName?: string; }>();
+    const [newCategoryName, setNewCategoryName] = useState<string>('');
     const navigate = useNavigate();
 
-    const handleUpdateCategory = async (e) => {
+    if (!oldCategoryName) {
+        navigate('/recipes');
+        return null;
+    }
+
+    const handleUpdateCategory = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (newCategoryName && newCategoryName !== oldCategoryName) {
             await updateCategoryDocument(oldCategoryName, newCategoryName);
@@ -20,7 +25,7 @@ const UpdateCategory = () => {
         }
     };
 
-    const handleChange = (e) => {
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         setNewCategoryName(e.target.value);
     };
 

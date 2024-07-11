@@ -1,10 +1,16 @@
 import RecipeCard from "../recipe-card/recipe-card.component";
+import { Recipe } from "../../store/recipes/recipe.types";
 import { CategoryPreviewContainer, CategoryPreviewBasics, CategoryPreviewName, CategoryPreviewTitle, CategoryPreviewLinks, CategoryPreviewLink, PreviewWrapper, Preview, RecipeCardContainer,  AddRecipeLinkContainer, AddRecipeLink } from "./category-preview.styles";
 import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare, faTrashCan, faPlus } from '@fortawesome/free-solid-svg-icons';
 
-const CategoryPreview = ({ categoryName, recipes }) => {
+export type CategoryPreviewProps = {
+    categoryName: string;
+    recipes: Recipe[];
+}
+
+const CategoryPreview = ({ categoryName, recipes }: CategoryPreviewProps) => {
     return (
         <CategoryPreviewContainer>
             <CategoryPreviewBasics>

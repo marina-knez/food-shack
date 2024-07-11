@@ -10,11 +10,13 @@ import { Wrapper, BackButtonContainer, AddCategoryContainer, AddCategoryLink, Se
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { selectCategoriesMap } from '../../store/categories/category.selector';
+import { CategoryMap } from '../../store/categories/category.types';
+import { Recipe } from '../../store/recipes/recipe.types';
 
 const CategoriesPreview = () => {
-    const { category } = useParams();
-    const categoriesMap = useSelector(selectCategoriesMap);
-    const [recipes, setRecipes] = useState([]);
+    const { category } = useParams<{ category?: string }>();
+    const categoriesMap = useSelector(selectCategoriesMap) as CategoryMap;
+    const [recipes, setRecipes] = useState<Recipe[]>([]);
     const [query, setQuery] = useState('');
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -23,7 +25,7 @@ const CategoriesPreview = () => {
         navigate('/');
     };
 
-    const searchRecipesLocally = (queryStr) => {
+    const searchRecipesLocally = (queryStr: string): Recipe[] => {
         const allRecipes = Object.entries(categoriesMap).flatMap(([category, recipes]) =>
             recipes.map(recipe => ({ ...recipe, category }))
         );
@@ -35,7 +37,7 @@ const CategoriesPreview = () => {
         return searchResults;
     };
 
-    const handleSearch = (query) => {
+    const handleSearch = (query: string) => {
         setQuery(query);
 
         if (query.trim() === '') {

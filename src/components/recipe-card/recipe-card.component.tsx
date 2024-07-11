@@ -1,4 +1,7 @@
 import { useDispatch } from 'react-redux';
+import { ThunkDispatch } from 'redux-thunk';
+import { AnyAction } from 'redux';
+import { Recipe } from '../../store/recipes/recipe.types';
 import { addRecentlyViewed } from '../../store/recipes/recipe.action';
 import { Link } from "react-router-dom";
 import { RecipeCardContainer, RecipeCardInfo, RecipeCardLinks, RecipeCardLink, RecipeCardTitle } from './recipe-card.styles';
@@ -6,13 +9,23 @@ import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 
-const RecipeCard = ({ category, recipe }) => {
+export type RecipeCardProps = {
+    category: string;
+    recipe: Recipe;
+    onClick?: () => void;
+}
+
+const RecipeCard = ({ category, recipe, onClick }: RecipeCardProps) => {
     const { id, title, img, noOfPeople, time, difficulty } = recipe;
-    const dispatch = useDispatch();
+    const dispatch: ThunkDispatch<any, any, AnyAction> = useDispatch();
 
     const handleViewRecipe = () => {
         dispatch(addRecentlyViewed(title));
-      };
+        if (onClick) {
+            onClick();
+        }
+    };
+
 
     return (
         <RecipeCardContainer onClick={handleViewRecipe}>

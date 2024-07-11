@@ -9,26 +9,34 @@ import { faShuffle, faX } from '@fortawesome/free-solid-svg-icons';
 import { useSelector } from 'react-redux';
 import { selectCategoriesMap } from '../../store/categories/category.selector';
 import { selectRecentlyAdded, selectRecentlyViewed } from '../../store/recipes/recipe.selector';
+import { CategoryMap } from '../../store/categories/category.types';
+import { Recipe } from '../../store/recipes/recipe.types';
+
+export type RandomRecipeData = {
+  recipe: Recipe;
+  category: string | null;
+  onClick?: () => void;
+};
 
 const Home = () => {
-  const categoriesMap = useSelector(selectCategoriesMap);
-  const recentlyViewed = useSelector(selectRecentlyViewed);
-  const recentlyAdded = useSelector(selectRecentlyAdded);
-  const [randomRecipe, setRandomRecipe] = useState(null);
-  const [randomRecipeCategory, setRandomRecipeCategory] = useState(null);
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const categoriesMap = useSelector(selectCategoriesMap) as CategoryMap;
+  const recentlyViewed = useSelector(selectRecentlyViewed) as Recipe[];
+  const recentlyAdded = useSelector(selectRecentlyAdded) as Recipe[];
+  const [randomRecipe, setRandomRecipe] = useState<Recipe | null>(null);
+  const [randomRecipeCategory, setRandomRecipeCategory] = useState<string | null>(null);
+  const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
 
   if (!Array.isArray(recentlyViewed)) {
     console.error('Expected recentlyViewed to be an array, but got:', recentlyViewed);
     return <div>Error: recentlyViewed data is invalid</div>;
-}
+  }
 
-  const getRandomRecipe = () => {
+  const getRandomRecipe = (): RandomRecipeData => {
     const allRecipes = Object.values(categoriesMap).flat();
     const randomIndex = Math.floor(Math.random() * allRecipes.length);
     const randomRecipe = allRecipes[randomIndex];
   
-    let category = null;
+    let category: string | null = null;
     for (const [key, recipes] of Object.entries(categoriesMap)) {
       if (recipes.some(recipe => recipe.title === randomRecipe.title)) {
         category = key;
@@ -41,7 +49,6 @@ const Home = () => {
 
   const handleRandomRecipe = () => {
     const { recipe, category } = getRandomRecipe();
-    console.log("Selected random recipe:", recipe, "Category:", category);
     setRandomRecipe(recipe);
     setRandomRecipeCategory(category);
     setIsDialogOpen(true);
@@ -53,7 +60,7 @@ const Home = () => {
     setRandomRecipeCategory(null);
   };
 
-  const getCategoryForRecipe = (recipe) => {
+  const getCategoryForRecipe = (recipe: Recipe): string | null => {
     for (const [key, recipes] of Object.entries(categoriesMap)) {
       if (recipes.some(r => r.title === recipe.title)) {
         return key.toLowerCase();
@@ -86,7 +93,7 @@ const Home = () => {
             recentlyViewed.length > 0 ? (
               recentlyViewed.map(recipe => (
                 <RecipeCardContainer key={recipe.id}>
-                  <RecipeCard category={getCategoryForRecipe(recipe)} recipe={recipe} />
+                  <RecipeCard category={getCategoryForRecipe(recipe) || ''} recipe={recipe} />
                 </RecipeCardContainer>
               ))
             ) : (
@@ -101,7 +108,7 @@ const Home = () => {
         <RecentlyAddedContainer>
           {recentlyAdded.map(recipe => (
             <RecipeCardContainer key={recipe.id}>
-              <RecipeCard key={recipe.id} category={getCategoryForRecipe(recipe)} recipe={recipe} />
+              <RecipeCard key={recipe.id} category={getCategoryForRecipe(recipe) || ''} recipe={recipe} />
             </RecipeCardContainer>
           ))}
         </RecentlyAddedContainer>

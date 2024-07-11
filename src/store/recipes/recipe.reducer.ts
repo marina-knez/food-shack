@@ -15,6 +15,7 @@ const RECIPES_INITIAL_STATE: RecipesState = {
   recentlyViewed: [],
   recentlyAdded: [],
   formFields: {
+    id: 0,
     title: '',
     description: '',
     img: '',
@@ -22,7 +23,8 @@ const RECIPES_INITIAL_STATE: RecipesState = {
     time: 0,
     difficulty: '',
     ingredients: [{ item: '', quantity: 0, unit: '' }],
-    instructions: ['']
+    instructions: [''],
+    dateAdded: new Date()
   }
 };
 

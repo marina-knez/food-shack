@@ -96,11 +96,10 @@ export const addRecentlyViewed = (recipeTitle: string): ThunkResult<void> => (di
 export const addRecipe = (currentCategory: CurrentCategory | string, recipeData: CategoryItem): ThunkResult<void> => async (dispatch) => {
   if (currentCategory) {
     try {
-      // Ensure currentCategory is a string
       const categoryName = typeof currentCategory === 'string' ? currentCategory : currentCategory;
 
       await createRecipeDocument(categoryName, recipeData);
-      dispatch(fetchRecentlyAddedRecipes());  // Fetch recent recipes after adding a new one
+      dispatch(fetchRecentlyAddedRecipes());
     } catch (error) {
       console.error('Error adding recipe:', error);
     }

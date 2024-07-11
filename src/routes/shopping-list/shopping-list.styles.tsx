@@ -25,7 +25,7 @@ export const ShoppingListContainer = styled.ul`
     }
 `
 
-export const ShoppingListItem = styled.li`
+export const SingleShoppingListItem = styled.li`
     border-bottom: 1px solid lightgrey;
     padding: 10px 0;
     display: flex;

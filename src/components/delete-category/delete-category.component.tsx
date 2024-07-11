@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashCan, faX } from '@fortawesome/free-solid-svg-icons';
 
 const DeleteCategory = () => {
-    const { categoryName } = useParams();
+    const { categoryName } = useParams<{ categoryName: string; }>();
     const navigate = useNavigate();
 
     const handleDelete = async () => {

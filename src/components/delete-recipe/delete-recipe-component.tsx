@@ -1,5 +1,7 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { ThunkDispatch } from 'redux-thunk';
+import { AnyAction } from 'redux';
 import { deleteRecipe } from '../../store/recipes/recipe.action';
 import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component';
 
@@ -8,13 +10,18 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashCan, faX } from '@fortawesome/free-solid-svg-icons';
 
 const DeleteRecipe = () => {
-    const { category, recipeId } = useParams();
+    const { category, recipeId } = useParams<{ category: string, recipeId: string }>();
     const navigate = useNavigate();
-    const dispatch = useDispatch();
+    const dispatch: ThunkDispatch<any, any, AnyAction> = useDispatch();
 
     const handleDelete = async () => {
-        await dispatch(deleteRecipe(category, parseInt(recipeId)));
-        navigate(`/recipes/${category}`);
+        if(category && recipeId) {
+            await dispatch(deleteRecipe(category, parseInt(recipeId)));
+            navigate(`/recipes/${category}`);
+        } else {
+            console.log('No category has been detected.')
+        }
+        
     };
 
     return (

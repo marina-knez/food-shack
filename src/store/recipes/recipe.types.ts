@@ -12,7 +12,28 @@ export enum RECIPES_ACTION_TYPES {
 
 export type CurrentCategory = string;
 
+export type RecipeIngredient = {
+  item: string;
+  quantity: number;
+  unit: string,
+}
+
+export type Recipe = {
+  id: number;
+  title: string;
+  description: string;
+  noOfPeople: number;
+  time: number;
+  img: string;
+  ingredients: RecipeIngredient[];
+  instructions: string[];
+  difficulty: string;
+  dateAdded: Date | null;
+  category?: string;
+}
+
 export type FormFields = {
+  id: number;
   title: string;
   description: string;
   img: string;
@@ -21,4 +42,5 @@ export type FormFields = {
   difficulty: string;
   ingredients: { item: string; quantity: number; unit: string }[];
   instructions: string[];
+  dateAdded: Date
 };

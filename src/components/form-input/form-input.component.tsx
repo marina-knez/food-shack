@@ -1,6 +1,9 @@
+import { FC, InputHTMLAttributes } from 'react';
 import { InputFieldContainer } from './form-input.styles';
 
-const FormInput = ({ label, ...otherProps }) => {
+type FormInputProps = { label: string | JSX.Element} & InputHTMLAttributes<HTMLInputElement>;
+
+const FormInput: FC<FormInputProps> = ({ label, ...otherProps }) => {
     return (
         <InputFieldContainer>
             <label>{label}</label>

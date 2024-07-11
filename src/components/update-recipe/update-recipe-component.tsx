@@ -1,6 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, ChangeEvent, FormEvent } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { ThunkDispatch } from 'redux-thunk';
+import { AnyAction } from 'redux';
 import { setCurrentCategory, updateRecipe, getRecipeById } from '../../store/recipes/recipe.action';
 import FormInput from '../form-input/form-input.component';
 import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component';
@@ -10,21 +12,23 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faTrashCan, faPlus, faX } from '@fortawesome/free-solid-svg-icons';
 
 const defaultFormFields = {
+    id: 0,
     title: '',
     description: '',
     img: '',
-    noOfPeople: '',
-    time: '',
+    noOfPeople: 0,
+    time: 0,
     difficulty: '',
-    ingredients: [{ item: '', quantity: '', unit: '' }],
+    ingredients: [{ item: '', quantity: 0, unit: '' }],
     instructions: [''],
+    dateAdded: new Date()
 };
 
 const UpdateRecipe = () => {
-    const { category, recipeId } = useParams();
+    const { category, recipeId } = useParams<{ category: string, recipeId: string }>();
     const [formFields, setFormFields] = useState(defaultFormFields);
     const navigate = useNavigate();
-    const dispatch = useDispatch();
+    const dispatch: ThunkDispatch<any, any, AnyAction> = useDispatch();
 
     useEffect(() => {
         if (category) {
@@ -32,29 +36,42 @@ const UpdateRecipe = () => {
         }
         
         const fetchRecipe = async () => {
-            const recipe = await dispatch(getRecipeById(category, parseInt(recipeId)));
-            if (recipe) {
-                setFormFields(recipe);
-            } else {
-                console.error('Recipe not found');
+            if (category && recipeId) {
+                const recipe = await dispatch(getRecipeById(category, parseInt(recipeId, 10)));
+                if (recipe) {
+                    setFormFields({
+                        id: recipe.id,
+                        title: recipe.title,
+                        description: recipe.description,
+                        img: recipe.img,
+                        noOfPeople: recipe.noOfPeople,
+                        time: recipe.time,
+                        difficulty: recipe.difficulty,
+                        ingredients: recipe.ingredients,
+                        instructions: recipe.instructions,
+                        dateAdded: recipe.dateAdded ? new Date(recipe.dateAdded) : new Date()
+                    });
+                } else {
+                    console.error('Recipe not found');
+                }
             }
         };
         fetchRecipe();
     }, [category, recipeId, dispatch]);
 
-    const handleChange = (event) => {
+    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
         setFormFields({ ...formFields, [name]: value });
     };
 
-    const handleIngredientChange = (index, field, value) => {
+    const handleIngredientChange = (index: number, field: string, value: string) => {
         const newIngredients = formFields.ingredients.map((ingredient, i) => (
             i === index ? { ...ingredient, [field]: value } : ingredient
         ));
         setFormFields({ ...formFields, ingredients: newIngredients });
     };
 
-    const handleInstructionChange = (index, value) => {
+    const handleInstructionChange = (index: number, value: string) => {
         const newInstructions = formFields.instructions.map((instruction, i) => (
             i === index ? value : instruction
         ));
@@ -64,11 +81,11 @@ const UpdateRecipe = () => {
     const handleAddIngredient = () => {
         setFormFields({
             ...formFields,
-            ingredients: [...formFields.ingredients, { item: '', quantity: '', unit: '' }]
+            ingredients: [...formFields.ingredients, { item: '', quantity: 0, unit: '' }]
         });
     };
 
-    const handleRemoveIngredient = (index) => {
+    const handleRemoveIngredient = (index: number) => {
         const newIngredients = formFields.ingredients.filter((_, i) => i !== index);
         setFormFields({ ...formFields, ingredients: newIngredients });
     };
@@ -80,16 +97,21 @@ const UpdateRecipe = () => {
         });
     };
 
-    const handleRemoveInstruction = (index) => {
+    const handleRemoveInstruction = (index: number) => {
         const newInstructions = formFields.instructions.filter((_, i) => i !== index);
         setFormFields({ ...formFields, instructions: newInstructions });
     };
 
-    const handleSubmit = async (event) => {
+    const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        await dispatch(updateRecipe(category, formFields));
-        setFormFields(defaultFormFields);
-        navigate(`/recipes/${category}`);
+        if(category) {
+            await dispatch(updateRecipe(category, formFields));
+            setFormFields(defaultFormFields);
+            navigate(`/recipes/${category}`);
+        } else {
+            console.log('No category found.');
+        }
+        
     };
 
     return (

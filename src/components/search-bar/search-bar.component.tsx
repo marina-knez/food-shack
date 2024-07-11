@@ -1,14 +1,18 @@
-import { useState } from 'react';
+import { useState, ChangeEvent, FC } from 'react';
 import FormInput from '../form-input/form-input.component';
 
 import { SearchBarContainer } from './search-bar.styles';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass, faX } from '@fortawesome/free-solid-svg-icons';
 
-const SearchBar = ({ onSearch }) => {
+type SearchBarProps = {
+    onSearch: (query: string) => void;
+};
+
+const SearchBar: FC<SearchBarProps> = ({ onSearch }) => {
     const [query, setQuery] = useState('');
 
-    const handleChange = (event) => {
+    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         const { value } = event.target;
         setQuery(value);
         onSearch(value);

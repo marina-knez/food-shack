@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { FormEvent, ChangeEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { signInWithGooglePopup, signInAuthUserWithEmailAndPassword, getUserDocument } from '../../utils/firebase/firebase.utils';
@@ -25,37 +25,45 @@ const SignInForm = () => {
     }
 
     const signInWithGoogle = async () => {
-        const { user } = await signInWithGooglePopup();
-        const userDoc = await getUserDocument(user);
-        dispatch(setCurrentUser(userDoc));
-        navigate('/');
-    };
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
         try {
-            const { user } = await signInAuthUserWithEmailAndPassword(email, password);
-            const userDoc = await getUserDocument(user);
-            dispatch(setCurrentUser(userDoc));
-            resetFormFields();
-            navigate('/');
-
-        } catch (error) {
-            switch(error.code) {
-                case "auth/wrong-password":
-                    alert('incorrect password for email');
-                    break;
-                case "auth/user-not-found":
-                    alert('no user associated with this email');
-                    break;
-                default:
-                    console.log(error);
+            const { user } = await signInWithGooglePopup();
+            if (user) {
+                const userDoc = await getUserDocument(user);
+                if (userDoc) {
+                    dispatch(setCurrentUser(userDoc));
+                    navigate('/');
+                } else {
+                    console.error('No user document found');
+                }
             }
+        } catch (error) {
+            console.error('Error signing in with Google:', error);
         }
     };
 
-    const handleChange = (e) => {
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        try {
+            const userCredential = await signInAuthUserWithEmailAndPassword(email, password);
+            if (userCredential) {
+                const { user } = userCredential;
+                const userDoc = await getUserDocument(user);
+                if (userDoc) {
+                    dispatch(setCurrentUser(userDoc));
+                    resetFormFields();
+                    navigate('/');
+                } else {
+                    console.error('No user document found');
+                }
+            }
+
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
 
         setFormFields({...formFields, [name]: value});

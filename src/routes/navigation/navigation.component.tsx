@@ -3,13 +3,14 @@ import { Outlet } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../../store/user/user.selector";
 import { signOutUser } from "../../utils/firebase/firebase.utils";
-import { NavigationContainer, LogoContainer, NavigationWrapper, NavLinks, NavLink, NavItem, CurrentUserWrapper } from '../navigation/navigation.styles';
+import { NavigationContainer, LogoContainer, NavigationWrapper, NavLinks, NavLink, NavItem, CurrentUserWrapper } from './navigation.styles';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHouse, faBook, faArrowRightToBracket, faPowerOff, faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { ReactComponent as RecipesLogo } from '../../assets/recipes-logo.svg';
+import { UserData } from "../../utils/firebase/firebase.utils";
 
 const Navigation = () => {
-    const currentUser = useSelector(selectCurrentUser);
+    const currentUser = useSelector(selectCurrentUser) as UserData | null;
 
     return (
         <Fragment>

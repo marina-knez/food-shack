@@ -1,6 +1,10 @@
 import styled, { css } from "styled-components";
 import { sharedContainerStyles } from "../../routes/category/category.styles";
 
+interface RandomRecipeWrapperProps {
+    open: boolean;
+}  
+
 export const sharedWrapperStyles = css`
     display: flex;
     flex-direction: column;
@@ -64,13 +68,13 @@ export const RecentlyAddedTitle = styled.div`
     ${sharedTitleStyles}
 `
 
-export const RandomRecipeWrapper = styled.dialog`
+export const RandomRecipeWrapper = styled.dialog<RandomRecipeWrapperProps>`
     width: 50%;
     margin: 0 auto;
     text-align: right;
     position: absolute;
     z-index: 1;
-    animation: ${props => props.open ? 'appear .8s' : 'vanish .5s'}; 
+    animation: ${({open}) => open ? 'appear .8s' : 'vanish .5s'}; 
     border: 2px solid rgba(133,44,133,1);
     border-radius: 1rem;
 

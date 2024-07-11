@@ -1,6 +1,8 @@
-import { useEffect } from 'react';
+import { ChangeEvent, FormEvent, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { ThunkDispatch } from 'redux-thunk';
+import { AnyAction } from 'redux';
 import { selectFormFields } from '../../store/recipes/recipe.selector';
 import { setCurrentCategory, addRecipe, fetchRecentlyAddedRecipes, setFormFields } from '../../store/recipes/recipe.action';
 import FormInput from '../form-input/form-input.component';
@@ -10,12 +12,13 @@ import Button, { BUTTON_TYPE_CLASSES} from '../button/button.component';
 import { AddRecipePageContainer, AddRecipeTitle, AddRecipeForm, AddRecipeFormSubtitle, Textarea, AddRecipeButtonContainer, AddRecipeSubmitButtonContainer } from './add-recipe.styles';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faTrashCan, faPlus, faX } from '@fortawesome/free-solid-svg-icons';
+import { CategoryItemIngredient } from '../../store/categories/category.types';
 
 const AddRecipe = () => {
-    const { category } = useParams();
+    const { category } = useParams<{ category: string; }>();
     const formFields = useSelector(selectFormFields);
     const navigate = useNavigate();
-    const dispatch = useDispatch();
+    const dispatch: ThunkDispatch<any, any, AnyAction> = useDispatch();
 
     useEffect(() => {
         if (category) {
@@ -23,17 +26,17 @@ const AddRecipe = () => {
         }
     }, [category, dispatch]);
 
-    const handleChange = (event) => {
+    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         handleFormChange(event, formFields, (fields) => 
             dispatch(setFormFields(fields)));
     };
 
-    const handleIngredientChangeWrapper = (index, field, value) => {
+    const handleIngredientChangeWrapper = (index: number, field: keyof CategoryItemIngredient, value: string) => {
         handleIngredientChange(index, field, value, formFields, (fields) => 
         dispatch(setFormFields(fields)));
     };
 
-    const handleInstructionChangeWrapper = (index, value) => {
+    const handleInstructionChangeWrapper = (index: number, value: string) => {
         handleInstructionChange(index, value, formFields, (fields) => 
         dispatch(setFormFields(fields)));
     };
@@ -43,7 +46,7 @@ const AddRecipe = () => {
         dispatch(setFormFields(fields)));
     };
 
-    const handleRemoveIngredient = (index) => {
+    const handleRemoveIngredient = (index: number) => {
         removeIngredient(index, formFields, (fields) =>
         dispatch(setFormFields(fields)));
     };
@@ -53,26 +56,32 @@ const AddRecipe = () => {
         dispatch(setFormFields(fields)));
     };
 
-    const handleRemoveInstruction = (index) => {
+    const handleRemoveInstruction = (index: number) => {
         removeInstruction(index, formFields, (fields) => 
         dispatch(setFormFields(fields)));
     };
 
-    const handleSubmit = async (event) => {
+    const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        await dispatch(addRecipe(category, formFields));
-        dispatch(fetchRecentlyAddedRecipes());
-        dispatch(setFormFields({
-            title: '',
-            description: '',
-            img: '',
-            noOfPeople: 0,
-            time: 0,
-            difficulty: '',
-            ingredients: [{ item: '', quantity: 0, unit: '' }],
-            instructions: ['']
-        }));
-        navigate(`/recipes/${category}`);
+        if (category) {
+            await dispatch(addRecipe(category, formFields));
+            dispatch(fetchRecentlyAddedRecipes());
+            dispatch(setFormFields({
+                id: Date.now(),
+                title: '',
+                description: '',
+                img: '',
+                noOfPeople: 0,
+                time: 0,
+                difficulty: '',
+                ingredients: [{ item: '', quantity: 0, unit: '' }],
+                instructions: [''],
+                dateAdded: new Date()
+            }));
+            navigate(`/recipes/${category}`);
+        } else {
+            console.error('Category is undefined');
+        }
     };
 
     return (

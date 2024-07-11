@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectCategoriesMap } from '../../store/categories/category.selector';
@@ -6,52 +6,105 @@ import { addToShoppingList, removeFromShoppingList } from '../../store/shoppingL
 import Page404 from '../../routes/page-404/page-404.component';
 import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component';
 
-import { RecipeItemContainer, RecipeItemBasicsContainer, RecipeItemDetailsContainer, RecipeItemBasics, RecipeImgWrapper, RecipeItemTitle, RecipeItemInfoContainer, RecipeItemDescription, RecipeItemInfo, RecipeItemIngredientsContainer, RecipeItemInstructionsContainer, RecipeItemIngredientsTitle, RecipeIngredientsList, RecipeIngredientsListItem, RecipeInstructions, RecipeItemInstructionsTitle, RecipeInstructionsList, RecipeInstructionsStep, RecipeInstructionsListItem } from './recipe-details.styles';
+import {
+    RecipeItemContainer,
+    RecipeItemBasicsContainer,
+    RecipeItemDetailsContainer,
+    RecipeItemBasics,
+    RecipeImgWrapper,
+    RecipeItemTitle,
+    RecipeItemInfoContainer,
+    RecipeItemDescription,
+    RecipeItemInfo,
+    RecipeItemIngredientsContainer,
+    RecipeItemInstructionsContainer,
+    RecipeItemIngredientsTitle,
+    RecipeIngredientsList,
+    RecipeIngredientsListItem,
+    RecipeInstructions,
+    RecipeItemInstructionsTitle,
+    RecipeInstructionsList,
+    RecipeInstructionsStep,
+    RecipeInstructionsListItem
+} from './recipe-details.styles';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserGroup, faClock, faHandFist, faCartPlus, faCheck, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { faSquare, faSquareCheck } from '@fortawesome/free-regular-svg-icons';
 import { BaseWrapper } from '../../routes/category/category.styles';
 import { BackButtonContainer } from '../../routes/categories-preview/categories-preview.styles';
 
+export type CategoryItemIngredient = {
+    item: string;
+    quantity: number;
+    unit: string;
+}
+
+export type CategoryItem =  {
+    id: number;
+    title: string;
+    description: string;
+    noOfPeople: number;
+    time: number;
+    img: string;
+    ingredients: CategoryItemIngredient[];
+    instructions: string[];
+    difficulty: string;
+    dateAdded: Date | null;
+}
+
+export type CategoryMap = {
+    [key: string]: CategoryItem[];
+}
+
 const RecipeDetails = () => {
-    const { category, id } = useParams();
-    const categoriesMap = useSelector(selectCategoriesMap);
-    const recipe = categoriesMap[category]?.find((recipe) => recipe.id === parseInt(id));
-    const [checkedItems, setCheckedItems] = useState(Array(recipe?.instructions.length).fill(false));
-    const [itemsInCart, setItemsInCart] = useState(Array(recipe?.ingredients.length).fill(false));
+    const { category, id } = useParams<{ category: string; id: string }>();
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const categoriesMap = useSelector(selectCategoriesMap) as CategoryMap;
+
+    const recipeId = id ? parseInt(id, 10) : null;
+
+    const recipe = category ? categoriesMap[category]?.find((recipe: CategoryItem) => recipe.id === recipeId) : undefined;
+
+    const [checkedItems, setCheckedItems] = useState<boolean[]>([]);
+    const [itemsInCart, setItemsInCart] = useState<boolean[]>([]);
+
+    useEffect(() => {
+        if (recipe) {
+            setCheckedItems(Array(recipe.instructions.length).fill(false));
+            setItemsInCart(Array(recipe.ingredients.length).fill(false));
+        }
+    }, [recipe]);
+
+    if (!recipe) {
+        return <Page404 />;
+    }
 
     const goBack = () => {
         navigate(`/recipes/${category}`);
     };
 
-    const toggleIsItemChecked = (index) => {
-        setCheckedItems(prevCheckedItems => {
+    const toggleIsItemChecked = (index: number) => {
+        setCheckedItems((prevCheckedItems) => {
             const newCheckedItems = [...prevCheckedItems];
             newCheckedItems[index] = !newCheckedItems[index];
             return newCheckedItems;
         });
     };
 
-    const toggleIsItemInCart = (index) => {
-        setItemsInCart(prevItemsInCart => {
+    const toggleIsItemInCart = (index: number) => {
+        setItemsInCart((prevItemsInCart) => {
             const newItemsInCart = [...prevItemsInCart];
             newItemsInCart[index] = !newItemsInCart[index];
+            const ingredient = recipe.ingredients[index];
             if (newItemsInCart[index]) {
-                dispatch(addToShoppingList(recipe.title, recipe.ingredients[index]));
+                dispatch(addToShoppingList(recipe, ingredient));
             } else {
-                dispatch(removeFromShoppingList(recipe.title, recipe.ingredients[index]));
+                dispatch(removeFromShoppingList(recipe, ingredient));
             }
             return newItemsInCart;
         });
     };
-
-    if (!recipe) {
-        return (
-            <Page404 />
-        );
-    }
 
     return (
         <RecipeItemContainer>
@@ -72,18 +125,15 @@ const RecipeDetails = () => {
                     <RecipeItemInfoContainer>
                         <RecipeItemInfo>
                             <FontAwesomeIcon icon={faUserGroup} className='icon people' />
-                            <p><b>Serves: </b></p>
-                            <p>{recipe.noOfPeople}</p>
+                            <p><b>Serves: </b>{recipe.noOfPeople}</p>
                         </RecipeItemInfo>
                         <RecipeItemInfo>
                             <FontAwesomeIcon icon={faClock} className='icon clock' />
-                            <p><b>Time: </b></p>
-                            <p>{recipe.time} minutes</p>
+                            <p><b>Time: </b>{recipe.time} minutes</p>
                         </RecipeItemInfo>
                         <RecipeItemInfo>
                             <FontAwesomeIcon icon={faHandFist} className='icon hand' />
-                            <p><b>Difficulty: </b></p>
-                            <p>{recipe.difficulty}</p>
+                            <p><b>Difficulty: </b>{recipe.difficulty}</p>
                         </RecipeItemInfo>
                     </RecipeItemInfoContainer>
                 </RecipeItemBasics>
@@ -92,7 +142,7 @@ const RecipeDetails = () => {
                 <RecipeItemIngredientsContainer>
                     <RecipeItemIngredientsTitle>Ingredients</RecipeItemIngredientsTitle>
                     <RecipeIngredientsList>
-                        {recipe.ingredients.map((ingredient, index) => (
+                        {recipe.ingredients.map((ingredient: CategoryItemIngredient, index: number) => (
                             <RecipeIngredientsListItem key={index}>
                                 {itemsInCart[index] ? (
                                     <FontAwesomeIcon icon={faCheck} className='cart-icon' onClick={() => toggleIsItemInCart(index)} />
@@ -107,10 +157,10 @@ const RecipeDetails = () => {
                 <RecipeItemInstructionsContainer>
                     <RecipeItemInstructionsTitle>Instructions</RecipeItemInstructionsTitle>
                     <RecipeInstructionsList>
-                        {recipe.instructions.map((instruction, index) => (
+                        {recipe.instructions.map((instruction: string, index: number) => (
                             <RecipeInstructions key={index}>
                                 <RecipeInstructionsStep>Step {index + 1}</RecipeInstructionsStep>
-                                <RecipeInstructionsListItem className={checkedItems[index] ? "done" : "undone"}>
+                                <RecipeInstructionsListItem className={checkedItems[index] ? 'done' : 'undone'}>
                                     {checkedItems[index] ? (
                                         <FontAwesomeIcon icon={faSquareCheck} className='list-icon checked' onClick={() => toggleIsItemChecked(index)} />
                                     ) : (

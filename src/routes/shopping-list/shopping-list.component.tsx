@@ -2,18 +2,19 @@ import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectShoppingList } from '../../store/shoppingList/shoppingList.selector';
 import { removeFromShoppingList } from '../../store/shoppingList/shoppingList.action';
+import { ShoppingListItem } from '../../store/shoppingList/shoppingList.types';
 
-import { ShoppingListPageWrapper, ShoppingPageTitle, ShoppingListWrapper, ShoppingListContainer, ShoppingListItem, EmptyShoppingList } from './shopping-list.styles';
+import { ShoppingListPageWrapper, ShoppingPageTitle, ShoppingListWrapper, ShoppingListContainer, SingleShoppingListItem, EmptyShoppingList } from './shopping-list.styles';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSquare, faSquareCheck } from '@fortawesome/free-regular-svg-icons';
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 
 const ShoppingList = () => {
   const shoppingList = useSelector(selectShoppingList);
-  const [checkedItems, setCheckedItems] = useState(Array(shoppingList.length).fill(false));
+  const [checkedItems, setCheckedItems] = useState<boolean[]>(Array(shoppingList.length).fill(false));
   const dispatch = useDispatch();
 
-  const toggleIsItemChecked = (index) => {
+  const toggleIsItemChecked = (index: number) => {
     setCheckedItems(prevCheckedItems => {
         const newCheckedItems = [...prevCheckedItems];
         newCheckedItems[index] = !newCheckedItems[index];
@@ -21,19 +22,22 @@ const ShoppingList = () => {
     });
 };
 
-  const handleClearItemFromList = (recipeTitle, ingredient) => {
-    dispatch(removeFromShoppingList(recipeTitle, ingredient));
+  const handleClearItemFromList = (recipeTitle: string, ingredient: string) => {
+    const itemToRemove = shoppingList.find(item => item.recipe.title === recipeTitle && item.ingredient.item === ingredient);
+    if (itemToRemove) {
+        dispatch(removeFromShoppingList(itemToRemove.recipe, itemToRemove.ingredient));
+    }
   }
 
   const organizeShoppingList = () => {
-      const organizedList = {};
+    const organizedList: Record<string, ShoppingListItem[]> = {};
 
       shoppingList.forEach((item) => {
           const { recipe, ingredient } = item;
-          if (!organizedList[recipe]) {
-              organizedList[recipe] = [ingredient];
+          if (!organizedList[recipe.title]) {
+              organizedList[recipe.title] = [{ recipe, ingredient }];
           } else {
-              organizedList[recipe].push(ingredient);
+              organizedList[recipe.title].push({ recipe, ingredient });
           }
       });
       return organizedList;
@@ -49,20 +53,20 @@ const ShoppingList = () => {
               <ShoppingListWrapper key={recipeTitle}>
                 <ShoppingListContainer>
                   <h3>{recipeTitle}</h3>
-                  {organizedShoppingList[recipeTitle].map((ingredient, index) => (
-                    <ShoppingListItem key={index} className={checkedItems[index] ? "done" : "undone"}>
+                  {organizedShoppingList[recipeTitle].map((item, index) => (
+                    <SingleShoppingListItem key={index} className={checkedItems[index] ? "done" : "undone"}>
                       <div>
                         {checkedItems[index] ? (
                           <FontAwesomeIcon icon={faSquareCheck} className='list-icon checked' onClick={() => toggleIsItemChecked(index)} />
                         ) : (
                           <FontAwesomeIcon icon={faSquare} className='list-icon square' onClick={() => toggleIsItemChecked(index)} />
                         )}
-                        {ingredient.quantity} {ingredient.unit} {ingredient.item}
+                        {item.ingredient.quantity} {item.ingredient.unit} {item.ingredient.item}
                       </div>
                       <div>
-                        <FontAwesomeIcon icon={faTrashCan} className='list-icon trash' onClick={() => handleClearItemFromList(recipeTitle, ingredient)} />
+                        <FontAwesomeIcon icon={faTrashCan} className='list-icon trash' onClick={() => handleClearItemFromList(recipeTitle, item.ingredient.item)} />
                       </div>
-                    </ShoppingListItem>
+                    </SingleShoppingListItem>
                   ))}
                 </ShoppingListContainer>
               </ShoppingListWrapper>

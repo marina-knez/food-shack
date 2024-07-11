@@ -150,6 +150,8 @@ export const updateCategoryDocument = async (oldCategoryName: string, newCategor
                 recipes: recipes,
             });
             await deleteDoc(oldCategoryDocRef);
+        } else {
+            console.error('Old category document does not exist.');
         }
     } catch (error) {
         console.error('Error updating category document:', error);
@@ -275,28 +277,36 @@ export type UserData = {
 }
 
 // Create a user document from authentication details
-export const createUserDocumentFromAuth = async (userAuth: User, additionalInformation = {} as AdditionalInformation): Promise<void | QueryDocumentSnapshot<UserData>> => {
-    if (!userAuth) return;
+export const createUserDocumentFromAuth = async (userAuth: User, additionalInformation = {} as AdditionalInformation): Promise<UserData | null> => {
+    if (!userAuth) return null;
     const userDocRef = doc(db, 'users', userAuth.uid);
-    const userSnapshot = await getDoc(userDocRef);
 
-    if (!userSnapshot.exists()) {
-        const { displayName, email } = userAuth;
-        const createdAt = new Date();
+    try {
+        const userSnapshot = await getDoc(userDocRef);
 
-        try {
+        if (!userSnapshot.exists()) {
+            const { displayName, email } = userAuth;
+            const createdAt = new Date();
+
             await setDoc(userDocRef, {
                 displayName,
                 email,
                 createdAt,
                 ...additionalInformation
             });
-        } catch (error) {
-            console.log('error creating the user', error);
         }
-    }
 
-    return userSnapshot as QueryDocumentSnapshot<UserData>;
+        return {
+            displayName: userAuth.displayName || '',
+            email: userAuth.email || '',
+            createdAt: new Date(),
+            ...additionalInformation
+        } as UserData;
+
+    } catch (error) {
+        console.error('Error creating the user', error);
+        return null;
+    }
 };
 
 // Create a new user with email and password
@@ -320,19 +330,21 @@ export const signInAuthUserWithEmailAndPassword = async (email: string, password
 };
 
 // Get a user document by userAuth object
-export const getUserDocument = async (userAuth: User | null) => {
+export const getUserDocument = async (userAuth: User | null): Promise<UserData | null> => {
     if (!userAuth) return null;
     try {
         const userDocRef = doc(db, 'users', userAuth.uid);
         const userSnapshot = await getDoc(userDocRef);
         if (userSnapshot.exists()) {
-            return userSnapshot.data();
+            // Type assertion to UserData
+            return userSnapshot.data() as UserData;
         } else {
             console.error('User document not found');
             return null;
         }
     } catch (error) {
         console.error('Error getting user document:', error);
+        return null;
     }
 };
 

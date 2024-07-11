@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, ChangeEvent, FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth } from '../../utils/firebase/firebase.utils';
 import { useDispatch } from "react-redux";
@@ -26,7 +26,7 @@ const SignUpForm = () => {
         setFormFields(defaultFormFields);
     }
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         if(password !== confirmPassword) {
@@ -35,23 +35,24 @@ const SignUpForm = () => {
         }
 
         try {
-            const { user } = await createAuthUserWithEmailAndPassword(email, password);
-            
-            await createUserDocumentFromAuth(user, { displayName });
-            dispatch(setCurrentUser({ ...user, displayName }));
-            resetFormFields();
-            navigate('/');
-
-        } catch (error) {
-            if(error.code === 'auth/email-already-in-use') {
-                alert('Cannot create user, email already in use');
-            } else {
-                console.log('user creation encountered and error', error);
+            const userCredential = await createAuthUserWithEmailAndPassword(email, password);
+            if (userCredential) {
+                const { user } = userCredential;
+                const userDoc = await createUserDocumentFromAuth(user, { displayName });
+                if (userDoc) {
+                    dispatch(setCurrentUser(userDoc)); // Pass UserData to the action
+                    resetFormFields();
+                    navigate('/');
+                } else {
+                    console.error('No user document created');
+                }
             }
+        } catch (error) {
+            console.log('User creation encountered an error', error);
         }
     };
 
-    const handleChange = (e) => {
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
 
         setFormFields({...formFields, [name]: value});

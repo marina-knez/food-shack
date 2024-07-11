@@ -8,12 +8,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { useSelector } from 'react-redux';
 import { selectCategoriesMap } from '../../store/categories/category.selector';
+import { CategoryMap } from '../../store/categories/category.types';
+import { Recipe } from '../../store/recipes/recipe.types';
 
 const Category = () => {
-    const { category } = useParams();
-    const categoriesMap = useSelector(selectCategoriesMap);
-    const recipes = categoriesMap[category.toLowerCase()] || [];
-    const [displayedRecipes, setDisplayedRecipes] = useState(4);
+    const { category } = useParams<{ category: string }>();
+    const categoriesMap = useSelector(selectCategoriesMap) as CategoryMap;
+    const recipes: Recipe[] = category ? categoriesMap[category.toLowerCase()] || [] : [];
+    const [displayedRecipes, setDisplayedRecipes] = useState<number>(4);
     const navigate = useNavigate();
 
     const goBack = () => {
@@ -32,7 +34,7 @@ const Category = () => {
                         <FontAwesomeIcon icon={faArrowLeft} className='icon-back'/>
                     </Button>
                 </BackButtonContainer>
-                <CategoryTitle>{category.toUpperCase()}</CategoryTitle>
+                <CategoryTitle>{category ? category.toUpperCase() : ''}</CategoryTitle>
             </BaseWrapper>
             <CategoryWrapper>
                 <CategoryContainer>
@@ -41,7 +43,7 @@ const Category = () => {
                             .slice(0, displayedRecipes)
                             .map(recipe => (
                                 <RecipeCardContainer key={recipe.id}>
-                                    <RecipeCard recipe={recipe} category={category} />
+                                    <RecipeCard recipe={recipe} category={category || ''} />
                                 </RecipeCardContainer>
                         ))
                     }

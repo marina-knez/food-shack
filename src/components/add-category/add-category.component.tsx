@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createCategoryDocument } from "../../utils/firebase/firebase.utils";
 import FormInput from '../form-input/form-input.component';
@@ -9,10 +9,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faX } from '@fortawesome/free-solid-svg-icons';
 
 const AddCategory = () => {
-    const [categoryName, setCategoryName] = useState('');
+    const [categoryName, setCategoryName] = useState<string>('');
     const navigate = useNavigate();
 
-    const handleAddCategory = async (event) => {
+    const handleAddCategory = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         if (categoryName.trim()) {
             await createCategoryDocument(categoryName.trim());
@@ -20,7 +20,7 @@ const AddCategory = () => {
         }
     };
 
-    const handleChange = (e) => {
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         setCategoryName(e.target.value);
     };
 

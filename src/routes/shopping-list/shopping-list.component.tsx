@@ -48,10 +48,11 @@ const ShoppingList = () => {
   return (
         <ShoppingListPageWrapper>
           <ShoppingPageTitle>My Shopping List</ShoppingPageTitle>
+          <ShoppingListWrapper>
           {Object.keys(organizedShoppingList).length ? (
             Object.keys(organizedShoppingList).map((recipeTitle) => (
-              <ShoppingListWrapper key={recipeTitle}>
-                <ShoppingListContainer>
+              
+                <ShoppingListContainer key={recipeTitle}>
                   <h3>{recipeTitle}</h3>
                   {organizedShoppingList[recipeTitle].map((item, index) => (
                     <SingleShoppingListItem key={index} className={checkedItems[index] ? "done" : "undone"}>
@@ -69,13 +70,14 @@ const ShoppingList = () => {
                     </SingleShoppingListItem>
                   ))}
                 </ShoppingListContainer>
-              </ShoppingListWrapper>
+              
             ))
           ) : (
             <EmptyShoppingList>
               <p>Your shopping list is empty.</p>
             </EmptyShoppingList>
           )}
+          </ShoppingListWrapper>
       </ShoppingListPageWrapper>
     )
 }

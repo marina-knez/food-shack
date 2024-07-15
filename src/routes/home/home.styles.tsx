@@ -69,7 +69,7 @@ export const RecentlyAddedTitle = styled.div`
 `
 
 export const RandomRecipeWrapper = styled.dialog<RandomRecipeWrapperProps>`
-    width: 50%;
+    width: 30%;
     margin: 0 auto;
     text-align: right;
     position: absolute;

@@ -7,6 +7,11 @@ export const sharedWrapperStyles = css`
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
+
+    @media screen and (max-width: 768px) {
+        flex-direction: column;
+        justify-content: center;
+    }
 `
 
 export const sharedRecipeLinkStyles = css`
@@ -73,12 +78,14 @@ export const SearchResultsContainer = styled.div`
 
     @media screen and (max-width: 1024px) {
         width: 70%;
-        left: 20vw;
+        top: 11vh;
+        left: 22vw;
     }
 
     @media screen and (max-width: 768px) {
         width: 80%;
-        left: 18vw;
+        top: 16vh;
+        left: 10vw;
     }
 `
 

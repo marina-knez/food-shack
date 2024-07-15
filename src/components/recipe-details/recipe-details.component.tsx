@@ -125,15 +125,18 @@ const RecipeDetails = () => {
                     <RecipeItemInfoContainer>
                         <RecipeItemInfo>
                             <FontAwesomeIcon icon={faUserGroup} className='icon people' />
-                            <p><b>Serves: </b>{recipe.noOfPeople}</p>
+                            <p><b>Serves: </b></p>
+                            <p>{recipe.noOfPeople}</p>
                         </RecipeItemInfo>
                         <RecipeItemInfo>
                             <FontAwesomeIcon icon={faClock} className='icon clock' />
-                            <p><b>Time: </b>{recipe.time} minutes</p>
+                            <p><b>Time: </b></p>
+                            <p>{recipe.time} min</p>
                         </RecipeItemInfo>
                         <RecipeItemInfo>
                             <FontAwesomeIcon icon={faHandFist} className='icon hand' />
-                            <p><b>Difficulty: </b>{recipe.difficulty}</p>
+                            <p><b>Difficulty: </b></p>
+                            <p>{recipe.difficulty}</p>
                         </RecipeItemInfo>
                     </RecipeItemInfoContainer>
                 </RecipeItemBasics>

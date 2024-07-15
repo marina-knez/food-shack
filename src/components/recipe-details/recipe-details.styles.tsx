@@ -11,6 +11,10 @@ export const RecipeItemTitle = styled.h2`
     text-align: center;
     width: 80%;
     margin-left: -100px;
+
+    @media screen and (max-width: 768px) {
+        margin-left: 0;
+    }
 `
 
 export const RecipeItemBasicsContainer = styled.div`

@@ -17,11 +17,13 @@ export const sharedContainerStyles = css`
         grid-template-columns: 1fr 1fr;
         grid-template-rows: 1fr;
         margin: 20px auto;
+        width: 95%;
     }
 
     @media screen and (max-width: 768px) {
         grid-template-columns: 1fr;
         grid-template-rows: 1fr;
+        width: 90%;
     }
 `
 
@@ -29,7 +31,7 @@ export const sharedCardContainerStyles = css`
     width: 100%;
 
     @media screen and (max-width: 1024px) {
-        width: 90%;
+        //width: 90%;
     }
 `
 

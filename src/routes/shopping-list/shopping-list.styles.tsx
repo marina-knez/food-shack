@@ -9,6 +9,10 @@ export const ShoppingListPageWrapper = styled.div`
 
 export const ShoppingListWrapper = styled.div`
     ${sharedContainerStyles}
+
+    @media screen and (max-width: 480px) {
+        margin: 0 auto;
+    }
 `
 
 export const ShoppingPageTitle = styled.h2`
@@ -22,6 +26,10 @@ export const ShoppingListContainer = styled.ul`
     & h3 {
         color: rgba(133,44,133,1);
         font-size: 1.3rem;
+    }
+
+    @media screen and (max-width: 480px) {
+        padding: 0 20px;
     }
 `
 

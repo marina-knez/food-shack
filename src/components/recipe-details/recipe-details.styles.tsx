@@ -15,6 +15,10 @@ export const RecipeItemTitle = styled.h2`
     @media screen and (max-width: 768px) {
         margin-left: 0;
     }
+
+    @media screen and (max-width: 768px) {
+        font-size: 2.5rem;
+    }
 `
 
 export const RecipeItemBasicsContainer = styled.div`
@@ -48,6 +52,14 @@ export const RecipeImgWrapper = styled.div`
                     height: 100%;
                 }
         }
+
+    @media screen and (max-width: 480px) {
+        height: 250px;
+
+        & img {
+            height: 100%;
+        }
+    }
 `
 
 export const RecipeItemBasics = styled.div`
@@ -186,6 +198,10 @@ export const RecipeIngredientsListItem = styled.li`
         cursor: pointer;
         color: rgba(133,44,133,1);
     }
+
+    @media screen and (max-width: 480px) {
+        font-size: 1.1rem;
+    }
 `
 
 export const RecipeItemIngredientsTitle = styled.h2`
@@ -236,6 +252,10 @@ export const RecipeInstructionsListItem = styled.li`
     &.undone {
         text-decoration: none;
     }
+
+    @media screen and (max-width: 480px) {
+        font-size: 1.1rem;
+    }
 `
 
 export const RecipeInstructionsStep = styled.p`
@@ -244,6 +264,10 @@ export const RecipeInstructionsStep = styled.p`
     font-weight: 600;
     font-size: 1.5rem;
     margin: 0;
+
+    @media screen and (max-width: 480px) {
+        font-size: 1.3rem;
+    }
 `
 
 export const RecipeItemInstructionsTitle = styled.h2`

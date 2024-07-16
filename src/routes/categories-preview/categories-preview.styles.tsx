@@ -50,6 +50,10 @@ export const AddCategoryContainer = styled.div`
         margin-left: 20px;
         border-radius: .8rem;
     }
+
+    @media screen and (max-width: 480px) {
+        margin: 20px 0 0 20px;        
+    }
 `
 
 export const AddCategoryLink = styled(Link)`
@@ -87,6 +91,10 @@ export const SearchResultsContainer = styled.div`
         top: 16vh;
         left: 10vw;
     }
+
+    @media screen and (max-width: 480px) {
+        top: 22vh;
+    }
 `
 
 export const SearchResultsTitle = styled.h3`
@@ -102,10 +110,15 @@ export const SearchResultsItem = styled(Link)`
     flex-direction: row;
     border-bottom: 2px solid grey;
     margin: 0 auto;
+    align-items: center;
 
     & img {
         height: 100px;
         width: auto;
+
+        @media screen and (max-width: 480px) {
+            height: 70px;
+        }
     }
 
     @media screen and (max-width: 1024px) {
@@ -121,6 +134,10 @@ export const SearchResultsItemDetails = styled.div`
         @media screen and (max-width: 768px) {
             margin: 0;
         }
+
+        @media screen and (max-width: 480px) {
+            font-size: 1rem;
+        }
     }
 
     & div {
@@ -134,10 +151,13 @@ export const SearchResultsItemDetails = styled.div`
         }
 
         & span {
-            
 
             @media screen and (max-width: 1024px) {
                 padding: 0 10px;
+            }
+
+            @media screen and (max-width: 480px) {
+                font-size: .8rem;
             }
         }
     }

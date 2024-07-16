@@ -28,6 +28,10 @@ export const CategoryPreviewBasics = styled.div`
 
 export const CategoryPreviewName = styled.div`
     width: 100%;
+
+    @media screen and (max-width: 480px) {
+        text-align: center;
+    }
 `
 
 export const CategoryPreviewTitle = styled(Link)`
@@ -39,6 +43,10 @@ export const CategoryPreviewTitle = styled(Link)`
 
     @media screen and (max-width: 768px) {
         margin-left: auto;
+    }
+
+    @media screen and (max-width: 480px) {
+        text-align: center; 
     }
 `;
 
@@ -52,6 +60,10 @@ export const CategoryPreviewLinks = styled.div`
 
     @media screen and (max-width:768px) {
         margin-right: 0;
+    }
+
+    @media screen and (max-width: 480px) {
+        display: none;
     }
 `
 
@@ -81,6 +93,10 @@ export const PreviewWrapper = styled.div`
     @media screen and (max-width: 1024px) {
         margin: 20px auto;
     }
+
+    @media screen and (max-width: 480px) {
+        margin: 10px auto;
+    }
 `
 
 export const Preview = styled.div`
@@ -89,7 +105,12 @@ export const Preview = styled.div`
     @media screen and (max-width: 768px) {
         width: 90%;
         margin: 20px auto;
-    }    
+    } 
+        
+    @media screen and (max-width: 480px) {
+        width: 100%;
+        margin: 10px auto;
+    }
 `
 
 export const RecipeCardContainer = styled.div`

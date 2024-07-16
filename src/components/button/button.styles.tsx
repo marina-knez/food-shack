@@ -61,6 +61,21 @@ export const BaseButtonScroll = styled.button`
   border-radius: 100%;
   background-color: rgba(168,96,168,1);
   cursor: pointer;
+
+  @media screen and (max-width: 480px) {
+        padding: .8rem;
+    }
+
+  .arrow-up {
+    font-size: 1.5rem;
+    padding: 5px 10px;
+    color: white;
+
+    @media screen and (max-width: 480px) {
+        font-size: 1.2rem;
+        padding: 1px 5px;
+    }
+}
 `
 
 export const InvertedButtonBack = styled(InvertedButton)`

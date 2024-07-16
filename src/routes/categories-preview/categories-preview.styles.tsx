@@ -93,7 +93,7 @@ export const SearchResultsContainer = styled.div`
     }
 
     @media screen and (max-width: 480px) {
-        top: 17vh;
+        top: 14vh;
     }
 `
 

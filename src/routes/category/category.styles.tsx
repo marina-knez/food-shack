@@ -39,8 +39,6 @@ export const sharedRecipeLinkContainerStyles = css`
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 150px;
-    height: 200px;
     margin-left: 50px;
     height: 70px;
     width: 300px;
@@ -62,6 +60,12 @@ export const sharedRecipeLinkContainerStyles = css`
 
     @media screen and (max-width: 768px) {
         margin: 30px auto;
+    }
+
+    @media screen and (max-width: 480px) {
+        margin: 15px auto;
+        height: 50px;
+        width: 200px;
     }
 `
 
@@ -95,6 +99,11 @@ export const CategoryTitle = styled.h2`
     color: rgba(133,44,133,1);
     width: 80%;
     margin-left: -100px;
+
+    @media screen and (max-width: 768px) {
+        text-align: center;
+        margin: 20px auto 0 auto;
+    }
 `
 
 export const RecipeCardContainer = styled.div`

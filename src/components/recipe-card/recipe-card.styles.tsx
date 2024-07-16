@@ -53,9 +53,21 @@ export const RecipeCardLink = styled(Link)`
     transition: all .3s linear;
 
     & button {
+        @media screen and (max-width: 480px) {
+            padding: 0 20px;
+        }
+
         & .edit, .delete {
             padding: 10px 10px;
+
+            @media screen and (max-width: 480px) {
+                padding: 10px 5px;
+            }
         }
+    }
+
+    @media screen and (max-width: 480px) {
+        padding: 0 5px;
     }
 `
 
@@ -70,6 +82,10 @@ export const RecipeCardInfo = styled.div`
 
     @media screen and (max-width: 1024px) {
       font-size: 1.4rem;
+    }
+
+    @media screen and (max-width: 480px) {
+        font-size: 1.2rem;
     }
 `
 

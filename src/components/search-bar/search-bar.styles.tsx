@@ -7,6 +7,10 @@ export const SearchBarContainer = styled.div`
     justify-content: center;
     margin: 30px 0;
 
+    @media screen and (max-width: 480px) {
+        margin: 15px 0;
+    }
+
     & div {
         flex-direction: row-reverse;
         width: 70%;

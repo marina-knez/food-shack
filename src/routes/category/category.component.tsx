@@ -2,10 +2,11 @@ import { Fragment, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import RecipeCard from '../../components/recipe-card/recipe-card.component';
 import Button, { BUTTON_TYPE_CLASSES } from '../../components/button/button.component';
-import { BaseWrapper, CategoryContainer, CategoryWrapper, RecipeCardContainer, CategoryTitle, AddRecipeLinkContainer, AddRecipeLink, LoadMoreButtonContainer } from './category.styles';
+import { BaseWrapper, CategoryPagePreviewLinks, CategoryContainer, CategoryWrapper, RecipeCardContainer, CategoryTitle, AddRecipeLinkContainer, AddRecipeLink, LoadMoreButtonContainer } from './category.styles';
 import { BackButtonContainer } from '../categories-preview/categories-preview.styles';
+import { CategoryPreviewLink } from '../../components/category-preview/category-preview.styles';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faArrowLeft, faPenToSquare, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { useSelector } from 'react-redux';
 import { selectCategoriesMap } from '../../store/categories/category.selector';
 import { CategoryMap } from '../../store/categories/category.types';
@@ -35,6 +36,18 @@ const Category = () => {
                     </Button>
                 </BackButtonContainer>
                 <CategoryTitle>{category ? category.toUpperCase() : ''}</CategoryTitle>
+                <CategoryPagePreviewLinks>
+                    <CategoryPreviewLink to={`/recipes/update-category/${category}`}>
+                        <Button buttonType={BUTTON_TYPE_CLASSES.inverted}>
+                            <FontAwesomeIcon icon={faPenToSquare} className="edit" />
+                        </Button>
+                    </CategoryPreviewLink>
+                    <CategoryPreviewLink to={`/recipes/delete-category/${category}`}>
+                        <Button buttonType={BUTTON_TYPE_CLASSES.base}>
+                            <FontAwesomeIcon icon={faTrashCan} className="delete" />
+                        </Button>
+                    </CategoryPreviewLink>
+                </CategoryPagePreviewLinks>
             </BaseWrapper>
             <CategoryWrapper>
                 <CategoryContainer>

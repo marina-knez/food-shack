@@ -55,8 +55,7 @@ export const CategoryPreviewLinks = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: flex-end;
-    width: 100%;
-    margin-right: 50px;
+    margin-right: 70px;
 
     @media screen and (max-width:768px) {
         margin-right: 0;
@@ -90,7 +89,7 @@ export const PreviewWrapper = styled.div`
     flex-direction: column;
     margin: 20px 50px;
 
-    @media screen and (max-width: 1024px) {
+    @media screen and (max-width: 1200px) {
         margin: 20px auto;
     }
 
@@ -116,8 +115,34 @@ export const Preview = styled.div`
 export const RecipeCardContainer = styled.div`
     ${sharedCardContainerStyles}
 
+    &:nth-child(4) {
+        display: block;
+    }
+
+    @media screen and (max-width: 1600px) {
+        &:nth-child(4) {
+            display: none;
+        }
+    }
+
+    @media screen and (max-width: 1200px) {
+        &:nth-child(4) {
+            display: block;
+        }
+    }
+
     @media screen and (max-width: 768px) {
         width: 90%;
+
+        &:nth-child(4) {
+            display: block;
+        }
+    } 
+        
+    @media screen and (max-width: 480px) {
+        &:nth-child(4) {
+            display: block;
+        }
     }
 `
 

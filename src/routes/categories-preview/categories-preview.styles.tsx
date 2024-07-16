@@ -7,6 +7,7 @@ export const sharedWrapperStyles = css`
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
+    width: 100%;
 
     @media screen and (max-width: 768px) {
         flex-direction: column;
@@ -68,6 +69,11 @@ export const Wrapper = styled.div`
 export const BackButtonContainer = styled.div`
     ${sharedButtonContainerStyles}
     margin-top: 0;
+    margin-left: 90px;
+
+    @media screen and (max-width: 768px) {
+        margin-left: 0;
+    }
 `
 
 export const SearchResultsContainer = styled.div`

@@ -86,9 +86,12 @@ export const SearchResultsContainer = styled.div`
     top: 9vh;
     padding-bottom: 30px;
 
+    @media screen and (max-width: 1600px) {
+        top: 11vh;
+    }
+
     @media screen and (max-width: 1024px) {
         width: 70%;
-        top: 11vh;
         left: 22vw;
     }
 

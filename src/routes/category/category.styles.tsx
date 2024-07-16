@@ -13,26 +13,25 @@ export const sharedContainerStyles = css`
     margin: 20px auto;
     width: 100%;
 
-    @media screen and (max-width: 1024px) {
-        grid-template-columns: 1fr 1fr;
+    @media screen and (max-width: 1600px) {
+        grid-template-columns: 1fr 1fr 1fr;
         grid-template-rows: 1fr;
-        margin: 20px auto;
         width: 95%;
+    }
+
+    @media screen and (max-width: 1200px) {
+        grid-template-columns: 1fr 1fr;
+        margin: 20px auto;
     }
 
     @media screen and (max-width: 768px) {
         grid-template-columns: 1fr;
-        grid-template-rows: 1fr;
         width: 90%;
     }
 `
 
 export const sharedCardContainerStyles = css`
     width: 100%;
-
-    @media screen and (max-width: 1024px) {
-        //width: 90%;
-    }
 `
 
 export const sharedRecipeLinkContainerStyles = css`
@@ -73,6 +72,22 @@ export const BaseWrapper = styled.div`
     ${sharedWrapperStyles}
 `
 
+export const CategoryPagePreviewLinks = styled.div`
+    display: none;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    margin-right: 70px;
+
+    @media screen and (max-width:768px) {
+        margin-right: 0;
+    }
+
+    @media screen and (max-width: 480px) {
+        display: flex;
+    }
+`
+
 export const CategoryWrapper = styled.div`
     display: flex;
     flex-direction: column;
@@ -98,11 +113,10 @@ export const CategoryTitle = styled.h2`
     font-weight: 600;
     color: rgba(133,44,133,1);
     width: 80%;
-    margin-left: -100px;
 
     @media screen and (max-width: 768px) {
         text-align: center;
-        margin: 20px auto 0 auto;
+        margin: 50px auto 0 auto;
     }
 `
 

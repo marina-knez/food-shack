@@ -24,10 +24,6 @@ export const RecipeCardContainer = styled.div`
       border-top-left-radius: .4rem;
       border-top-right-radius: .4rem;
     }
-
-    @media screen and (max-width: 1024px) {
-        width: 100%;
-    }
 `
 
 export const RecipeCardLinks = styled.div`

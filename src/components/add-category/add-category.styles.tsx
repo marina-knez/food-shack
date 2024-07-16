@@ -21,7 +21,7 @@ export const sharedButtonContainerStyles = css`
     flex-direction: row;
     justify-content: center;
 
-    @media screen and (max-width: 1024px) {
+    @media screen and (max-width: 1200px) {
         justify-content: space-around;
     }
 `
